@@ -44,4 +44,6 @@
     <string name="str_lastname">Enter lastname</string>
     <string name="str_user_type">Enter usertype</string>
     <string name="toolbar_acc_title">Edit account</string>
+    <string name="str_Apassword">Enter password</string>
+    <string name="str_confirm_password">Enter confirm password</string>
 </resources>
