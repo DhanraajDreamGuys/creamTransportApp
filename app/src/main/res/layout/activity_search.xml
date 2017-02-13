@@ -131,20 +131,6 @@
                 android:padding="@dimen/_5sdp"
                 android:text="@string/search"
                 android:textColor="@android:color/white" />
-            <Button
-                android:id="@+id/bt_search1"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/button_background"
-                android:drawableLeft="@drawable/ic_searchs"
-                android:drawablePadding="@dimen/_10sdp"
-                android:padding="@dimen/_5sdp"
-                android:text="@string/search"
-                android:textColor="@android:color/white" />
-
 
         </LinearLayout>
 
