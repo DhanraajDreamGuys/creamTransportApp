@@ -32,4 +32,11 @@
     <string name="cancel">Cancel</string>
     <string name="enter_truck">Truck</string>
     <string name="trailers">Trailers</string>
+    <string name="signin">Sign in</string>
+    <string name="err_emailInvalid">Incorrect email id</string>
+    <string name="err_password">Enter password</string>
+    <string name="err_email">Enter email</string>
+    <string name="err_password_length">Minimum 6 characters</string>
+    <string name="no_internet_connection">Please enable internet connection</string>
+    <string name="toolbar_title">Login</string>
 </resources>
