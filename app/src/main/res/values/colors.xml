@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3695d5</color>
+    <color name="colorPrimaryDark">#3695d5</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="test">#303F9F</color>
+
+    <color name="app_color">#3695d5</color>
+    <color name="cream_window_bckgrd">#fafafa</color>
+    <color name="darker_gray">#666666</color>
+
+
+</resources>

@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Cream Transport</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="str_email">Email</string>
+    <string name="str_password">Password</string>
+    <string name="sign_up">Dont have an account? <b>SIGN UP</b></string>
+    <string name="login">Admin Panel</string>
+    <string name="choose_driver">Choose driver</string>
+    <string name="choose_start_date">Date from</string>
+    <string name="choose_end_date">Date to</string>
+    <string name="search">Search</string>
+    <string name="str_company_name">Enter company name</string>
+    <string name="str_registration">Enter registration no</string>
+    <string name="str_email_id">Enter email id</string>
+    <string name="str_phone1">Enter phone no1</string>
+    <string name="str_phone2">Enter phone no2</string>
+    <string name="str_fax">Enter fax no</string>
+    <string name="str_skype">Enter skype id</string>
+    <string name="str_street">Enter street no</string>
+    <string name="str_city">Enter city</string>
+    <string name="str_state">Enter state</string>
+    <string name="str_country">Enter country</string>
+    <string name="str_postal">Enter postal code</string>
+    <string name="str_notes">Enter notes</string>
+    <string name="save_changes">Save changes</string>
+    <string name="truck_no">Enter truck no</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_truck">Truck</string>
+    <string name="trailers">Trailers</string>
+</resources>
