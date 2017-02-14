@@ -1,5 +1,6 @@
 package co.in.dreamguys.cream;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,8 @@ import java.util.List;
 import co.in.dreamguys.cream.adapter.AdminMenuAdapter;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
 import co.in.dreamguys.cream.utils.ActivityConstants;
+import co.in.dreamguys.cream.utils.Constants;
+import co.in.dreamguys.cream.utils.SessionHandler;
 
 
 /**
@@ -114,7 +117,7 @@ public class AdminMenu extends AppCompatActivity {
         item9.setIconName("Paysheet");
         item9.setIconImg(android.R.drawable.ic_menu_camera);
         item9.setGroupPos(true);
-        listDataHeader.add(item8);
+        listDataHeader.add(item9);
 
         ExpandedMenuModel item10 = new ExpandedMenuModel();
         item10.setIconName("MLIS");
@@ -220,9 +223,14 @@ public class AdminMenu extends AppCompatActivity {
         if (item.getItemId() == R.id.action_account) {
             ActivityConstants.callPage(AdminMenu.this, Account.class);
         } else if (item.getItemId() == R.id.action_logout) {
-
+            if (!SessionHandler.getStringPref(Constants.USER_ID).isEmpty()) {
+                SessionHandler.clearPrefs();
+                Intent mCallLogin = new Intent(this, Login.class);
+                mCallLogin.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(mCallLogin);
+                finish();
+            }
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

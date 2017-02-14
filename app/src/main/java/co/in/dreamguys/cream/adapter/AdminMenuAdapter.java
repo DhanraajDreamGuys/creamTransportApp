@@ -18,7 +18,9 @@ import java.util.List;
 import java.util.Map;
 
 import co.in.dreamguys.cream.R;
+import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
+import co.in.dreamguys.cream.utils.ActivityConstants;
 
 
 /**
@@ -71,13 +73,14 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
         return listDataHeader.size();
     }
 
-    class AdminViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class AdminViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView mMenus, mMenusDrop;
 
         public AdminViewHolder(View itemView, int viewType) {
             super(itemView);
             if (viewType == 0) {
                 mMenus = (TextView) itemView.findViewById(R.id.tv_menus);
+                mMenus.setOnClickListener(this);
             } else {
                 mMenusDrop = (TextView) itemView.findViewById(R.id.tv_menus_drop);
                 mMenusDrop.setOnClickListener(this);
@@ -86,7 +89,19 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
 
         @Override
         public void onClick(View v) {
-            v.findViewById(R.id.tv_menus_drop).setOnClickListener(new openSubItems(listDataChild, getPosition()));
+
+            if (getPosition() == 2) {
+                v.findViewById(R.id.tv_menus).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ActivityConstants.callPage(mContext, Users.class);
+                    }
+                });
+            } else if (getPosition() == 8) {
+
+            }
+
+//            v.findViewById(R.id.tv_menus_drop).setOnClickListener(new openSubItems(listDataChild, getPosition()));
         }
     }
 
