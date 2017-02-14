@@ -16,6 +16,7 @@
     <string name="str_company_name">Enter company name</string>
     <string name="str_registration">Enter registration no</string>
     <string name="str_email_id">Enter email id</string>
+    <string name="str_phone">Enter phone no</string>
     <string name="str_phone1">Enter phone no1</string>
     <string name="str_phone2">Enter phone no2</string>
     <string name="str_fax">Enter fax no</string>
@@ -24,6 +25,7 @@
     <string name="str_city">Enter city</string>
     <string name="str_state">Enter state</string>
     <string name="str_country">Enter country</string>
+    <string name="str_branch_location">Enter branch location</string>
     <string name="str_postal">Enter postal code</string>
     <string name="str_notes">Enter notes</string>
     <string name="save_changes">Save changes</string>
@@ -57,4 +59,28 @@
     <string name="str_save_changes">Save</string>
     <string name="str_administrator">Administrator</string>
     <string name="tool_account_title">Account</string>
+    <string name="view">View</string>
+    <string name="str_location">Location</string>
+    <string name="str_date">Date</string>
+    <string name="str_time">Time of accident</string>
+    <string name="other_details">Other details</string>
+    <string name="str_phoneno">Phone</string>
+    <string name="str_regno">Reg no</string>
+    <string name="str_model">Model</string>
+    <string name="str_address">Address</string>
+    <string name="str_licenseno">License no</string>
+    <string name="str_make">Make</string>
+    <string name="str_insurance">Insurance</string>
+    <string name="my_vehicle">My vehicle</string>
+    <string name="str_contactname">Contact name</string>
+    <string name="str_Insurancebroker">Insurance broker</string>
+    <string name="str_chassis_no">Chassis no</string>
+    <string name="str_policyno">Policy no</string>
+    <string name="str_insurance_company">Insurance company</string>
+    <string name="str_contact_no">Contact no</string>
+    <string name="str_renewal_date">Renewal date</string>
+    <string name="witness">Witness</string>
+    <string name="images">Images</string>
+
+
 </resources>
