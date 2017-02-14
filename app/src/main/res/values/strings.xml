@@ -46,4 +46,8 @@
     <string name="toolbar_acc_title">Edit account</string>
     <string name="str_Apassword">Enter password</string>
     <string name="str_confirm_password">Enter confirm password</string>
+    <string name="str_name">Name</string>
+    <string name="comments">Comments</string>
+    <string name="offical_use">Offical use</string>
+    <string name="str_signature">Signature</string>
 </resources>
