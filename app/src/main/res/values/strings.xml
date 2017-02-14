@@ -36,7 +36,7 @@
     <string name="err_emailInvalid">Incorrect email id</string>
     <string name="err_password">Enter password</string>
     <string name="err_email">Enter email</string>
-    <string name="err_password_length">Minimum 6 characters</string>
+    <string name="err_password_length">Minimum 5 characters</string>
     <string name="no_internet_connection">Please enable internet connection</string>
     <string name="toolbar_title">Login</string>
     <string name="str_firstname">Enter firstname</string>
@@ -50,4 +50,11 @@
     <string name="comments">Comments</string>
     <string name="offical_use">Offical use</string>
     <string name="str_signature">Signature</string>
+    <string name="please_wait">Please wait</string>
+    <string name="admin_menu_title">Menu</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_account">Account</string>
+    <string name="str_save_changes">Save</string>
+    <string name="str_administrator">Administrator</string>
+    <string name="tool_account_title">Account</string>
 </resources>
