@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3695d5</color>
     <color name="colorPrimaryDark">#3695d5</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#3695d5</color>
 
     <color name="clr_paysheet_table_color">#223b73</color>
 
