@@ -1,10 +1,14 @@
 package co.in.dreamguys.cream;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +16,7 @@ import java.util.List;
 
 import co.in.dreamguys.cream.adapter.AdminMenuAdapter;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
+import co.in.dreamguys.cream.utils.ActivityConstants;
 
 
 /**
@@ -22,11 +27,15 @@ public class AdminMenu extends AppCompatActivity {
     List<ExpandedMenuModel> listDataHeader;
     HashMap<ExpandedMenuModel, List<String>> listDataChild;
     RecyclerView mMenus;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_menu);
+
+        intiWidgets();
+
         prepareListData();
         mMenus = (RecyclerView) findViewById(R.id.rv_admin_menu);
         mMenus.setLayoutManager(new StaggeredGridLayoutManager(2, 1));
@@ -35,6 +44,17 @@ public class AdminMenu extends AppCompatActivity {
         AdminMenuAdapter aAdminMenuAdapter = new AdminMenuAdapter(AdminMenu.this, listDataHeader, listDataChild);
         mMenus.setAdapter(aAdminMenuAdapter);
 
+    }
+
+    private void intiWidgets() {
+        mToolbar = (Toolbar) findViewById(R.id.ATTB_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mToolbar.setOverflowIcon(getResources().getDrawable(R.drawable.ic_menu_overflow));
+        mToolbar.setTitle(getString(R.string.admin_menu_title));
+        mToolbar.setTitleTextColor(Color.WHITE);
     }
 
 
@@ -170,7 +190,7 @@ public class AdminMenu extends AppCompatActivity {
         heading2.add("Submenu of item 2");
         heading2.add("Submenu of item 3");
 
-        listDataChild.put(listDataHeader.get(3), heading1);// Header, Child data
+        listDataChild.put(listDataHeader.get(3), heading1); // Header, Child data
         listDataChild.put(listDataHeader.get(4), heading2);
         listDataChild.put(listDataHeader.get(6), heading1);
         listDataChild.put(listDataHeader.get(5), heading2);
@@ -184,5 +204,25 @@ public class AdminMenu extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(18), heading2);
         listDataChild.put(listDataHeader.get(19), heading1);
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_admin_menus, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_account) {
+            ActivityConstants.callPage(AdminMenu.this, Account.class);
+        } else if (item.getItemId() == R.id.action_logout) {
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -45,7 +45,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/test"
+                        android:background="@color/clr_paysheet_table_color"
                         android:minHeight="@dimen/_60sdp"
                         android:minWidth="@dimen/_60sdp"
                         android:scaleType="centerCrop" />

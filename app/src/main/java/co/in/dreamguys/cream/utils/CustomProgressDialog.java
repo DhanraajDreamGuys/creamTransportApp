@@ -2,8 +2,6 @@ package co.in.dreamguys.cream.utils;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 
 import co.in.dreamguys.cream.R;
@@ -26,7 +24,6 @@ public class CustomProgressDialog extends Dialog {
     public void showDialog() {
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.progress_layout);
-//        ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progress);
         dialog.setCancelable(false);
         dialog.show();
         int divierId = dialog.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
@@ -34,7 +31,7 @@ public class CustomProgressDialog extends Dialog {
         if (divider != null) {
             divider.setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
         }
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
 
