@@ -1,6 +1,5 @@
 package co.in.dreamguys.cream;
 
-import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +17,6 @@ import co.in.dreamguys.cream.utils.Util;
 
 public class Paysheet extends AppCompatActivity {
     Toolbar mToolbar;
-    DatePickerDialog fromDatePickerDialog;
     PopupWindow popupSearch;
 
     @Override
@@ -60,6 +58,4 @@ public class Paysheet extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }
