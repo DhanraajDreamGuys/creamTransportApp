@@ -24,7 +24,7 @@ public class Accidentreport extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.include_search);
 
         mListView = (ListView) findViewById(R.id.lv_search_items);
         mSearch = (Button) findViewById(R.id.bt_search);

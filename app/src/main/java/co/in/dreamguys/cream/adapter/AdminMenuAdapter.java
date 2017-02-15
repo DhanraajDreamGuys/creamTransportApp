@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
@@ -98,7 +99,7 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
                     }
                 });
             } else if (getPosition() == 8) {
-
+                ActivityConstants.callPage(mContext, Paysheet.class);
             }
 
 //            v.findViewById(R.id.tv_menus_drop).setOnClickListener(new openSubItems(listDataChild, getPosition()));
@@ -126,7 +127,7 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
                         View subView = LayoutInflater.from(mContext).inflate(R.layout.dialog_sub_items_list, null);
                         mBuilder.setCancelable(true);
                         mBuilder.setView(subView);
-                        ListView msubItemsList = (ListView) subView.findViewById(R.id.lv_sub_lists);
+                        ListView msubItemsList = (ListView) subView.findViewById(R.id.DSIL_LV_sub_lists);
                         mAlertDialog = mBuilder.create();
                         SubItemAdapter aSubItemAdapter = new SubItemAdapter(mContext, msubitems, mAlertDialog);
                         msubItemsList.setAdapter(aSubItemAdapter);

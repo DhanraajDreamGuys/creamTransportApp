@@ -1,5 +1,9 @@
 package co.in.dreamguys.cream.utils;
 
+import java.util.List;
+
+import co.in.dreamguys.cream.apis.DriverListsAPI;
+
 /**
  * Created by user5 on 13-02-2017.
  */
@@ -16,4 +20,5 @@ public class Constants {
     public static String EMAIL = "email";
     public static String USERTYPE = "usertype";
 
+    public static List<DriverListsAPI.Datum> driverList;
 }

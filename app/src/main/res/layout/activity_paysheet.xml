@@ -7,7 +7,7 @@
 
     <include layout="@layout/activity_toolbar" />
 
-    <android.support.v7.widget.RecyclerView
+    <ListView
         android:id="@+id/AP_RV_paysheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

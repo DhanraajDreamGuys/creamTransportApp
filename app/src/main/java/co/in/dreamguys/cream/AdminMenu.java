@@ -8,18 +8,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import co.in.dreamguys.cream.adapter.AdminMenuAdapter;
+import co.in.dreamguys.cream.apis.ApiClient;
+import co.in.dreamguys.cream.apis.ApiInterface;
+import co.in.dreamguys.cream.apis.DriverListsAPI;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
 import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
+import co.in.dreamguys.cream.utils.CustomProgressDialog;
 import co.in.dreamguys.cream.utils.SessionHandler;
+import co.in.dreamguys.cream.utils.Util;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -31,14 +41,16 @@ public class AdminMenu extends AppCompatActivity {
     HashMap<ExpandedMenuModel, List<String>> listDataChild;
     RecyclerView mMenus;
     Toolbar mToolbar;
+    CustomProgressDialog mCustomProgressDialog;
+    public static String TAG = AdminMenu.class.getName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_menu);
-
+        mCustomProgressDialog = new CustomProgressDialog(AdminMenu.this);
         intiWidgets();
-
+        getDriverLists();
         prepareListData();
         mMenus = (RecyclerView) findViewById(R.id.rv_admin_menu);
         mMenus.setLayoutManager(new StaggeredGridLayoutManager(2, 1));
@@ -47,6 +59,37 @@ public class AdminMenu extends AppCompatActivity {
         AdminMenuAdapter aAdminMenuAdapter = new AdminMenuAdapter(AdminMenu.this, listDataHeader, listDataChild);
         mMenus.setAdapter(aAdminMenuAdapter);
 
+    }
+
+    private void getDriverLists() {
+
+        if (!Util.isNetworkAvailable(this)) {
+            Toast.makeText(AdminMenu.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+        } else {
+            mCustomProgressDialog.showDialog();
+            ApiInterface apiService =
+                    ApiClient.getClient().create(ApiInterface.class);
+            Call<DriverListsAPI.DriverResponse> loginCall = apiService.getDriverLists();
+
+            loginCall.enqueue(new Callback<DriverListsAPI.DriverResponse>() {
+                @Override
+                public void onResponse(Call<DriverListsAPI.DriverResponse> call, Response<DriverListsAPI.DriverResponse> response) {
+                    mCustomProgressDialog.dismiss();
+                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                        Constants.driverList = response.body().getData();
+                    } else {
+                        Toast.makeText(AdminMenu.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DriverListsAPI.DriverResponse> call, Throwable t) {
+                    mCustomProgressDialog.dismiss();
+                    Log.i(TAG, t.getMessage());
+                }
+            });
+
+        }
     }
 
     private void intiWidgets() {
