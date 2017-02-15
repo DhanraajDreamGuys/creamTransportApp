@@ -81,6 +81,7 @@ public class Util {
 
     public static void searchPopUpWindow(final Context mContext, final PopupWindow popupSearch, final String PAGE, final LayoutInflater layoutInflater, final ListView mPaysheetView) {
         mCustomProgressDialog = new CustomProgressDialog(mContext);
+        popupSearch.setAnimationStyle(android.R.style.Animation_Dialog);
         popupSearch.setOutsideTouchable(false);
         View searchView = layoutInflater.inflate(R.layout.include_search, null);
         popupSearch.setContentView(searchView);
