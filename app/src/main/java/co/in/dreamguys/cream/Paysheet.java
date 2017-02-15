@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.PopupWindow;
 
 import co.in.dreamguys.cream.utils.Util;
 
@@ -18,14 +19,14 @@ import co.in.dreamguys.cream.utils.Util;
 public class Paysheet extends AppCompatActivity {
     Toolbar mToolbar;
     DatePickerDialog fromDatePickerDialog;
-
+    PopupWindow popupSearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paysheet);
         initWidgets();
-
+        popupSearch = new PopupWindow(this);
     }
 
     private void initWidgets() {
@@ -50,7 +51,12 @@ public class Paysheet extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish();
         } else if (item.getItemId() == R.id.action_search) {
-            Util.searchPopUpWindow(Paysheet.this, getLayoutInflater());
+            if (popupSearch.isShowing()) {
+
+            } else {
+                Util.searchPopUpWindow(Paysheet.this, popupSearch, getLayoutInflater());
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }

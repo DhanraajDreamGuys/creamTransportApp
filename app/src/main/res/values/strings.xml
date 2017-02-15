@@ -80,6 +80,7 @@
     <string name="str_contact_no">Contact no</string>
     <string name="str_renewal_date">Renewal date</string>
     <string name="witness">Witness</string>
+    <string name="tool_paysheet_title">Paysheet</string>
     <string name="images">Images</string>
 
 </resources>

@@ -45,8 +45,7 @@ public class Util {
         return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 
-    public static void searchPopUpWindow(final Context mContext, final LayoutInflater layoutInflater) {
-        final PopupWindow popupSearch = new PopupWindow(mContext);
+    public static void searchPopUpWindow(final Context mContext, final PopupWindow popupSearch, final LayoutInflater layoutInflater) {
         popupSearch.setOutsideTouchable(false);
         View searchView = layoutInflater.inflate(R.layout.include_search, null);
         popupSearch.setContentView(searchView);
