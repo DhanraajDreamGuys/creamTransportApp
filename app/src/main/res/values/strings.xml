@@ -100,5 +100,9 @@
     <string name="str_unloading">Unloading hrs</string>
     <string name="str_office_use">Office use</string>
     <string name="tool_edit_paysheet_title">Edit view paysheet</string>
+    <string name="no_data_found">No data found</string>
+    <string name="err_driver_name">Select driver</string>
+    <string name="err_start_date">Select date from</string>
+    <string name="err_end_date">Select date to</string>
 
 </resources>

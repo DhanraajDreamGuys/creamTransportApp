@@ -21,6 +21,7 @@ import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
+import co.in.dreamguys.cream.interfaces.SearchListViewNotify;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.model.PaysheetReport;
 import co.in.dreamguys.cream.utils.Constants;
@@ -34,7 +35,7 @@ import retrofit2.Response;
  * Created by user5 on 14-02-2017.
  */
 
-public class Paysheet extends AppCompatActivity {
+public class Paysheet extends AppCompatActivity implements SearchListViewNotify {
     Toolbar mToolbar;
     PopupWindow popupSearch;
     Data mData;
@@ -52,7 +53,10 @@ public class Paysheet extends AppCompatActivity {
         initWidgets();
         popupSearch = new PopupWindow(this);
         mCustomProgressDialog = new CustomProgressDialog(this);
+        LastWeeklyReport();
+    }
 
+    private void LastWeeklyReport() {
         if (!Util.isNetworkAvailable(this)) {
             Toast.makeText(Paysheet.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
@@ -81,7 +85,6 @@ public class Paysheet extends AppCompatActivity {
 
 
         }
-
 
     }
 
@@ -119,6 +122,7 @@ public class Paysheet extends AppCompatActivity {
         if (mPaysheetReport.getData().size() > 0) {
             aPaysheetWeeklyAdapter = new PaysheetWeeklyAdapter(Paysheet.this, mPaysheetReport.getData());
             mPaysheetView.setAdapter(aPaysheetWeeklyAdapter);
+            aPaysheetWeeklyAdapter.notifyDataSetChanged();
         }
 
     }
@@ -156,11 +160,23 @@ public class Paysheet extends AppCompatActivity {
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             int height = displaymetrics.heightPixels;
             if (!popupSearch.isShowing()) {
-                Util.searchPopUpWindow(Paysheet.this, popupSearch, getLayoutInflater(),mPaysheetView);
+                Util.searchPopUpWindow(Paysheet.this, popupSearch, getLayoutInflater(), mPaysheetView);
                 layoutParams.setMargins(0, (height / 4), 0, 0);
                 mPaysheetView.setLayoutParams(layoutParams);
             }
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void searchNotify() {
+        LastWeeklyReport();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        popupSearch.dismiss();
+    }
+
 }

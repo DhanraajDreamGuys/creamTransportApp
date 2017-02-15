@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.util.Patterns;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -18,22 +19,36 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.TimeZone;
 
+import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.adapter.DriverListAdapter;
+import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
+import co.in.dreamguys.cream.apis.ApiClient;
+import co.in.dreamguys.cream.apis.ApiInterface;
+import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
+import co.in.dreamguys.cream.model.Data;
+import co.in.dreamguys.cream.model.PaysheetReport;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by user5 on 13-02-2017.
  */
 
 public class Util {
-
-
+    private static PaysheetReport mPaysheetReport = new PaysheetReport();
+    static CustomProgressDialog mCustomProgressDialog;
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
             return false;
@@ -46,7 +61,18 @@ public class Util {
         return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 
+
+    public static HashMap<String, String> sendValueWithRetrofit(TextView mFromDate, TextView mFromTo) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Constants.USER_ID, SessionHandler.getStringPref(Constants.USER_ID));
+        params.put(Constants.PARAMS_START_DATE, mFromDate.getText().toString());
+        params.put(Constants.PARAMS_END_DATE, mFromTo.getText().toString());
+        return params;
+    }
+
+
     public static void searchPopUpWindow(final Context mContext, final PopupWindow popupSearch, final LayoutInflater layoutInflater, final ListView mPaysheetView) {
+        mCustomProgressDialog = new CustomProgressDialog(mContext);
         popupSearch.setOutsideTouchable(false);
         View searchView = layoutInflater.inflate(R.layout.include_search, null);
         popupSearch.setContentView(searchView);
@@ -63,7 +89,7 @@ public class Util {
         final TextView mFromDate = (TextView) searchView.findViewById(R.id.IS_TV_date_from);
         final TextView mFromTo = (TextView) searchView.findViewById(R.id.IS_TV_date_to);
 
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         Calendar newCalendar = new GregorianCalendar();
         TimeZone timeZone = TimeZone.getTimeZone("Australia/Sydney");
         newCalendar.setTimeZone(timeZone);
@@ -73,7 +99,7 @@ public class Util {
         mFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
                 Calendar newCalendar = new GregorianCalendar();
                 TimeZone timeZone = TimeZone.getTimeZone("Australia/Sydney");
                 newCalendar.setTimeZone(timeZone);
@@ -93,7 +119,7 @@ public class Util {
         mFromTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
                 Calendar newCalendar = new GregorianCalendar();
                 TimeZone timeZone = TimeZone.getTimeZone("Australia/Sydney");
                 newCalendar.setTimeZone(timeZone);
@@ -141,12 +167,51 @@ public class Util {
             @Override
             public void onClick(View v) {
 
+                if (fireDriverlist.getText().toString().isEmpty()) {
+                    fireDriverlist.setError(mContext.getString(R.string.err_driver_name));
+                    fireDriverlist.requestFocus();
+                } else if (mFromDate.getText().toString().isEmpty()) {
+                    mFromDate.setError(mContext.getString(R.string.err_start_date));
+                    mFromDate.requestFocus();
+                } else if (mFromTo.getText().toString().isEmpty()) {
+                    mFromTo.setError(mContext.getString(R.string.err_end_date));
+                    mFromTo.requestFocus();
+                } else if (!Util.isNetworkAvailable(mContext)) {
+                    Toast.makeText(mContext, mContext.getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+                } else {
+                    mCustomProgressDialog.showDialog();
+                    ApiInterface apiService =
+                            ApiClient.getClient().create(ApiInterface.class);
+                    Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> loginCall = apiService.getSearchPaysheetReport(sendValueWithRetrofit(mFromDate, mFromTo));
+                    loginCall.enqueue(new Callback<PaysheetLastWeekAPI.PaysheetLastWeekResponse>() {
+                        @Override
+                        public void onResponse(Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> call, Response<PaysheetLastWeekAPI.PaysheetLastWeekResponse> response) {
+                            if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                                filldataDetails(mContext, response.body().getData(), mPaysheetView);
+                            }else{
+                                mPaysheetView.setAdapter(null);
+                                Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                            mCustomProgressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onFailure(Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> call, Throwable t) {
+                            Log.i(((Paysheet) mContext).getPackageName(), t.getMessage());
+                            mCustomProgressDialog.dismiss();
+                        }
+                    });
+
+                }
+
+
             }
         });
 
         firecancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((Paysheet) mContext).searchNotify();
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.FILL_PARENT,
                         LinearLayout.LayoutParams.FILL_PARENT
@@ -165,6 +230,52 @@ public class Util {
 
 
     }
+
+    private static void filldataDetails(Context mContext, List<PaysheetLastWeekAPI.Datum> data, ListView mPaysheetView) {
+        Data mData;
+
+        List<Data> mPaysheetData;
+        mPaysheetData = new ArrayList<Data>();
+        for (int i = 0; i < data.size(); i++) {
+            PaysheetLastWeekAPI.Datum model = data.get(i);
+            mData = new Data();
+            mData.setComment(model.getComment());
+            mData.setDolly_no(model.getDolly_no());
+            mData.setDuty(model.getDuty());
+            mData.setEmail(model.getEmail());
+            mData.setEnd_km(model.getEnd_km());
+            mData.setFirst_name(model.getFirst_name());
+            mData.setFrom(model.getFrom());
+            mData.setInspection(model.getInspection());
+            mData.setMf_no(model.getMf_no());
+            mData.setLast_name(model.getLast_name());
+            mData.setOffice_use(model.getOffice_use());
+            mData.setPdate(model.getPdate());
+            mData.setPid(model.getPid());
+            mData.setRt_bd(model.getRt_bd());
+            mData.setStart_km(model.getStart_km());
+            mData.setTo(model.getTo());
+            mData.setTr1_no(model.getTr1_no());
+            mData.setTr2_no(model.getTr2_no());
+            mData.setTr3_no(model.getTr3_no());
+            mData.setTruck_no(model.getTruck_no());
+            mData.setUid(model.getUid());
+            mData.setUnloading_time(model.getUnloading_time());
+            mPaysheetData.add(mData);
+            mPaysheetReport.setData(mPaysheetData);
+        }
+
+        if (mPaysheetReport.getData().size() > 0) {
+            mPaysheetView.setAdapter(null);
+            PaysheetWeeklyAdapter aPaysheetWeeklyAdapter = new PaysheetWeeklyAdapter(mContext, mPaysheetReport.getData());
+            mPaysheetView.setAdapter(aPaysheetWeeklyAdapter);
+            aPaysheetWeeklyAdapter.notifyDataSetChanged();
+        } else {
+            Toast.makeText(mContext, mContext.getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 
 
 }

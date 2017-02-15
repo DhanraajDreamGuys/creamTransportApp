@@ -36,4 +36,8 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("paysheet_lastWeek_result")
     Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> getPaysheetLastWeekReport(@Field("user_id") String stringPref);
+
+    @FormUrlEncoded
+    @POST("paysheet_search_result")
+    Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> getSearchPaysheetReport(@FieldMap HashMap<String, String> meta);
 }

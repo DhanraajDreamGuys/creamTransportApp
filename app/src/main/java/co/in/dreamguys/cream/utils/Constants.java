@@ -24,4 +24,6 @@ public class Constants {
     public static String PAYSHEETDETAILS = "paysheetdetails";
     public static String TYPE ="type";
     public static String MODE = "mode";
+    public static String PARAMS_START_DATE = "sdate";
+    public static String PARAMS_END_DATE = "edate";
 }
