@@ -49,12 +49,9 @@ public class Paysheet extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish();
         } else if (item.getItemId() == R.id.action_search) {
-            if (popupSearch.isShowing()) {
-
-            } else {
+            if (!popupSearch.isShowing()) {
                 Util.searchPopUpWindow(Paysheet.this, popupSearch, getLayoutInflater());
             }
-
         }
         return super.onOptionsItemSelected(item);
     }
