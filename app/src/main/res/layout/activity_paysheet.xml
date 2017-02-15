@@ -11,6 +11,8 @@
         android:id="@+id/AP_RV_paysheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="@null"
+        android:listSelector="@android:color/transparent"
         android:scrollbars="none" />
 
 

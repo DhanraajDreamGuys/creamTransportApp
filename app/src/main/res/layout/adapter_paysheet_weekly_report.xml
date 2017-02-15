@@ -24,13 +24,13 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/APWR_TV_mfno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:hint=""
                     android:textSize="@dimen/_12sdp" />
 
                 <View
@@ -40,6 +40,7 @@
                     android:background="@android:color/darker_gray" />
 
                 <TextView
+                    android:id="@+id/APWR_TV_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_10sdp"
@@ -47,27 +48,59 @@
                     android:layout_weight="1"
                     android:drawablePadding="@dimen/_10sdp"
                     android:gravity="right"
-                    android:hint="Date Created"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/APWR_TV_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:drawablePadding="@dimen/_10sdp"
-                android:hint="Name"
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
+                android:id="@+id/APWR_TV_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:drawablePadding="@dimen/_10sdp"
-                android:hint="Email"
                 android:textSize="@dimen/_12sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/APWR_TV_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:textSize="@dimen/_12sdp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/APWR_TV_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:gravity="right"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
 
 
             <LinearLayout
@@ -80,6 +113,7 @@
 
 
                 <TextView
+                    android:id="@+id/APWR_TV_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -96,6 +130,7 @@
                     android:background="@android:color/white" />
 
                 <TextView
+                    android:id="@+id/APWR_TV_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -109,8 +144,8 @@
                     android:layout_width="1px"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/_5sdp"
-                    android:visibility="gone"
-                    android:background="@android:color/white" />
+                    android:background="@android:color/white"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -118,10 +153,10 @@
                     android:layout_weight="1"
                     android:drawablePadding="@dimen/_10sdp"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:text="Delete"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

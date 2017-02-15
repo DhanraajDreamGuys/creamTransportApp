@@ -82,5 +82,23 @@
     <string name="witness">Witness</string>
     <string name="tool_paysheet_title">Paysheet</string>
     <string name="images">Images</string>
+    <string name="tool_view_paysheet_title">View paysheet</string>
+    <string name="str_from">From</string>
+    <string name="str_to">To</string>
+    <string name="str_truck_no">Truck no</string>
+    <string name="str_tr_no">Tr no</string>
+    <string name="str_tr_no1">Tr no1</string>
+    <string name="str_tr_no2">Tr no2</string>
+    <string name="str_tr_no3">Tr no3</string>
+    <string name="str_dolly_no">Dolly_no</string>
+    <string name="str_mf_no">Mf no</string>
+    <string name="str_rd_bd">RT/BD/Sing</string>
+    <string name="str_fit">Fit for duty</string>
+    <string name="str_speedo_start">Speedo start</string>
+    <string name="str_speedo_finish">Speedo_finish</string>
+    <string name="str_daily">Daily inspection done</string>
+    <string name="str_unloading">Unloading hrs</string>
+    <string name="str_office_use">Office use</string>
+    <string name="tool_edit_paysheet_title">Edit view paysheet</string>
 
 </resources>

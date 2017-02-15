@@ -1,10 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="@color/cream_window_bckgrd"
+    android:orientation="horizontal">
 
 
+    <TextView
+        android:id="@+id/AVP_TV_date"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_from"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_to"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_truck_no"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_tr_no_1"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_tr_no_2"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_tr_no_3"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_dolly_no"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_mf_no"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_rt_bd"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_fit_duty"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/AVP_TV_speedo_start"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/AVP_TV_speedo_end"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_daily"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/AVP_TV_unload"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/AVP_TV_office_use"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_border_line"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

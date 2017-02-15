@@ -21,4 +21,7 @@ public class Constants {
     public static String USERTYPE = "usertype";
 
     public static List<DriverListsAPI.Datum> driverList;
+    public static String PAYSHEETDETAILS = "paysheetdetails";
+    public static String TYPE ="type";
+    public static String MODE = "mode";
 }

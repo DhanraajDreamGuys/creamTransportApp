@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -45,7 +46,7 @@ public class Util {
         return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 
-    public static void searchPopUpWindow(final Context mContext, final PopupWindow popupSearch, final LayoutInflater layoutInflater) {
+    public static void searchPopUpWindow(final Context mContext, final PopupWindow popupSearch, final LayoutInflater layoutInflater, final ListView mPaysheetView) {
         popupSearch.setOutsideTouchable(false);
         View searchView = layoutInflater.inflate(R.layout.include_search, null);
         popupSearch.setContentView(searchView);
@@ -146,7 +147,13 @@ public class Util {
         firecancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.FILL_PARENT,
+                        LinearLayout.LayoutParams.FILL_PARENT
+                );
                 popupSearch.dismiss();
+                layoutParams.setMargins(0, 0, 0, 0);
+                mPaysheetView.setLayoutParams(layoutParams);
             }
         });
 

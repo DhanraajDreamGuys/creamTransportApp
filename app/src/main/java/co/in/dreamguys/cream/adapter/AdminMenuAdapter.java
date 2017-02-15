@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import co.in.dreamguys.cream.Dashboard;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.Users;
@@ -100,6 +101,8 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
                 });
             } else if (getPosition() == 8) {
                 ActivityConstants.callPage(mContext, Paysheet.class);
+            } else if (getPosition() == 0) {
+                ActivityConstants.callPage(mContext, Dashboard.class);
             }
 
 //            v.findViewById(R.id.tv_menus_drop).setOnClickListener(new openSubItems(listDataChild, getPosition()));

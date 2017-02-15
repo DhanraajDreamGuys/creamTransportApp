@@ -31,4 +31,9 @@ public interface ApiInterface {
 
     @GET("drivers_list")
     Call<DriverListsAPI.DriverResponse> getDriverLists();
+
+
+    @FormUrlEncoded
+    @POST("paysheet_lastWeek_result")
+    Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> getPaysheetLastWeekReport(@Field("user_id") String stringPref);
 }

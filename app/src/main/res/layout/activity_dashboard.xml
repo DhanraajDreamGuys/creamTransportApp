@@ -4,7 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/AD_BC_dashboard_data"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp" />
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/AD_RV_dashboard_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" />
 
 </LinearLayout>
