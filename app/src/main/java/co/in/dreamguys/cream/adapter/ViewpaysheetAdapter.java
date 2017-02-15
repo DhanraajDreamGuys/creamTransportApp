@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.List;
-
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.model.Data;
 
@@ -18,10 +16,10 @@ import co.in.dreamguys.cream.model.Data;
 
 public class ViewpaysheetAdapter extends BaseAdapter {
     Context mContext;
-    List<Data> mData;
+    Data mData;
     LayoutInflater mInflater;
 
-    public ViewpaysheetAdapter(Context mContext, List<Data> mData) {
+    public ViewpaysheetAdapter(Context mContext, Data mData) {
         this.mContext = mContext;
         this.mData = mData;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -29,12 +27,12 @@ public class ViewpaysheetAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mData.size();
+        return 1;
     }
 
     @Override
-    public Data getItem(int position) {
-        return mData.get(position);
+    public Object getItem(int position) {
+        return position;
     }
 
     @Override
@@ -68,22 +66,22 @@ public class ViewpaysheetAdapter extends BaseAdapter {
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        mHolder.mDate.setText(mData.get(position).getPdate());
-        mHolder.mFrom.setText(mData.get(position).getFrom());
-        mHolder.mTo.setText(mData.get(position).getTo());
-        mHolder.mTruckNo.setText(mData.get(position).getTruck_no());
-        mHolder.mTrno1.setText(mData.get(position).getTr1_no());
-        mHolder.mTrno2.setText(mData.get(position).getTr2_no());
-        mHolder.mTrno3.setText(mData.get(position).getTr3_no());
-        mHolder.mDolly.setText(mData.get(position).getDolly_no());
-        mHolder.mMfNo.setText(mData.get(position).getMf_no());
-        mHolder.mRTBD.setText(mData.get(position).getRt_bd());
-        mHolder.mFitDuty.setText(mData.get(position).getDuty());
-        mHolder.mSpeedoStart.setText(mData.get(position).getStart_km());
-        mHolder.mSpeedoFinish.setText(mData.get(position).getEnd_km());
-        mHolder.mDailyIns.setText(mData.get(position).getInspection());
-        mHolder.mUnload.setText(mData.get(position).getUnloading_time());
-        mHolder.mOfficeUse.setText(mData.get(position).getOffice_use());
+        mHolder.mDate.setText(mData.getPdate());
+        mHolder.mFrom.setText(mData.getFrom());
+        mHolder.mTo.setText(mData.getTo());
+        mHolder.mTruckNo.setText(mData.getTruck_no());
+        mHolder.mTrno1.setText(mData.getTr1_no());
+        mHolder.mTrno2.setText(mData.getTr2_no());
+        mHolder.mTrno3.setText(mData.getTr3_no());
+        mHolder.mDolly.setText(mData.getDolly_no());
+        mHolder.mMfNo.setText(mData.getMf_no());
+        mHolder.mRTBD.setText(mData.getRt_bd());
+        mHolder.mFitDuty.setText(mData.getDuty());
+        mHolder.mSpeedoStart.setText(mData.getStart_km());
+        mHolder.mSpeedoFinish.setText(mData.getEnd_km());
+        mHolder.mDailyIns.setText(mData.getInspection());
+        mHolder.mUnload.setText(mData.getUnloading_time());
+        mHolder.mOfficeUse.setText(mData.getOffice_use());
 
         return convertView;
     }

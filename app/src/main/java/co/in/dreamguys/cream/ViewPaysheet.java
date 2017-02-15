@@ -12,8 +12,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.List;
-
 import co.in.dreamguys.cream.adapter.ViewpaysheetAdapter;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.utils.Constants;
@@ -27,7 +25,7 @@ public class ViewPaysheet extends AppCompatActivity {
 
     ListView mPaysheetViews;
     View mHeaderViewPaysheet;
-    List<Data> mData;
+    Data mData;
     Toolbar mToolbar;
     ViewpaysheetAdapter aViewpaysheetAdapter;
     TextView mName, mSignature, mComments;
@@ -39,13 +37,13 @@ public class ViewPaysheet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_paysheet);
 
-        mData = (List<Data>) getIntent().getSerializableExtra(Constants.PAYSHEETDETAILS);
+        mData = (Data) getIntent().getSerializableExtra(Constants.PAYSHEETDETAILS);
 
         initWidgets();
 
-        mName.setText(mData.get(0).getFirst_name() + " " + mData.get(0).getLast_name());
+        mName.setText(mData.getFirst_name() + " " + mData.getLast_name());
         mName.requestFocus();
-        mComments.setText(mData.get(0).getComment());
+        mComments.setText(mData.getComment());
 
         mHeaderViewPaysheet = getLayoutInflater().inflate(R.layout.include_header_view_paysheet, null);
         mPaysheetViews.addHeaderView(mHeaderViewPaysheet);
