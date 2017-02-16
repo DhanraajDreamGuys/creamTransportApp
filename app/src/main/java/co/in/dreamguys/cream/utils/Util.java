@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -31,13 +32,18 @@ import java.util.TimeZone;
 
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
+import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.adapter.DriverListAdapter;
 import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
+import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
+import co.in.dreamguys.cream.apis.RepairsheetCurrentDayAPI;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.model.PaysheetReport;
+import co.in.dreamguys.cream.model.RepairSheetData;
+import co.in.dreamguys.cream.model.RepairSheetReport;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,8 +53,10 @@ import retrofit2.Response;
  */
 
 public class Util {
-    private static PaysheetReport mPaysheetReport = new PaysheetReport();
+
     static CustomProgressDialog mCustomProgressDialog;
+    static int adapterPosition;
+
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
             return false;
@@ -64,14 +72,14 @@ public class Util {
 
     public static HashMap<String, String> sendValueWithRetrofit(TextView mFromDate, TextView mFromTo) {
         HashMap<String, String> params = new HashMap<>();
-        params.put(Constants.USER_ID, SessionHandler.getStringPref(Constants.USER_ID));
+        params.put(Constants.USER_ID, Constants.driverList.get(adapterPosition).getId());
         params.put(Constants.PARAMS_START_DATE, mFromDate.getText().toString());
         params.put(Constants.PARAMS_END_DATE, mFromTo.getText().toString());
         return params;
     }
 
 
-    public static void searchPopUpWindow(final Context mContext, final PopupWindow popupSearch, final LayoutInflater layoutInflater, final ListView mPaysheetView) {
+    public static void searchPopUpWindow(final Context mContext, final PopupWindow popupSearch, final String PAGE, final LayoutInflater layoutInflater, final ListView mPaysheetView) {
         mCustomProgressDialog = new CustomProgressDialog(mContext);
         popupSearch.setOutsideTouchable(false);
         View searchView = layoutInflater.inflate(R.layout.include_search, null);
@@ -84,7 +92,7 @@ public class Util {
         popupSearch.setHeight(1);
         popupSearch.setWidth(1);
         Button fireSearch = (Button) searchView.findViewById(R.id.IS_BT_search);
-        Button firecancel = (Button) searchView.findViewById(R.id.IS_BT_cancel);
+        final Button firecancel = (Button) searchView.findViewById(R.id.IS_BT_cancel);
         final TextView fireDriverlist = (TextView) searchView.findViewById(R.id.IS_TV_choose_drive);
         final TextView mFromDate = (TextView) searchView.findViewById(R.id.IS_TV_date_from);
         final TextView mFromTo = (TextView) searchView.findViewById(R.id.IS_TV_date_to);
@@ -156,6 +164,7 @@ public class Util {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         fireDriverlist.setText(Constants.driverList.get(position).getFirst_name() + " " + Constants.driverList.get(position).getLast_name());
+                        adapterPosition = position;
                         alert.dismiss();
                     }
                 });
@@ -180,27 +189,56 @@ public class Util {
                     Toast.makeText(mContext, mContext.getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
                 } else {
                     mCustomProgressDialog.showDialog();
-                    ApiInterface apiService =
-                            ApiClient.getClient().create(ApiInterface.class);
-                    Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> loginCall = apiService.getSearchPaysheetReport(sendValueWithRetrofit(mFromDate, mFromTo));
-                    loginCall.enqueue(new Callback<PaysheetLastWeekAPI.PaysheetLastWeekResponse>() {
-                        @Override
-                        public void onResponse(Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> call, Response<PaysheetLastWeekAPI.PaysheetLastWeekResponse> response) {
-                            if (response.body().getMeta().equals(Constants.SUCCESS)) {
-                                filldataDetails(mContext, response.body().getData(), mPaysheetView);
-                            }else{
-                                mPaysheetView.setAdapter(null);
-                                Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                            mCustomProgressDialog.dismiss();
-                        }
+                    ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+                    switch (PAGE) {
+                        case "PAYSHEET":
+                            Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> loginCall = apiService.getSearchPaysheetReport(sendValueWithRetrofit(mFromDate, mFromTo));
+                            loginCall.enqueue(new Callback<PaysheetLastWeekAPI.PaysheetLastWeekResponse>() {
+                                @Override
+                                public void onResponse(Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> call, Response<PaysheetLastWeekAPI.PaysheetLastWeekResponse> response) {
+                                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                                        filldataDetails(mContext, response.body().getData(), mPaysheetView);
+                                    } else {
+                                        mPaysheetView.setAdapter(null);
+                                        Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    mCustomProgressDialog.dismiss();
+                                }
 
-                        @Override
-                        public void onFailure(Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> call, Throwable t) {
-                            Log.i(((Paysheet) mContext).getPackageName(), t.getMessage());
-                            mCustomProgressDialog.dismiss();
-                        }
-                    });
+                                @Override
+                                public void onFailure(Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> call, Throwable t) {
+                                    Log.i(((Paysheet) mContext).getPackageName(), t.getMessage());
+                                    mCustomProgressDialog.dismiss();
+                                }
+                            });
+
+                            break;
+
+                        case "REPAIR":
+                            Call<RepairsheetCurrentDayAPI.RepairsheetResponse> repairsheet = apiService.getSearchRepairsheetReport(sendValueWithRetrofit(mFromDate, mFromTo));
+                            repairsheet.enqueue(new Callback<RepairsheetCurrentDayAPI.RepairsheetResponse>() {
+                                @Override
+                                public void onResponse(Call<RepairsheetCurrentDayAPI.RepairsheetResponse> call, Response<RepairsheetCurrentDayAPI.RepairsheetResponse> response) {
+                                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                                        fillRepairSheetData(mContext, response.body().getData(), mPaysheetView);
+                                    } else {
+                                        mPaysheetView.setAdapter(null);
+                                        Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    mCustomProgressDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onFailure(Call<RepairsheetCurrentDayAPI.RepairsheetResponse> call, Throwable t) {
+                                    Log.i(((RepairSheet) mContext).getPackageName(), t.getMessage());
+                                    mCustomProgressDialog.dismiss();
+                                }
+                            });
+
+                            break;
+
+                    }
+
 
                 }
 
@@ -211,14 +249,18 @@ public class Util {
         firecancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Paysheet) mContext).searchNotify();
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.FILL_PARENT,
-                        LinearLayout.LayoutParams.FILL_PARENT
-                );
-                popupSearch.dismiss();
-                layoutParams.setMargins(0, 0, 0, 0);
-                mPaysheetView.setLayoutParams(layoutParams);
+                switch (PAGE) {
+                    case "PAYSHEET":
+                        ((Paysheet) mContext).searchNotify();
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
+                    case "REPAIR":
+                        ((RepairSheet) mContext).searchNotify();
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
+                }
+
+
             }
         });
 
@@ -231,9 +273,19 @@ public class Util {
 
     }
 
+    private static void listAdjustableMethod(PopupWindow popupSearch, ListView mPaysheetView) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT,
+                LinearLayout.LayoutParams.FILL_PARENT
+        );
+        popupSearch.dismiss();
+        layoutParams.setMargins(0, 0, 0, 0);
+        mPaysheetView.setLayoutParams(layoutParams);
+    }
+
     private static void filldataDetails(Context mContext, List<PaysheetLastWeekAPI.Datum> data, ListView mPaysheetView) {
         Data mData;
-
+        PaysheetReport mPaysheetReport = new PaysheetReport();
         List<Data> mPaysheetData;
         mPaysheetData = new ArrayList<Data>();
         for (int i = 0; i < data.size(); i++) {
@@ -271,11 +323,74 @@ public class Util {
             mPaysheetView.setAdapter(aPaysheetWeeklyAdapter);
             aPaysheetWeeklyAdapter.notifyDataSetChanged();
         } else {
+            mPaysheetView.setAdapter(null);
             Toast.makeText(mContext, mContext.getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
         }
 
     }
 
 
+    private static void fillRepairSheetData(Context mContext, List<RepairsheetCurrentDayAPI.Datum> data, ListView mPaysheetView) {
+        RepairsheetAdapter aRepairsheetAdapter;
+        RepairSheetData mRepairSheetData;
+        RepairSheetReport mRepairSheetReport = new RepairSheetReport();
+        List<RepairSheetData> mRepairSheetDataList;
+
+        mRepairSheetDataList = new ArrayList<RepairSheetData>();
+
+        for (int i = 0; i < data.size(); i++) {
+            RepairsheetCurrentDayAPI.Datum mData = data.get(i);
+            mRepairSheetData = new RepairSheetData();
+            mRepairSheetData.setUid(mData.getUid());
+            mRepairSheetData.setComments(mData.getComments());
+            mRepairSheetData.setTruck_no(mData.getTruck_no());
+            mRepairSheetData.setDolly_no(mData.getDolly_no());
+            mRepairSheetData.setEmail(mData.getEmail());
+            mRepairSheetData.setFaults(mData.getFaults());
+            mRepairSheetData.setFirst_name(mData.getFirst_name());
+            mRepairSheetData.setLast_name(mData.getLast_name());
+            mRepairSheetData.setRdate(mData.getRdate());
+            mRepairSheetData.setImage_one(mData.getImage_one());
+            mRepairSheetData.setImage_two(mData.getImage_two());
+            mRepairSheetData.setRegn1_no(mData.getRegn1_no());
+            mRepairSheetData.setRegn_no(mData.getRegn_no());
+            mRepairSheetData.setRid(mData.getRid());
+            mRepairSheetDataList.add(mRepairSheetData);
+            mRepairSheetReport.setData(mRepairSheetDataList);
+        }
+
+        if (mRepairSheetReport.getData().size() > 0) {
+            mPaysheetView.setAdapter(null);
+            aRepairsheetAdapter = new RepairsheetAdapter(mContext, mRepairSheetReport.getData());
+            mPaysheetView.setAdapter(aRepairsheetAdapter);
+            aRepairsheetAdapter.notifyDataSetChanged();
+        } else {
+            mPaysheetView.setAdapter(null);
+            Toast.makeText(mContext, mContext.getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        // 获取ListView对应的Adapter
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0, len = listAdapter.getCount(); i < len; i++) { // listAdapter.getCount()返回数据项的数目
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0); // 计算子项View 的宽高
+            totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        // listView.getDividerHeight()获取子项间分隔符占用的高度
+        // params.height最后得到整个ListView完整显示需要的高度
+        listView.setLayoutParams(params);
+    }
 
 }

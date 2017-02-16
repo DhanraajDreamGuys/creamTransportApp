@@ -20,6 +20,7 @@ import java.util.Map;
 import co.in.dreamguys.cream.Dashboard;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
+import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
 import co.in.dreamguys.cream.utils.ActivityConstants;
@@ -91,21 +92,21 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
 
         @Override
         public void onClick(View v) {
+            switch (getPosition()) {
+                case 0:
+                    ActivityConstants.callPage(mContext, Dashboard.class);
+                    break;
+                case 2:
+                    ActivityConstants.callPage(mContext, Users.class);
+                    break;
+                case 8:
+                    ActivityConstants.callPage(mContext, Paysheet.class);
+                    break;
+                case 10:
+                    ActivityConstants.callPage(mContext, RepairSheet.class);
+                    break;
 
-            if (getPosition() == 2) {
-                v.findViewById(R.id.tv_menus).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ActivityConstants.callPage(mContext, Users.class);
-                    }
-                });
-            } else if (getPosition() == 8) {
-                ActivityConstants.callPage(mContext, Paysheet.class);
-            } else if (getPosition() == 0) {
-                ActivityConstants.callPage(mContext, Dashboard.class);
             }
-
-//            v.findViewById(R.id.tv_menus_drop).setOnClickListener(new openSubItems(listDataChild, getPosition()));
         }
     }
 

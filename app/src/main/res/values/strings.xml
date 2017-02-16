@@ -104,5 +104,6 @@
     <string name="err_driver_name">Select driver</string>
     <string name="err_start_date">Select date from</string>
     <string name="err_end_date">Select date to</string>
+    <string name="tool_repair_title">Repairsheet</string>
 
 </resources>

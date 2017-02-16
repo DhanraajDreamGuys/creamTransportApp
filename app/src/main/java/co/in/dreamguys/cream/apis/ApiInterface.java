@@ -32,6 +32,8 @@ public interface ApiInterface {
     @GET("drivers_list")
     Call<DriverListsAPI.DriverResponse> getDriverLists();
 
+    @GET("repair_currentDay_result")
+    Call<RepairsheetCurrentDayAPI.RepairsheetResponse> getRepairsheet();
 
     @FormUrlEncoded
     @POST("paysheet_lastWeek_result")
@@ -40,4 +42,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("paysheet_search_result")
     Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> getSearchPaysheetReport(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("repair_search_result")
+    Call<RepairsheetCurrentDayAPI.RepairsheetResponse> getSearchRepairsheetReport(@FieldMap HashMap<String, String> meta);
+
+
 }

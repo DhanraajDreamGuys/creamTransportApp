@@ -17,6 +17,7 @@ import java.util.List;
 import co.in.dreamguys.cream.adapter.ViewpaysheetAdapter;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.utils.Constants;
+import co.in.dreamguys.cream.utils.Util;
 
 /**
  * Created by user5 on 13-02-2017.
@@ -43,6 +44,7 @@ public class ViewPaysheet extends AppCompatActivity {
         initWidgets();
 
         mName.setText(mData.get(0).getFirst_name() + " " + mData.get(0).getLast_name());
+        mName.requestFocus();
         mComments.setText(mData.get(0).getComment());
 
         mHeaderViewPaysheet = getLayoutInflater().inflate(R.layout.include_header_view_paysheet, null);
@@ -50,6 +52,8 @@ public class ViewPaysheet extends AppCompatActivity {
 
         aViewpaysheetAdapter = new ViewpaysheetAdapter(ViewPaysheet.this, mData);
         mPaysheetViews.setAdapter(aViewpaysheetAdapter);
+        Util.setListViewHeightBasedOnChildren(mPaysheetViews);
+
         if (getIntent().getIntExtra(Constants.MODE, -1) == 0) {
             mOfficalUse.setFocusable(true);
             mOfficalUse.setClickable(true);

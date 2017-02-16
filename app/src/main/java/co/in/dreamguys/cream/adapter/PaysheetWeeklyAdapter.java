@@ -2,6 +2,7 @@ package co.in.dreamguys.cream.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +16,23 @@ import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.ViewPaysheet;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.utils.Constants;
+import co.in.dreamguys.cream.utils.CustomProgressDialog;
 
 /**
  * Created by user5 on 15-02-2017.
  */
 
 public class PaysheetWeeklyAdapter extends BaseAdapter {
-    Context mContext;
-    List<Data> data;
-    LayoutInflater mInflater;
+    private Context mContext;
+    private List<Data> data;
+    private LayoutInflater mInflater;
+    CustomProgressDialog mCustomProgressDialog;
 
     public PaysheetWeeklyAdapter(Context mContext, List<Data> data) {
 
         this.mContext = mContext;
         this.data = data;
+        mCustomProgressDialog = new CustomProgressDialog(mContext);
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     }
@@ -78,20 +82,37 @@ public class PaysheetWeeklyAdapter extends BaseAdapter {
         mHolder.mEditPaySheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mCallViewPaysheet = new Intent(mContext, ViewPaysheet.class);
-                mCallViewPaysheet.putExtra(Constants.PAYSHEETDETAILS, (Serializable) data);
-                mCallViewPaysheet.putExtra(Constants.MODE, 0);  // Mode 0 means edit and 1 means view
-                mContext.startActivity(mCallViewPaysheet);
+                mCustomProgressDialog.showDialog();
+                Handler mHandler = new Handler();
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mCustomProgressDialog.dismiss();
+                        Intent mCallViewPaysheet = new Intent(mContext, ViewPaysheet.class);
+                        mCallViewPaysheet.putExtra(Constants.PAYSHEETDETAILS, (Serializable) data);
+                        mCallViewPaysheet.putExtra(Constants.MODE, 0);  // Mode 0 means edit and 1 means view
+                        mContext.startActivity(mCallViewPaysheet);
+                    }
+                }, 10000);
+
             }
         });
 
         mHolder.mViewPaysheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mCallViewPaysheet = new Intent(mContext, ViewPaysheet.class);
-                mCallViewPaysheet.putExtra(Constants.PAYSHEETDETAILS, (Serializable) data);
-                mCallViewPaysheet.putExtra(Constants.MODE, 1); // Mode 0 means edit and 1 means view
-                mContext.startActivity(mCallViewPaysheet);
+                mCustomProgressDialog.showDialog();
+                Handler mHandler = new Handler();
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mCustomProgressDialog.dismiss();
+                        Intent mCallViewPaysheet = new Intent(mContext, ViewPaysheet.class);
+                        mCallViewPaysheet.putExtra(Constants.PAYSHEETDETAILS, (Serializable) data);
+                        mCallViewPaysheet.putExtra(Constants.MODE, 1); // Mode 0 means edit and 1 means view
+                        mContext.startActivity(mCallViewPaysheet);
+                    }
+                }, 10000);
             }
         });
 

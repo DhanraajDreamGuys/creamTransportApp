@@ -26,4 +26,8 @@ public class Constants {
     public static String MODE = "mode";
     public static String PARAMS_START_DATE = "sdate";
     public static String PARAMS_END_DATE = "edate";
+
+    public static String PAYSHEET = "PAYSHEET";
+    public static String REPAIR = "REPAIR";
+
 }

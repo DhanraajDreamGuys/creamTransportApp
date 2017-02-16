@@ -160,7 +160,7 @@ public class Paysheet extends AppCompatActivity implements SearchListViewNotify 
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             int height = displaymetrics.heightPixels;
             if (!popupSearch.isShowing()) {
-                Util.searchPopUpWindow(Paysheet.this, popupSearch, getLayoutInflater(), mPaysheetView);
+                Util.searchPopUpWindow(Paysheet.this, popupSearch, Constants.PAYSHEET, getLayoutInflater(), mPaysheetView);
                 layoutParams.setMargins(0, (height / 4), 0, 0);
                 mPaysheetView.setLayoutParams(layoutParams);
             }

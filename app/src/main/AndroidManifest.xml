@@ -71,6 +71,12 @@
         <activity
             android:name=".ViewPaysheet"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".RepairSheet"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

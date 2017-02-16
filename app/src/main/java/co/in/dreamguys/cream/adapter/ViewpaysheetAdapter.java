@@ -84,6 +84,7 @@ public class ViewpaysheetAdapter extends BaseAdapter {
         mHolder.mDailyIns.setText(mData.get(position).getInspection());
         mHolder.mUnload.setText(mData.get(position).getUnloading_time());
         mHolder.mOfficeUse.setText(mData.get(position).getOffice_use());
+
         return convertView;
     }
 
