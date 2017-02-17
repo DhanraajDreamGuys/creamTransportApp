@@ -2,6 +2,7 @@ package co.in.dreamguys.cream.utils;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AlertDialog;
@@ -373,25 +374,41 @@ public class Util {
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
-        // 获取ListView对应的Adapter
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
             return;
         }
 
         int totalHeight = 0;
-        for (int i = 0, len = listAdapter.getCount(); i < len; i++) { // listAdapter.getCount()返回数据项的数目
+        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
             View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0); // 计算子项View 的宽高
-            totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
         }
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight
                 + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        // listView.getDividerHeight()获取子项间分隔符占用的高度
-        // params.height最后得到整个ListView完整显示需要的高度
         listView.setLayoutParams(params);
+    }
+
+
+    public static void showDeleteAlert(Context mContext) {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+        mBuilder.setMessage(mContext.getString(R.string.alert_message));
+        mBuilder.setPositiveButton(mContext.getString(R.string.str_ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        mBuilder.setNegativeButton(mContext.getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        mBuilder.show();
     }
 
 }

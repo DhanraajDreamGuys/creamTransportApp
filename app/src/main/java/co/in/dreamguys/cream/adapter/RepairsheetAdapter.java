@@ -12,6 +12,7 @@ import java.util.List;
 
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.model.RepairSheetData;
+import co.in.dreamguys.cream.utils.Util;
 
 /**
  * Created by user5 on 15-02-2017.
@@ -71,6 +72,28 @@ public class RepairsheetAdapter extends BaseAdapter {
         mHolder.mTruckNo.setText(mRepairSheetData.getTruck_no());
         mHolder.mTrollNo.setText(mRepairSheetData.getTrl_no().replaceAll("/", ""));
         mHolder.mDollyNo.setText(mRepairSheetData.getDolly_no());
+
+
+        mHolder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mHolder.mEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mHolder.mDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Util.showDeleteAlert(mContext);
+            }
+        });
 
         return convertView;
     }

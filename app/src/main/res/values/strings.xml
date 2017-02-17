@@ -105,5 +105,8 @@
     <string name="err_start_date">Select date from</string>
     <string name="err_end_date">Select date to</string>
     <string name="tool_repair_title">Repairsheet</string>
+    <string name="alert_message">Are you sure want to delete this sheet?</string>
+    <string name="str_ok">Ok</string>
+    <string name="str_cancel">Cancel</string>
 
 </resources>
