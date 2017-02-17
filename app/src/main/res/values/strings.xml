@@ -90,7 +90,7 @@
     <string name="str_tr_no1">Tr no1</string>
     <string name="str_tr_no2">Tr no2</string>
     <string name="str_tr_no3">Tr no3</string>
-    <string name="str_dolly_no">Dolly_no</string>
+    <string name="str_dolly_no">Dolly no</string>
     <string name="str_mf_no">Mf no</string>
     <string name="str_rd_bd">RT/BD/Sing</string>
     <string name="str_fit">Fit for duty</string>
@@ -105,5 +105,11 @@
     <string name="err_start_date">Select date from</string>
     <string name="err_end_date">Select date to</string>
     <string name="tool_repair_title">Repairsheet</string>
-
+    <string name="str_rego_no">Rego no</string>
+    <string name="str_faults_to_repair">Faults to repair</string>
+    <string name="str_workshop_comments">Workshop comments</string>
+    <string name="work_from_to">My first and last day work will be</string>
+    <string name="apply_leave">Apply for leave from and to</string>
+    <string name="company_name">Primeline Contracting Pty Ltd</string>
+    <string name="leave_form">Leave Form</string>
 </resources>
