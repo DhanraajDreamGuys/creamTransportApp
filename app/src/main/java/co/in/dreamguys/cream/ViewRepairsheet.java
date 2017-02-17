@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import co.in.dreamguys.cream.utils.Constants;
@@ -15,7 +17,9 @@ import co.in.dreamguys.cream.utils.Constants;
 
 public class ViewRepairsheet extends AppCompatActivity {
     Toolbar mToolbar;
-    EditText mName;
+    EditText mfaults_to_repair,mComments;
+    Button mButton;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,16 +39,21 @@ public class ViewRepairsheet extends AppCompatActivity {
 
         if (getIntent().getIntExtra(Constants.MODE, -1) == 0) {
             mToolbar.setTitle(getString(R.string.tool_edit_repairsheet_title));
-            mName.setFocusable(true);
-            mName.setClickable(true);
-            mName.setFocusableInTouchMode(true);
+            mComments.setFocusable(true);
+            mComments.setClickable(true);
+            mComments.setFocusableInTouchMode(true);
+            mButton.setText("Save");
         } else {
             mToolbar.setTitle(getString(R.string.tool_view_repairsheet_title));
+            mComments.setFocusable(false);
+            mComments.setClickable(false);
+            mComments.setFocusableInTouchMode(false);
+            mButton.setVisibility(View.GONE);
         }
 
         mToolbar.setTitleTextColor(Color.WHITE);
 
-        mName = (EditText) findViewById(R.id.AVRS_ET_name);
-
+        mComments = (EditText) findViewById(R.id.AVRS_ET_workshop_comments);
+mButton = (Button)findViewById(R.id.AVRS_BT_save);
     }
 }
