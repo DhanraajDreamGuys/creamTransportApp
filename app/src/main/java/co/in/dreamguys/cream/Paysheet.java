@@ -82,8 +82,6 @@ public class Paysheet extends AppCompatActivity implements SearchListViewNotify 
                     Log.i(TAG, t.getMessage());
                 }
             });
-
-
         }
 
     }

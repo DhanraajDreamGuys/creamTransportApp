@@ -5,23 +5,34 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 import co.in.dreamguys.cream.adapter.ViewpaysheetAdapter;
+import co.in.dreamguys.cream.apis.ApiClient;
+import co.in.dreamguys.cream.apis.ApiInterface;
+import co.in.dreamguys.cream.apis.UpdateSheetAPI;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.utils.Constants;
+import co.in.dreamguys.cream.utils.CustomProgressDialog;
 import co.in.dreamguys.cream.utils.Util;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by user5 on 13-02-2017.
  */
 
-public class ViewPaysheet extends AppCompatActivity {
+public class ViewPaysheet extends AppCompatActivity implements View.OnClickListener {
 
     ListView mPaysheetViews;
     View mHeaderViewPaysheet;
@@ -31,12 +42,14 @@ public class ViewPaysheet extends AppCompatActivity {
     TextView mName, mSignature, mComments;
     EditText mOfficalUse;
     Button mSaveChanges;
+    CustomProgressDialog mCustomProgressDialog;
+    private static String TAG = ViewPaysheet.class.getName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_paysheet);
-
+        mCustomProgressDialog = new CustomProgressDialog(this);
         mData = (Data) getIntent().getSerializableExtra(Constants.PAYSHEETDETAILS);
 
         initWidgets();
@@ -64,6 +77,7 @@ public class ViewPaysheet extends AppCompatActivity {
             mSaveChanges.setVisibility(View.GONE);
         }
 
+
     }
 
     private void initWidgets() {
@@ -87,6 +101,7 @@ public class ViewPaysheet extends AppCompatActivity {
         mComments = (TextView) findViewById(R.id.AVP_TV_comments);
         mOfficalUse = (EditText) findViewById(R.id.AVP_TV_offical_use);
         mSaveChanges = (Button) findViewById(R.id.AVP_BT_save);
+        mSaveChanges.setOnClickListener(this);
     }
 
 
@@ -97,5 +112,44 @@ public class ViewPaysheet extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.AVP_BT_save) {
+            if (!Util.isNetworkAvailable(this)) {
+                Toast.makeText(ViewPaysheet.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+            } else {
+                mCustomProgressDialog.showDialog();
+                ApiInterface apiService =
+                        ApiClient.getClient().create(ApiInterface.class);
+                Call<UpdateSheetAPI.UpdatePaysheetResponse> loginCall = apiService.getUpdatePaysheetReport(sendValueWithRetrofit());
+                loginCall.enqueue(new Callback<UpdateSheetAPI.UpdatePaysheetResponse>() {
+                    @Override
+                    public void onResponse(Call<UpdateSheetAPI.UpdatePaysheetResponse> call, Response<UpdateSheetAPI.UpdatePaysheetResponse> response) {
+                        mCustomProgressDialog.dismiss();
+                        if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                            Toast.makeText(ViewPaysheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(ViewPaysheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UpdateSheetAPI.UpdatePaysheetResponse> call, Throwable t) {
+                        Log.i(TAG, t.getMessage());
+                        mCustomProgressDialog.dismiss();
+                    }
+                });
+            }
+        }
+    }
+
+
+    private HashMap<String, String> sendValueWithRetrofit() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Constants.PARAMS_ID, mData.getPid());
+        params.put(Constants.PARAMS_OFFICE_USE, mOfficalUse.getText().toString());
+        return params;
     }
 }

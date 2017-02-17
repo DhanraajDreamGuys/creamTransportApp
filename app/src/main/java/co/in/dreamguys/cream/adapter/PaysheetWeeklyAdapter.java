@@ -24,7 +24,7 @@ public class PaysheetWeeklyAdapter extends BaseAdapter {
     private Context mContext;
     private List<Data> data;
     private LayoutInflater mInflater;
-    CustomProgressDialog mCustomProgressDialog;
+    private CustomProgressDialog mCustomProgressDialog;
 
     public PaysheetWeeklyAdapter(Context mContext, List<Data> data) {
 

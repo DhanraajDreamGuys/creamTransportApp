@@ -47,5 +47,13 @@ public interface ApiInterface {
     @POST("repair_search_result")
     Call<RepairsheetCurrentDayAPI.RepairsheetResponse> getSearchRepairsheetReport(@FieldMap HashMap<String, String> meta);
 
+    @FormUrlEncoded
+    @POST("update_paysheet")
+    Call<UpdateSheetAPI.UpdatePaysheetResponse> getUpdatePaysheetReport(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("update_repairsheet")
+    Call<UpdateSheetAPI.UpdatePaysheetResponse> getUpdateRepairsheetReport(@FieldMap HashMap<String, String> meta);
+
 
 }

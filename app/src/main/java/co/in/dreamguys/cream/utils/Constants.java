@@ -22,7 +22,7 @@ public class Constants {
 
     public static List<DriverListsAPI.Datum> driverList;
     public static String PAYSHEETDETAILS = "paysheetdetails";
-    public static String TYPE ="type";
+    public static String TYPE = "type";
     public static String MODE = "mode";
     public static String PARAMS_START_DATE = "sdate";
     public static String PARAMS_END_DATE = "edate";
@@ -30,4 +30,6 @@ public class Constants {
     public static String PAYSHEET = "PAYSHEET";
     public static String REPAIR = "REPAIR";
 
+    public static String PARAMS_ID = "id";
+    public static String PARAMS_OFFICE_USE = "office_use_comts";
 }
