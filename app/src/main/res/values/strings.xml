@@ -116,4 +116,6 @@
     <string name="apply_leave">Apply for leave from and to</string>
     <string name="company_name">Primeline Contracting Pty Ltd</string>
     <string name="leave_form">Leave Form</string>
+    <string name="tool_view_repairsheet_title">View Repairsheet</string>
+    <string name="tool_edit_repairsheet_title">Edit Repairsheet</string>
 </resources>

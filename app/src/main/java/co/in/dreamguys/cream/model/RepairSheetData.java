@@ -3,11 +3,13 @@ package co.in.dreamguys.cream.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by user5 on 15-02-2017.
  */
 
-public class RepairSheetData {
+public class RepairSheetData implements Serializable{
 
     @SerializedName("rdate")
     @Expose
