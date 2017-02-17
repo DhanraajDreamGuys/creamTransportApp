@@ -109,4 +109,11 @@
     <string name="str_ok">Ok</string>
     <string name="str_cancel">Cancel</string>
 
+    <string name="str_rego_no">Rego no</string>
+    <string name="str_faults_to_repair">Faults to repair</string>
+    <string name="str_workshop_comments">Workshop comments</string>
+    <string name="work_from_to">My first and last day work will be</string>
+    <string name="apply_leave">Apply for leave from and to</string>
+    <string name="company_name">Primeline Contracting Pty Ltd</string>
+    <string name="leave_form">Leave Form</string>
 </resources>
