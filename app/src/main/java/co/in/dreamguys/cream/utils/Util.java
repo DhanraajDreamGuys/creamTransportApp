@@ -1,6 +1,5 @@
 package co.in.dreamguys.cream.utils;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
@@ -13,9 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -34,7 +31,6 @@ import java.util.TimeZone;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
-import co.in.dreamguys.cream.adapter.DriverListAdapter;
 import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
@@ -56,7 +52,7 @@ import retrofit2.Response;
 public class Util {
 
     static CustomProgressDialog mCustomProgressDialog;
-    static int adapterPosition;
+    public static int adapterPosition;
 
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
@@ -109,40 +105,14 @@ public class Util {
         mFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-                Calendar newCalendar = new GregorianCalendar();
-                TimeZone timeZone = TimeZone.getTimeZone("Australia/Sydney");
-                newCalendar.setTimeZone(timeZone);
-                DatePickerDialog fromDatePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
-
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        Calendar newDate = Calendar.getInstance();
-                        newDate.set(year, monthOfYear, dayOfMonth);
-                        mFromDate.setText(dateFormatter.format(newDate.getTime()));
-                    }
-
-                }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-                fromDatePickerDialog.show();
+                Constants.AdminMenu.getFromDate(mContext, mFromDate);
             }
         });
 
         mFromTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-                Calendar newCalendar = new GregorianCalendar();
-                TimeZone timeZone = TimeZone.getTimeZone("Australia/Sydney");
-                newCalendar.setTimeZone(timeZone);
-                DatePickerDialog fromDatePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
-
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        Calendar newDate = Calendar.getInstance();
-                        newDate.set(year, monthOfYear, dayOfMonth);
-                        mFromTo.setText(dateFormatter.format(newDate.getTime()));
-                    }
-
-                }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
-                fromDatePickerDialog.show();
+                Constants.AdminMenu.getFromDate(mContext, mFromTo);
             }
         });
 
@@ -150,26 +120,7 @@ public class Util {
         fireDriverlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                View driverlayout = layoutInflater.inflate(R.layout.dialog_sub_items_list, null);
-                builder.setView(driverlayout);
-
-                ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
-
-
-                DriverListAdapter aDriverListAdapter = new DriverListAdapter(mContext, Constants.driverList);
-                mDriverViews.setAdapter(aDriverListAdapter);
-                final AlertDialog alert = builder.create();
-                alert.show();
-
-                mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        fireDriverlist.setText(Constants.driverList.get(position).getFirst_name() + " " + Constants.driverList.get(position).getLast_name());
-                        adapterPosition = position;
-                        alert.dismiss();
-                    }
-                });
+                Constants.AdminMenu.getDrivers(mContext, fireDriverlist);
             }
         });
 
@@ -253,10 +204,12 @@ public class Util {
             public void onClick(View v) {
                 switch (PAGE) {
                     case "PAYSHEET":
+                        mPaysheetView.setAdapter(null);
                         ((Paysheet) mContext).searchNotify();
                         listAdjustableMethod(popupSearch, mPaysheetView);
                         break;
                     case "REPAIR":
+                        mPaysheetView.setAdapter(null);
                         ((RepairSheet) mContext).searchNotify();
                         listAdjustableMethod(popupSearch, mPaysheetView);
                         break;
@@ -332,7 +285,7 @@ public class Util {
     }
 
 
-    private static void fillRepairSheetData(Context mContext, List<RepairsheetCurrentDayAPI.Datum> data, ListView mPaysheetView) {
+    public static void fillRepairSheetData(Context mContext, List<RepairsheetCurrentDayAPI.Datum> data, ListView mPaysheetView) {
         RepairsheetAdapter aRepairsheetAdapter;
         RepairSheetData mRepairSheetData;
         RepairSheetReport mRepairSheetReport = new RepairSheetReport();
@@ -393,13 +346,14 @@ public class Util {
     }
 
 
-    public static void showDeleteAlert(Context mContext) {
+    public static void showDeleteAlert(final Context mContext, final String delete_id) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
         mBuilder.setMessage(mContext.getString(R.string.alert_message));
         mBuilder.setPositiveButton(mContext.getString(R.string.str_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                ((RepairSheet) mContext).deleteRepairSheet(delete_id);
+                dialog.dismiss();
             }
         });
         mBuilder.setNegativeButton(mContext.getString(R.string.str_cancel), new DialogInterface.OnClickListener() {

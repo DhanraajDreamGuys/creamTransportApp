@@ -1,5 +1,6 @@
 package co.in.dreamguys.cream;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,13 +15,17 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.RepairsheetCurrentDayAPI;
+import co.in.dreamguys.cream.apis.UpdateSheetAPI;
+import co.in.dreamguys.cream.interfaces.RepairsheetNotify;
 import co.in.dreamguys.cream.interfaces.SearchListViewNotify;
 import co.in.dreamguys.cream.model.RepairSheetData;
 import co.in.dreamguys.cream.model.RepairSheetReport;
@@ -35,7 +40,7 @@ import retrofit2.Response;
  * Created by user5 on 15-02-2017.
  */
 
-public class RepairSheet extends AppCompatActivity implements SearchListViewNotify {
+public class RepairSheet extends AppCompatActivity implements SearchListViewNotify, RepairsheetNotify {
     Toolbar mToolbar;
     PopupWindow popupSearch;
     ListView mRepairSheetView;
@@ -53,7 +58,7 @@ public class RepairSheet extends AppCompatActivity implements SearchListViewNoti
         mCustomProgressDialog = new CustomProgressDialog(this);
         popupSearch = new PopupWindow(this);
         initWidgets();
-
+        Constants.Repairsheet = this;
         currentDayRepairSheet();
 
     }
@@ -172,4 +177,95 @@ public class RepairSheet extends AppCompatActivity implements SearchListViewNoti
         super.onDestroy();
         popupSearch.dismiss();
     }
+
+    @Override
+    public void deleteRepairSheet(String delete_id) {
+        mCustomProgressDialog.showDialog();
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<RepairsheetCurrentDayAPI.RepairsheetResponse> repairsheet = apiService.getDeleteRepairsheetReport(delete_id);
+        repairsheet.enqueue(new Callback<RepairsheetCurrentDayAPI.RepairsheetResponse>() {
+            @Override
+            public void onResponse(Call<RepairsheetCurrentDayAPI.RepairsheetResponse> call, Response<RepairsheetCurrentDayAPI.RepairsheetResponse> response) {
+                if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                    Util.fillRepairSheetData(RepairSheet.this, response.body().getData(), mRepairSheetView);
+                    Toast.makeText(RepairSheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RepairSheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                mCustomProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<RepairsheetCurrentDayAPI.RepairsheetResponse> call, Throwable t) {
+                Log.i(TAG, t.getMessage());
+                mCustomProgressDialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void viewRepairSheet(String id, final int viewType) {
+        mCustomProgressDialog.showDialog();
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<RepairsheetCurrentDayAPI.RepairsheetResponse> repairsheet = apiService.getViewRepairsheetReport(id);
+        repairsheet.enqueue(new Callback<RepairsheetCurrentDayAPI.RepairsheetResponse>() {
+            @Override
+            public void onResponse(Call<RepairsheetCurrentDayAPI.RepairsheetResponse> call, Response<RepairsheetCurrentDayAPI.RepairsheetResponse> response) {
+                if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                    Intent mCallViewPaysheet = new Intent(RepairSheet.this, ViewRepairsheet.class);
+                    mCallViewPaysheet.putExtra(Constants.REPAIRSHEETDETAILS, (Serializable) response.body().getData().get(0));
+                    mCallViewPaysheet.putExtra(Constants.MODE, viewType);  // Mode 0 means edit and 1 means view
+                    startActivity(mCallViewPaysheet);
+                } else {
+                    Toast.makeText(RepairSheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                mCustomProgressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<RepairsheetCurrentDayAPI.RepairsheetResponse> call, Throwable t) {
+                Log.i(TAG, t.getMessage());
+                mCustomProgressDialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void updateRepairSheet(String id, String comments) {
+        if (!Util.isNetworkAvailable(this)) {
+            Toast.makeText(RepairSheet.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+        } else {
+            mCustomProgressDialog.showDialog();
+            ApiInterface apiService =
+                    ApiClient.getClient().create(ApiInterface.class);
+            Call<UpdateSheetAPI.UpdatePaysheetResponse> loginCall = apiService.getUpdateRepairsheetReport(sendValueWithRetrofit(id, comments));
+            loginCall.enqueue(new Callback<UpdateSheetAPI.UpdatePaysheetResponse>() {
+                @Override
+                public void onResponse(Call<UpdateSheetAPI.UpdatePaysheetResponse> call, Response<UpdateSheetAPI.UpdatePaysheetResponse> response) {
+                    mCustomProgressDialog.dismiss();
+                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                        Toast.makeText(RepairSheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Constants.ViewRepairsheet.finish();
+                    } else {
+                        Toast.makeText(RepairSheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UpdateSheetAPI.UpdatePaysheetResponse> call, Throwable t) {
+                    Log.i(TAG, t.getMessage());
+                    mCustomProgressDialog.dismiss();
+                }
+            });
+        }
+    }
+
+    private HashMap<String, String> sendValueWithRetrofit(String id, String comments) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Constants.PARAMS_ID, id);
+        params.put(Constants.PARAMS_OFFICE_USE, comments);
+        return params;
+    }
+
+
 }

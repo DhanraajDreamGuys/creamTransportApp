@@ -130,6 +130,7 @@ public class ViewPaysheet extends AppCompatActivity implements View.OnClickListe
                         mCustomProgressDialog.dismiss();
                         if (response.body().getMeta().equals(Constants.SUCCESS)) {
                             Toast.makeText(ViewPaysheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            finish();
                         } else {
                             Toast.makeText(ViewPaysheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }

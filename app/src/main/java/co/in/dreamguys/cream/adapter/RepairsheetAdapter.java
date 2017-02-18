@@ -1,21 +1,18 @@
 package co.in.dreamguys.cream.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import co.in.dreamguys.cream.R;
-import co.in.dreamguys.cream.ViewRepairsheet;
+import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.model.RepairSheetData;
-import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.Util;
 
 /**
@@ -81,27 +78,21 @@ public class RepairsheetAdapter extends BaseAdapter {
         mHolder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mCallViewPaysheet = new Intent(mContext, ViewRepairsheet.class);
-                mCallViewPaysheet.putExtra(Constants.REPAIRSHEETDETAILS, (Serializable) data.get(position));
-                mCallViewPaysheet.putExtra(Constants.MODE, 1);  // Mode 0 means edit and 1 means view
-                mContext.startActivity(mCallViewPaysheet);
+                ((RepairSheet) mContext).viewRepairSheet(data.get(position).getRid(), 1); // Mode 0 means edit and 1 means view
             }
         });
 
         mHolder.mEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mCallViewPaysheet = new Intent(mContext, ViewRepairsheet.class);
-                mCallViewPaysheet.putExtra(Constants.REPAIRSHEETDETAILS, (Serializable) data.get(position));
-                mCallViewPaysheet.putExtra(Constants.MODE, 0);  // Mode 0 means edit and 1 means view
-                mContext.startActivity(mCallViewPaysheet);
+                ((RepairSheet) mContext).viewRepairSheet(data.get(position).getRid(), 0); // Mode 0 means edit and 1 means view
             }
         });
 
         mHolder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Util.showDeleteAlert(mContext);
+                Util.showDeleteAlert(mContext, data.get(position).getRid());
             }
         });
 

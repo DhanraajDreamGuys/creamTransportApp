@@ -32,6 +32,9 @@ public interface ApiInterface {
     @GET("drivers_list")
     Call<DriverListsAPI.DriverResponse> getDriverLists();
 
+    @GET("country_list")
+    Call<CountriesAPI.CountryListResponse> getCountries();
+
     @GET("repair_currentDay_result")
     Call<RepairsheetCurrentDayAPI.RepairsheetResponse> getRepairsheet();
 
@@ -54,6 +57,18 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("update_repairsheet")
     Call<UpdateSheetAPI.UpdatePaysheetResponse> getUpdateRepairsheetReport(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("delete_repairsheet")
+    Call<RepairsheetCurrentDayAPI.RepairsheetResponse> getDeleteRepairsheetReport(@Field("id") String stringPref);
+
+    @FormUrlEncoded
+    @POST("view_repairsheet")
+    Call<RepairsheetCurrentDayAPI.RepairsheetResponse> getViewRepairsheetReport(@Field("id") String stringPref);
+
+    @FormUrlEncoded
+    @POST("add_trip")
+    Call<AddTripAPI.AddTripResponse> addNewTrip(@FieldMap HashMap<String, String> meta);
 
 
 }

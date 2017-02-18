@@ -1,9 +1,12 @@
 package co.in.dreamguys.cream;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -11,16 +14,30 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import co.in.dreamguys.cream.adapter.AdminMenuAdapter;
+import co.in.dreamguys.cream.adapter.CountryListAdapter;
+import co.in.dreamguys.cream.adapter.DriverListAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
+import co.in.dreamguys.cream.interfaces.ChooseDateListener;
+import co.in.dreamguys.cream.interfaces.ConstantListItem;
+import co.in.dreamguys.cream.interfaces.LoactionInterface;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
 import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
@@ -36,7 +53,7 @@ import retrofit2.Response;
  * Created by user5 on 10-02-2017.
  */
 
-public class AdminMenu extends AppCompatActivity {
+public class AdminMenu extends AppCompatActivity implements ConstantListItem, LoactionInterface, ChooseDateListener {
     List<ExpandedMenuModel> listDataHeader;
     HashMap<ExpandedMenuModel, List<String>> listDataChild;
     RecyclerView mMenus;
@@ -48,9 +65,13 @@ public class AdminMenu extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_menu);
+
+        Constants.AdminMenu = AdminMenu.this;
+
         mCustomProgressDialog = new CustomProgressDialog(AdminMenu.this);
         intiWidgets();
         getDriverLists();
+
         prepareListData();
         mMenus = (RecyclerView) findViewById(R.id.rv_admin_menu);
         mMenus.setLayoutManager(new StaggeredGridLayoutManager(2, 1));
@@ -60,6 +81,7 @@ public class AdminMenu extends AppCompatActivity {
         mMenus.setAdapter(aAdminMenuAdapter);
 
     }
+
 
     private void getDriverLists() {
 
@@ -84,8 +106,8 @@ public class AdminMenu extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<DriverListsAPI.DriverResponse> call, Throwable t) {
-                    mCustomProgressDialog.dismiss();
                     Log.i(TAG, t.getMessage());
+                    mCustomProgressDialog.dismiss();
                 }
             });
 
@@ -273,7 +295,81 @@ public class AdminMenu extends AppCompatActivity {
                 startActivity(mCallLogin);
                 finish();
             }
+        } else if (item.getItemId() == android.R.id.home) {
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    @Override
+    public void getDrivers(Context mContext, final TextView value) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        View driverlayout = getLayoutInflater().inflate(R.layout.dialog_sub_items_list, null);
+        builder.setView(driverlayout);
+
+        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
+
+
+        DriverListAdapter aDriverListAdapter = new DriverListAdapter(mContext, Constants.driverList);
+        mDriverViews.setAdapter(aDriverListAdapter);
+        final AlertDialog alert = builder.create();
+        alert.show();
+
+        mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                value.setText(Constants.driverList.get(position).getFirst_name() + " " + Constants.driverList.get(position).getLast_name());
+                Util.adapterPosition = position;
+                alert.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void getLocations(Context mContext, final TextView value, final String mFromorTo) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        View driverlayout = getLayoutInflater().inflate(R.layout.dialog_sub_items_list, null);
+        builder.setView(driverlayout);
+
+        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
+
+
+        CountryListAdapter aDriverListAdapter = new CountryListAdapter(mContext, Constants.countries);
+        mDriverViews.setAdapter(aDriverListAdapter);
+        final AlertDialog alert = builder.create();
+        alert.show();
+
+        mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                value.setText(Constants.countries.get(position).getName());
+                if (mFromorTo.equalsIgnoreCase("From")) {
+                    Constants.From = position;
+                } else {
+                    Constants.To = position;
+                }
+                alert.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void getFromDate(Context mContext, final TextView value) {
+        final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar newCalendar = new GregorianCalendar();
+        TimeZone timeZone = TimeZone.getTimeZone("Australia/Sydney");
+        newCalendar.setTimeZone(timeZone);
+        DatePickerDialog fromDatePickerDialog = new DatePickerDialog(mContext, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                value.setText(dateFormatter.format(newDate.getTime()));
+            }
+
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        fromDatePickerDialog.show();
+    }
+
 }

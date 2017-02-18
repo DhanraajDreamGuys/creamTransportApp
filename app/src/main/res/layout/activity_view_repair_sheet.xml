@@ -31,6 +31,10 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/str_name"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
@@ -193,11 +197,10 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/button_background"
                 android:padding="@dimen/_10sdp"
-                android:textAllCaps="false"
-                android:visibility="gone"
                 android:text="@string/str_save_changes"
-                android:textColor="@android:color/white" />
-
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
 
 
         </LinearLayout>

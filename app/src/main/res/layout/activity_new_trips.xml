@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/choose_driver"
+                android:id="@+id/ANT_TV_choose_driver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -33,6 +33,7 @@
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
+                android:id="@+id/ANT_TV_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -46,6 +47,7 @@
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
+                android:id="@+id/ANT_ET_truck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -54,10 +56,13 @@
                 android:background="@drawable/border_gray_box"
                 android:gravity="center_vertical"
                 android:hint="@string/enter_truck"
+                android:inputType="number"
+                android:maxLines="1"
                 android:padding="@dimen/_10sdp"
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
+                android:id="@+id/ANT_TV_from"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -71,6 +76,7 @@
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
+                android:id="@+id/ANT_TV_to"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -95,7 +101,8 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:layout_width="match_parent"
+                        android:id="@+id/ANT_ET_traliers"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_2sdp"
@@ -103,21 +110,23 @@
                         android:background="@drawable/border_gray_box"
                         android:gravity="center_vertical"
                         android:hint="@string/trailers"
+                        android:inputType="number"
+                        android:maxLines="1"
                         android:padding="@dimen/_10sdp"
                         android:textSize="@dimen/_12sdp" />
 
                     <Button
-                        android:id="@+id/add"
+                        android:id="@+id/ANT_BT_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_2sdp"
                         android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
                         android:background="@drawable/border_gray_oval"
                         android:maxHeight="@dimen/_48sdp"
                         android:maxWidth="@dimen/_48sdp"
                         android:minHeight="@dimen/_24sdp"
                         android:minWidth="@dimen/_24sdp"
-                        android:layout_marginTop="@dimen/_2sdp"
                         android:padding="@dimen/_10sdp"
                         android:text="+"
                         android:textColor="@color/darker_gray"
@@ -125,17 +134,17 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/remove"
+                        android:id="@+id/ANT_BT_remove"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_2sdp"
                         android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
                         android:background="@drawable/border_gray_oval"
                         android:maxHeight="@dimen/_48sdp"
                         android:maxWidth="@dimen/_48sdp"
                         android:minHeight="@dimen/_24sdp"
                         android:minWidth="@dimen/_24sdp"
-                        android:layout_marginTop="@dimen/_2sdp"
                         android:padding="@dimen/_10sdp"
                         android:text="-"
                         android:textColor="@color/darker_gray"
@@ -147,6 +156,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/ANT_ET_manifest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -155,10 +165,12 @@
                 android:background="@drawable/border_gray_box"
                 android:gravity="center_vertical"
                 android:hint="Manifest number"
+                android:maxLines="1"
                 android:padding="@dimen/_10sdp"
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
+                android:id="@+id/ANT_ET_dolly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -167,6 +179,8 @@
                 android:background="@drawable/border_gray_box"
                 android:gravity="center_vertical"
                 android:hint="Dolly"
+                android:maxLines="1"
+                android:inputType="number"
                 android:padding="@dimen/_10sdp"
                 android:textSize="@dimen/_12sdp" />
 
@@ -176,11 +190,14 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/ANT_ET_load_availble_after"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_weight="1"
+                    android:inputType="time"
+                    android:maxLines="1"
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint="Load available after"
@@ -188,11 +205,13 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
+                    android:id="@+id/ANT_ET_from"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_weight="1"
+                    android:maxLines="1"
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint="From"
@@ -207,6 +226,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/ANT_ET_load_due_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -215,10 +235,12 @@
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint="Load due in"
+                    android:maxLines="1"
                     android:padding="@dimen/_10sdp"
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
+                    android:id="@+id/ANT_ET_by"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -227,13 +249,14 @@
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint="By"
+                    android:maxLines="1"
                     android:padding="@dimen/_10sdp"
                     android:textSize="@dimen/_12sdp" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/ANT_TV_set_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -254,6 +277,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/ANT_CB_exp_general"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -261,6 +285,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <CheckBox
+                    android:id="@+id/ANT_CB_no_danger_goods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -276,6 +301,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/ANT_CB_product_market"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -283,6 +309,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <CheckBox
+                    android:id="@+id/ANT_CB_has_danger_goods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -296,6 +323,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/ANT_ET_change_over"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -304,10 +332,13 @@
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint="Change over truck"
+                    android:inputType="number"
                     android:padding="@dimen/_10sdp"
+                    android:maxLines="1"
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
+                    android:id="@+id/ANT_ET_driver"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -316,11 +347,13 @@
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint="Driver"
+                    android:maxLines="1"
                     android:padding="@dimen/_10sdp"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
 
             <EditText
+                android:id="@+id/ANT_ET_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -339,7 +372,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/bt_send"
+                    android:id="@+id/ANT_BT_send"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
@@ -351,7 +384,7 @@
                     android:textColor="@android:color/white" />
 
                 <Button
-                    android:id="@+id/bt_cancel"
+                    android:id="@+id/ANT_BT_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"

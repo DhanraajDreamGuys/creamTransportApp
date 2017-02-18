@@ -6,5 +6,4 @@ package co.in.dreamguys.cream.interfaces;
 
 public interface SearchListViewNotify {
     void searchNotify();
-
 }

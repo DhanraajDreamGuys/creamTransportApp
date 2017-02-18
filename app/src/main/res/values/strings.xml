@@ -118,4 +118,9 @@
     <string name="leave_form">Leave Form</string>
     <string name="tool_view_repairsheet_title">View Repairsheet</string>
     <string name="tool_edit_repairsheet_title">Edit Repairsheet</string>
+    <string name="tool_edit_trips_title">Trips</string>
+    <string name="action_new_trip">Add new trip</string>
+    <string name="tool_add_trips_title">Add Trip</string>
+    <string name="err_from">Choose From</string>
+    <string name="err_to">Choose To</string>
 </resources>
