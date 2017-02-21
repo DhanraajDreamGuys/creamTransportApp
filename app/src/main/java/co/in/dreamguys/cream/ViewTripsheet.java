@@ -407,6 +407,9 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
         if (mEditChooseDriver.getText().toString().isEmpty()) {
             mEditChooseDriver.setError(getString(R.string.err_driver_name));
             mEditChooseDriver.requestFocus();
+        } else if (mEditDate.getText().toString().isEmpty()) {
+            mEditDate.setError(getString(R.string.err_start_date));
+            mEditDate.requestFocus();
         } else if (mEditTruckNo.getText().toString().isEmpty()) {
             mEditTruckNo.setError(getString(R.string.err_truck_no));
             mEditTruckNo.requestFocus();
@@ -535,10 +538,12 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
         params.put(Constants.PARAMS_CTRUCK, mEditChangeOver.getText().toString());
         params.put(Constants.PARAMS_CDRIVER, mEditDriver.getText().toString());
         params.put(Constants.PARAMS_ITYPE, checkedItems);
-        params.put(Constants.PARAMS_SDATE, mEditSetDate.getText().toString());
+        params.put(Constants.PARAMS_SDATE, mEditDate.getText().toString());
+        params.put(Constants.PARAMS_LDATE, mEditSetDate.getText().toString());
         params.put(Constants.PARAMS_FROM, Constants.countries.get(Constants.From).getId());
         params.put(Constants.PARAMS_TRIP_TO, Constants.countries.get(Constants.To).getId());
         params.put(Constants.PARAMS_ADMIN_COMMENT, mEditComments.getText().toString());
+        params.put(Constants.PARAMS_DID, mTripsheet.getTid());
         return params;
     }
 }

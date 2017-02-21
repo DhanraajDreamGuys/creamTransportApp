@@ -65,4 +65,6 @@ public class Constants {
 
     public static String FromString = "From";
     public static String ToString = "To";
+    public static String PARAMS_LDATE = "ldate";
+    public static String PARAMS_DID = "did";
 }
