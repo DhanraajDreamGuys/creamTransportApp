@@ -133,6 +133,7 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
         } else if (v.getId() == R.id.ANT_BT_cancel) {
             finish();
         } else if (v.getId() == R.id.ANT_BT_add) {
+            count++;
             addNewDynamicTextView();
         } else if (v.getId() == R.id.ANT_BT_remove) {
             removeDynamicTextView();
@@ -141,15 +142,17 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
 
     private void removeDynamicTextView() {
         EditText mRemoveID;
-        if (count == 0) {
+        if (count == 1) {
             mRemoveTrail.setVisibility(View.GONE);
             mRemoveID = (EditText) mAddNewTrailerLayout.findViewById(count);
             mAddNewTrailerLayout.removeView(mRemoveID);
             mAllEditText.clear();
+            count = 0;
         } else {
-            mRemoveID = (EditText) mAddNewTrailerLayout.findViewById(count--);
+            mRemoveID = (EditText) mAddNewTrailerLayout.findViewById(count);
             mAddNewTrailerLayout.removeView(mRemoveID);
-            mAllEditText.remove(count);
+            mAllEditText.remove((count - 1));
+            count = count - 1;
         }
     }
 
@@ -163,7 +166,7 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
         mDynamicET.setMaxLines(1);
         mDynamicET.setPadding(10, 10, 10, 10);
         mDynamicET.setInputType(InputType.TYPE_CLASS_NUMBER);
-        mDynamicET.setId(count++);
+        mDynamicET.setId(count);
         mAddNewTrailerLayout.addView(mDynamicET);
     }
 

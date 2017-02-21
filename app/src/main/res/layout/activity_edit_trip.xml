@@ -20,42 +20,36 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/AVT_TV_choose_driver"
+                android:id="@+id/AET_TV_choose_driver"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
                 android:drawablePadding="@dimen/_10sdp"
                 android:drawableRight="@drawable/down_arrow"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint="@string/choose_driver"
                 android:padding="@dimen/_5sdp"
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
-                android:id="@+id/AVT_TV_date"
+                android:id="@+id/AET_TV_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
                 android:drawablePadding="@dimen/_10sdp"
                 android:drawableRight="@drawable/ic_calendar_filled"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint=" Choose Date"
                 android:padding="@dimen/_5sdp"
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
-                android:id="@+id/AVT_ET_truck"
+                android:id="@+id/AET_ET_truck"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -63,9 +57,6 @@
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint="@string/enter_truck"
                 android:inputType="number"
@@ -74,36 +65,30 @@
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
-                android:id="@+id/AVT_TV_from"
+                android:id="@+id/AET_TV_from"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
                 android:drawablePadding="@dimen/_10sdp"
                 android:drawableRight="@drawable/down_arrow"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint=" From"
                 android:padding="@dimen/_5sdp"
                 android:textSize="@dimen/_12sdp" />
 
             <TextView
-                android:id="@+id/AVT_TV_to"
+                android:id="@+id/AET_TV_to"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
                 android:drawablePadding="@dimen/_10sdp"
                 android:drawableRight="@drawable/down_arrow"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint=" To"
                 android:padding="@dimen/_5sdp"
@@ -122,16 +107,13 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/AVT_ET_traliers"
+                        android:id="@+id/AET_ET_traliers"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:layout_weight="1"
                         android:background="@drawable/border_gray_box"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
                         android:gravity="center_vertical"
                         android:hint="@string/trailers"
                         android:inputType="number"
@@ -140,7 +122,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <Button
-                        android:id="@+id/AVT_BT_add"
+                        android:id="@+id/AET_BT_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_2sdp"
@@ -158,7 +140,7 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/AVT_BT_remove"
+                        android:id="@+id/AET_BT_remove"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_2sdp"
@@ -180,7 +162,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/AVT_LL_add_new_trailers"
+                android:id="@+id/AET_LL_add_new_trailers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -189,7 +171,7 @@
                 android:orientation="vertical" />
 
             <EditText
-                android:id="@+id/AVT_ET_manifest"
+                android:id="@+id/AET_ET_manifest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -197,9 +179,6 @@
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint="Manifest number"
                 android:maxLines="1"
@@ -207,7 +186,7 @@
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
-                android:id="@+id/AVT_ET_dolly"
+                android:id="@+id/AET_ET_dolly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -215,9 +194,6 @@
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint="Dolly"
                 android:inputType="number"
@@ -232,16 +208,13 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/AVT_ET_load_availble_after"
+                    android:id="@+id/AET_ET_load_availble_after"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:gravity="center_vertical"
                     android:hint="Load available after"
                     android:inputType="time"
@@ -250,16 +223,13 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
-                    android:id="@+id/AVT_ET_from"
+                    android:id="@+id/AET_ET_from"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:gravity="center_vertical"
                     android:hint="From"
                     android:maxLines="1"
@@ -275,16 +245,13 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/AVT_ET_load_due_in"
+                    android:id="@+id/AET_ET_load_due_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:gravity="center_vertical"
                     android:hint="Load due in"
                     android:maxLines="1"
@@ -292,16 +259,13 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
-                    android:id="@+id/AVT_ET_by"
+                    android:id="@+id/AET_ET_by"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:gravity="center_vertical"
                     android:hint="By"
                     android:maxLines="1"
@@ -311,18 +275,15 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/AVT_TV_set_date"
+                android:id="@+id/AET_TV_set_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
                 android:drawablePadding="@dimen/_10sdp"
                 android:drawableRight="@drawable/ic_calendar_filled"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="center_vertical"
                 android:hint=" Date"
                 android:padding="@dimen/_5sdp"
@@ -336,24 +297,18 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/AVT_CB_exp_general"
+                    android:id="@+id/AET_CB_exp_general"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:text="Express and General"
                     android:textSize="@dimen/_10sdp" />
 
                 <CheckBox
-                    android:id="@+id/AVT_CB_no_danger_goods"
+                    android:id="@+id/AET_CB_no_danger_goods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:text="No dangerous goods"
                     android:textSize="@dimen/_10sdp" />
             </LinearLayout>
@@ -366,24 +321,18 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/AVT_CB_product_market"
+                    android:id="@+id/AET_CB_product_market"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:text="Product/Market"
                     android:textSize="@dimen/_10sdp" />
 
                 <CheckBox
-                    android:id="@+id/AVT_CB_has_danger_goods"
+                    android:id="@+id/AET_CB_has_danger_goods"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:text="Has dangerous goods"
                     android:textSize="@dimen/_10sdp" />
             </LinearLayout>
@@ -395,16 +344,13 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/AVT_ET_change_over"
+                    android:id="@+id/AET_ET_change_over"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:gravity="center_vertical"
                     android:hint="Change over truck"
                     android:inputType="number"
@@ -413,16 +359,13 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
-                    android:id="@+id/AVT_ET_driver"
+                    android:id="@+id/AET_ET_driver"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:gravity="center_vertical"
                     android:hint="Driver"
                     android:maxLines="1"
@@ -431,16 +374,13 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/AVT_ET_comment"
+                android:id="@+id/AET_ET_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:background="@drawable/border_gray_box"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="top"
                 android:hint="Comments"
                 android:lines="4"
@@ -454,7 +394,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/AVT_BT_send"
+                    android:id="@+id/AET_BT_send"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
@@ -466,7 +406,7 @@
                     android:textColor="@android:color/white" />
 
                 <Button
-                    android:id="@+id/AVT_BT_cancel"
+                    android:id="@+id/AET_BT_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"

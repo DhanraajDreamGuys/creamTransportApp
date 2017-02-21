@@ -245,6 +245,7 @@ public class Util {
                         break;
                     case "TRIP":
                         mPaysheetView.setAdapter(null);
+                        ((Trips) mContext).searchNotify();
                         listAdjustableMethod(popupSearch, mPaysheetView);
                         break;
                 }
@@ -262,7 +263,7 @@ public class Util {
 
     }
 
-    private static void fillTripData(Context mContext, List<TripListAPI.Datum> data, ListView mPaysheetView) {
+    public static void fillTripData(Context mContext, List<TripListAPI.Datum> data, ListView mPaysheetView) {
         TripList mTripList;
         List<TripList> mTripListData = new ArrayList<TripList>();
         for (int i = 0; i < data.size(); i++) {

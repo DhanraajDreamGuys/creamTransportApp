@@ -21,6 +21,7 @@ import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.DeleteSheetAPI;
 import co.in.dreamguys.cream.apis.TripListAPI;
+import co.in.dreamguys.cream.interfaces.SearchListViewNotify;
 import co.in.dreamguys.cream.interfaces.TripsheetInterface;
 import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
@@ -34,7 +35,7 @@ import retrofit2.Response;
  * Created by user5 on 17-02-2017.
  */
 
-public class Trips extends AppCompatActivity implements TripsheetInterface {
+public class Trips extends AppCompatActivity implements TripsheetInterface,SearchListViewNotify {
     Toolbar mToolbar;
     PopupWindow mPopsearch;
     ListView mTripWidget;
@@ -48,6 +49,36 @@ public class Trips extends AppCompatActivity implements TripsheetInterface {
         mPopsearch = new PopupWindow(this);
         mCustomProgressDialog = new CustomProgressDialog(this);
         intiWidgets();
+        getCurrentTrips();
+
+    }
+
+    private void getCurrentTrips() {
+        if (!Util.isNetworkAvailable(this)) {
+            Toast.makeText(Trips.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+        } else {
+            mCustomProgressDialog.showDialog();
+            ApiInterface apiService =
+                    ApiClient.getClient().create(ApiInterface.class);
+            Call<TripListAPI.TripsResponse> loginCall = apiService.getCurrentTrips();
+            loginCall.enqueue(new Callback<TripListAPI.TripsResponse>() {
+                @Override
+                public void onResponse(Call<TripListAPI.TripsResponse> call, Response<TripListAPI.TripsResponse> response) {
+                    mCustomProgressDialog.dismiss();
+                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                        Util.fillTripData(Trips.this, response.body().getData(), mTripWidget);
+                    } else {
+                        Toast.makeText(Trips.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<TripListAPI.TripsResponse> call, Throwable t) {
+                    Log.i(TAG, t.getMessage());
+                    mCustomProgressDialog.dismiss();
+                }
+            });
+        }
     }
 
     private void intiWidgets() {
@@ -97,11 +128,6 @@ public class Trips extends AppCompatActivity implements TripsheetInterface {
     protected void onDestroy() {
         super.onDestroy();
         mPopsearch.dismiss();
-    }
-
-    @Override
-    public void update() {
-
     }
 
     @Override
@@ -155,5 +181,10 @@ public class Trips extends AppCompatActivity implements TripsheetInterface {
                 mCustomProgressDialog.dismiss();
             }
         });
+    }
+
+    @Override
+    public void searchNotify() {
+        getCurrentTrips();
     }
 }

@@ -102,6 +102,13 @@ public class TripAdapter extends BaseAdapter {
             }
         });
 
+        mHolder.mEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Trips) mContext).view(data.get(position).getTid(), 0);
+            }
+        });
+
         return convertView;
     }
 

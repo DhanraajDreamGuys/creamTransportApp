@@ -82,5 +82,13 @@ public interface ApiInterface {
     @POST("delete_trip")
     Call<DeleteSheetAPI.DeleteTripsResponse> getDeleteTrip(@Field("id") String stringPref);
 
+    @GET("current_triplist")
+    Call<TripListAPI.TripsResponse> getCurrentTrips();
+
+    @FormUrlEncoded
+    @POST("trip_edit")
+    Call<UpdateSheetAPI.UpdatePaysheetResponse> getUpdateTripsheetReport(@FieldMap HashMap<String, String> meta);
+
+
 
 }

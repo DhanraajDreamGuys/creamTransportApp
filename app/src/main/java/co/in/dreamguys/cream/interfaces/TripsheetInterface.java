@@ -6,8 +6,6 @@ package co.in.dreamguys.cream.interfaces;
 
 public interface TripsheetInterface {
 
-    void update();
-
     void view(String id, int viewType);
 
     void delete(String delete_id, int position);
