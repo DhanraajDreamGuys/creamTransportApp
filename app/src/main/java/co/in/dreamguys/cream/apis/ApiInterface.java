@@ -89,6 +89,8 @@ public interface ApiInterface {
     @POST("trip_edit")
     Call<UpdateSheetAPI.UpdatePaysheetResponse> getUpdateTripsheetReport(@FieldMap HashMap<String, String> meta);
 
+    @GET("dashboard")
+    Call<DashboardAPI.DashboardResponse> getDashboard();
 
 
 }

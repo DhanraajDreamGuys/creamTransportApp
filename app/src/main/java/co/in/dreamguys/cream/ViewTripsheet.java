@@ -29,6 +29,7 @@ import java.util.List;
 
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
+import co.in.dreamguys.cream.apis.DriverListsAPI;
 import co.in.dreamguys.cream.apis.TripListAPI;
 import co.in.dreamguys.cream.apis.UpdateSheetAPI;
 import co.in.dreamguys.cream.utils.Constants;
@@ -506,12 +507,12 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
 
     private HashMap<String, String> sendValueWithRetrofit() {
         HashMap<String, String> params = new HashMap<>();
-        params.put(Constants.PARAMS_ID, mTripsheet.getTid());
-        /*for (DriverListsAPI.Datum data : Constants.driverList) {
+        params.put(Constants.PARAMS_TRIP_ID, mTripsheet.getTid());
+        for (DriverListsAPI.Datum data : Constants.driverList) {
             String appendValues = data.getFirst_name() + " " + data.getLast_name();
             if (appendValues.equalsIgnoreCase(mEditChooseDriver.getText().toString().trim()))
-                params.put(Constants.PARAMS_ID, data.getId());
-        }*/
+                params.put(Constants.PARAMS_USER_ID, data.getId());
+        }
         params.put(Constants.PARAMS_TRUCK_NO, mEditTruckNo.getText().toString());
         if (mEditDynamicET != null && mAllEditText.size() > 0) {
             String appendValues = "";

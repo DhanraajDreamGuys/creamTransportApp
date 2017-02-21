@@ -36,6 +36,7 @@ public class Constants {
 
 
     public static String PARAMS_ID = "id";
+    public static String PARAMS_TRIP_ID = "trip_id";
     public static String PARAMS_OFFICE_USE = "office_use_comts";
     public static String REPAIRSHEETDETAILS = "repair_sheet_details";
     public static String TRIPSHEETDETAILS = "trip_sheet";
@@ -58,6 +59,7 @@ public class Constants {
     public static String PARAMS_FROM = "from";
     public static String PARAMS_TRIP_TO = "trip_to";
     public static String PARAMS_ADMIN_COMMENT = "admin_cmt";
+    public static String PARAMS_USER_ID = "user_id";
     public static RepairSheet Repairsheet;
     public static co.in.dreamguys.cream.ViewRepairsheet ViewRepairsheet;
 
