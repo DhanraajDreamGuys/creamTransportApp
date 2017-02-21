@@ -76,8 +76,6 @@ public class ViewPaysheet extends AppCompatActivity implements View.OnClickListe
             mOfficalUse.setFocusableInTouchMode(false);
             mSaveChanges.setVisibility(View.GONE);
         }
-
-
     }
 
     private void initWidgets() {

@@ -23,6 +23,7 @@ import java.util.List;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
+import co.in.dreamguys.cream.apis.DeleteRepairsheetAPI;
 import co.in.dreamguys.cream.apis.RepairsheetCurrentDayAPI;
 import co.in.dreamguys.cream.apis.UpdateSheetAPI;
 import co.in.dreamguys.cream.interfaces.RepairsheetNotify;
@@ -179,16 +180,17 @@ public class RepairSheet extends AppCompatActivity implements SearchListViewNoti
     }
 
     @Override
-    public void deleteRepairSheet(String delete_id) {
+    public void deleteRepairSheet(String delete_id, final int position) {
         mCustomProgressDialog.showDialog();
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<RepairsheetCurrentDayAPI.RepairsheetResponse> repairsheet = apiService.getDeleteRepairsheetReport(delete_id);
-        repairsheet.enqueue(new Callback<RepairsheetCurrentDayAPI.RepairsheetResponse>() {
+        Call<DeleteRepairsheetAPI.DeleteRepairsheetResponse> repairsheet = apiService.getDeleteRepairsheetReport(delete_id);
+        repairsheet.enqueue(new Callback<DeleteRepairsheetAPI.DeleteRepairsheetResponse>() {
             @Override
-            public void onResponse(Call<RepairsheetCurrentDayAPI.RepairsheetResponse> call, Response<RepairsheetCurrentDayAPI.RepairsheetResponse> response) {
+            public void onResponse(Call<DeleteRepairsheetAPI.DeleteRepairsheetResponse> call, Response<DeleteRepairsheetAPI.DeleteRepairsheetResponse> response) {
                 if (response.body().getMeta().equals(Constants.SUCCESS)) {
-                    Util.fillRepairSheetData(RepairSheet.this, response.body().getData(), mRepairSheetView);
                     Toast.makeText(RepairSheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    mRepairSheetReport.getData().remove(position);
+                    aRepairsheetAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(RepairSheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -196,7 +198,7 @@ public class RepairSheet extends AppCompatActivity implements SearchListViewNoti
             }
 
             @Override
-            public void onFailure(Call<RepairsheetCurrentDayAPI.RepairsheetResponse> call, Throwable t) {
+            public void onFailure(Call<DeleteRepairsheetAPI.DeleteRepairsheetResponse> call, Throwable t) {
                 Log.i(TAG, t.getMessage());
                 mCustomProgressDialog.dismiss();
             }

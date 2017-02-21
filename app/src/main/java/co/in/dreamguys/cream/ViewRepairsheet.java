@@ -54,7 +54,6 @@ public class ViewRepairsheet extends AppCompatActivity implements View.OnClickLi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
         mName = (EditText) findViewById(R.id.AVRS_ET_name);
         mDate = (EditText) findViewById(R.id.AVRS_ET_date);
         mTruckNo = (EditText) findViewById(R.id.AVRS_ET_truck_no);
@@ -87,7 +86,6 @@ public class ViewRepairsheet extends AppCompatActivity implements View.OnClickLi
         if (item.getItemId() == android.R.id.home) {
             finish();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -97,6 +95,4 @@ public class ViewRepairsheet extends AppCompatActivity implements View.OnClickLi
             Constants.Repairsheet.updateRepairSheet(mRepairSheetData.getRid(), mComments.getText().toString());
         }
     }
-
-
 }

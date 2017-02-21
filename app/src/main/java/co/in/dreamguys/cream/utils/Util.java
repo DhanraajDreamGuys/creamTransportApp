@@ -31,16 +31,21 @@ import java.util.TimeZone;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
+import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
+import co.in.dreamguys.cream.adapter.TripAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
 import co.in.dreamguys.cream.apis.RepairsheetCurrentDayAPI;
+import co.in.dreamguys.cream.apis.TripListAPI;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.model.PaysheetReport;
 import co.in.dreamguys.cream.model.RepairSheetData;
 import co.in.dreamguys.cream.model.RepairSheetReport;
+import co.in.dreamguys.cream.model.TripList;
+import co.in.dreamguys.cream.model.TripListReport;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,6 +58,8 @@ public class Util {
 
     static CustomProgressDialog mCustomProgressDialog;
     public static int adapterPosition;
+    public static TripListReport mTripReport = new TripListReport();
+    public static TripAdapter aTripAdapter;
 
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
@@ -190,6 +197,29 @@ public class Util {
 
                             break;
 
+                        case "TRIP":
+                            Call<TripListAPI.TripsResponse> tripcall = apiService.getTripLists(sendValueWithRetrofit(mFromDate, mFromTo));
+                            tripcall.enqueue(new Callback<TripListAPI.TripsResponse>() {
+                                @Override
+                                public void onResponse(Call<TripListAPI.TripsResponse> call, Response<TripListAPI.TripsResponse> response) {
+                                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                                        fillTripData(mContext, response.body().getData(), mPaysheetView);
+                                    } else {
+                                        mPaysheetView.setAdapter(null);
+                                        Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    mCustomProgressDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onFailure(Call<TripListAPI.TripsResponse> call, Throwable t) {
+                                    mCustomProgressDialog.dismiss();
+                                    Log.i(((Trips) mContext).getPackageName(), t.getMessage());
+                                }
+                            });
+
+                            break;
+
                     }
 
 
@@ -213,6 +243,10 @@ public class Util {
                         ((RepairSheet) mContext).searchNotify();
                         listAdjustableMethod(popupSearch, mPaysheetView);
                         break;
+                    case "TRIP":
+                        mPaysheetView.setAdapter(null);
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
                 }
 
 
@@ -226,6 +260,48 @@ public class Util {
         }
 
 
+    }
+
+    private static void fillTripData(Context mContext, List<TripListAPI.Datum> data, ListView mPaysheetView) {
+        TripList mTripList;
+        List<TripList> mTripListData = new ArrayList<TripList>();
+        for (int i = 0; i < data.size(); i++) {
+            TripListAPI.Datum datas = data.get(i);
+            mTripList = new TripList();
+            mTripList.setAdmin_cmt(datas.getAdmin_cmt());
+            mTripList.setChangeover(datas.getChangeover());
+            mTripList.setCreated_date(datas.getCreated_date());
+            mTripList.setDid(datas.getDid());
+            mTripList.setDolly(datas.getDolly());
+            mTripList.setFirst_name(datas.getFirst_name());
+            mTripList.setFrom(datas.getFrom());
+            mTripList.setLast_name(datas.getLast_name());
+            mTripList.setLoad_due(datas.getLoad_due());
+            mTripList.setLoad_from(datas.getLoad_from());
+            mTripList.setLoad_type(datas.getLoad_type());
+            mTripList.setLocation(datas.getLocation());
+            mTripList.setManifest_no(datas.getManifest_no());
+            mTripList.setReason(datas.getReason());
+            mTripList.setRtbd(datas.getRtbd());
+            mTripList.setStatus(datas.getStatus()); // 0 - wait , 1 - accept, 2 - denied
+            mTripList.setTid(datas.getTid());
+            mTripList.setTo(datas.getTo());
+            mTripList.setTrailers(datas.getTrailers());
+            mTripList.setTruck(datas.getTruck());
+            mTripList.setUid(datas.getUid());
+            mTripListData.add(mTripList);
+            mTripReport.setData(mTripListData);
+        }
+
+        if (mTripReport.getData().size() > 0) {
+            mPaysheetView.setAdapter(null);
+            aTripAdapter = new TripAdapter(mContext, mTripReport.getData());
+            mPaysheetView.setAdapter(aTripAdapter);
+            aTripAdapter.notifyDataSetChanged();
+        } else {
+            mPaysheetView.setAdapter(null);
+            Toast.makeText(mContext, mContext.getString(R.string.no_data_found), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private static void listAdjustableMethod(PopupWindow popupSearch, ListView mPaysheetView) {
@@ -346,13 +422,20 @@ public class Util {
     }
 
 
-    public static void showDeleteAlert(final Context mContext, final String delete_id) {
+    public static void showDeleteAlert(final Context mContext, final String delete_id, final int position, final String PAGE) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
         mBuilder.setMessage(mContext.getString(R.string.alert_message));
         mBuilder.setPositiveButton(mContext.getString(R.string.str_ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ((RepairSheet) mContext).deleteRepairSheet(delete_id);
+                switch (PAGE) {
+                    case "REPAIR":
+                        ((RepairSheet) mContext).deleteRepairSheet(delete_id, position);
+                        break;
+                    case "TRIP":
+                        ((Trips) mContext).delete(delete_id, position);
+                        break;
+                }
                 dialog.dismiss();
             }
         });

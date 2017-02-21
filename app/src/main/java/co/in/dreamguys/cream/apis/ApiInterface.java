@@ -60,7 +60,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("delete_repairsheet")
-    Call<RepairsheetCurrentDayAPI.RepairsheetResponse> getDeleteRepairsheetReport(@Field("id") String stringPref);
+    Call<DeleteRepairsheetAPI.DeleteRepairsheetResponse> getDeleteRepairsheetReport(@Field("id") String stringPref);
 
     @FormUrlEncoded
     @POST("view_repairsheet")
@@ -69,6 +69,18 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("add_trip")
     Call<AddTripAPI.AddTripResponse> addNewTrip(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("trip_search_filter")
+    Call<TripListAPI.TripsResponse> getTripLists(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("view_trip")
+    Call<TripListAPI.TripsResponse> getViewTripSheet(@Field("id") String stringPref);
+
+    @FormUrlEncoded
+    @POST("delete_trip")
+    Call<DeleteSheetAPI.DeleteTripsResponse> getDeleteTrip(@Field("id") String stringPref);
 
 
 }

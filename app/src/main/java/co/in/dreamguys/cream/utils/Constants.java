@@ -12,6 +12,7 @@ import co.in.dreamguys.cream.apis.DriverListsAPI;
 
 public class Constants {
 
+
     public static String USER_ID = "user_id";
     public static String PARAMS_PASSWORD = "password";
     public static String PARAMS_EMAILID = "user_name";
@@ -31,10 +32,13 @@ public class Constants {
 
     public static String PAYSHEET = "PAYSHEET";
     public static String REPAIR = "REPAIR";
+    public static String TRIPS = "TRIP";
+
 
     public static String PARAMS_ID = "id";
     public static String PARAMS_OFFICE_USE = "office_use_comts";
     public static String REPAIRSHEETDETAILS = "repair_sheet_details";
+    public static String TRIPSHEETDETAILS = "trip_sheet";
     public static List<CountriesAPI.Datum> countries;
     public static int From, To;
     public static co.in.dreamguys.cream.AdminMenu AdminMenu;
@@ -56,4 +60,7 @@ public class Constants {
     public static String PARAMS_ADMIN_COMMENT = "admin_cmt";
     public static RepairSheet Repairsheet;
     public static co.in.dreamguys.cream.ViewRepairsheet ViewRepairsheet;
+
+    public static String FromString = "From";
+    public static String ToString = "To";
 }

@@ -13,6 +13,7 @@ import java.util.List;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.model.RepairSheetData;
+import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.Util;
 
 /**
@@ -92,7 +93,8 @@ public class RepairsheetAdapter extends BaseAdapter {
         mHolder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Util.showDeleteAlert(mContext, data.get(position).getRid());
+                Util.showDeleteAlert(mContext, data.get(position).getRid(), position, Constants.REPAIR);
+
             }
         });
 

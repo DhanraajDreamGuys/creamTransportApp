@@ -123,4 +123,25 @@
     <string name="tool_add_trips_title">Add Trip</string>
     <string name="err_from">Choose From</string>
     <string name="err_to">Choose To</string>
+    <string name="action_search">Search</string>
+    <string name="str_accept">Accepted</string>
+    <string name="str_denied">Denied</string>
+    <string name="str_wait">Wait</string>
+    <string name="err_truck_no">Enter truck no</string>
+    <string name="err_trailers">Enter trailer</string>
+    <string name="err_manifest_no">Enter manifest no</string>
+    <string name="err_dolly_no">Enter dolly no</string>
+    <string name="err_load_available">Enter load available</string>
+    <string name="err_from_who">Enter load from</string>
+    <string name="err_load_due">Enter load due</string>
+    <string name="err_by">Enter by</string>
+    <string name="err_date_set">Enter date</string>
+    <string name="err_change_over">Enter change over</string>
+    <string name="err_driver">Enter driver</string>
+    <string name="tool_edit_trip_title">Edit Trip</string>
+    <string name="tool_view_trips_title">View Trip</string>
+    <string name="express"><![CDATA[Express &amp; General]]></string>
+    <string name="no_danger">No dangerous goods</string>
+    <string name="product">Product/Market</string>
+    <string name="has_danger">Has dangerous goods</string>
 </resources>

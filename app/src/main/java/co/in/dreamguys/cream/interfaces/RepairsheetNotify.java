@@ -5,9 +5,11 @@ package co.in.dreamguys.cream.interfaces;
  */
 
 public interface RepairsheetNotify {
-    void deleteRepairSheet(String id);
+    void deleteRepairSheet(String id, int position);
 
-    void viewRepairSheet(String id,int viewType);
+    void viewRepairSheet(String id, int viewType);
 
     void updateRepairSheet(String id, String comments);
+
+
 }

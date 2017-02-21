@@ -5,17 +5,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import co.in.dreamguys.cream.apis.AddTripAPI;
 import co.in.dreamguys.cream.apis.ApiClient;
@@ -34,12 +39,15 @@ import retrofit2.Response;
 public class AddNewTrip extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     Toolbar mToolbar;
     TextView mChooseDriver, mFrom, mTo, mDate, mSetDate;
-    EditText mTruckNo, mTrailers, mManifestNo, mDollyNo, mLoadavailable, mFromWho, mLoadDue, mBy, mChangeOver, mDriver, mComments;
+    EditText mTruckNo, mTrailers, mManifestNo, mDollyNo, mLoadavailable, mFromWho, mLoadDue, mBy, mChangeOver, mDriver, mComments, mDynamicET;
+    LinearLayout mAddNewTrailerLayout;
     CheckBox mExpress, mNoDanger, mHasDanger, mProductMarket;
-    Button mSend, mCancel;
-    String checkedExpress = "", checkedNodanger = "", checkedHasDanger = "", checkedProduct = "", checkedItems = "";
+    Button mSend, mCancel, mAddTrail, mRemoveTrail;
+    String checkedExpress = "", checkedNodanger = "", checkedHasDanger = "", checkedProduct = "", checkedItems = "", trailers = "";
     CustomProgressDialog mCustomProgressDialog;
     private static String TAG = AddNewTrip.class.getName();
+    int count = 0;
+    List<EditText> mAllEditText = new ArrayList<EditText>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,8 +90,13 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
         mComments = (EditText) findViewById(R.id.ANT_ET_comment);
         mSend = (Button) findViewById(R.id.ANT_BT_send);
         mCancel = (Button) findViewById(R.id.ANT_BT_cancel);
+        mAddTrail = (Button) findViewById(R.id.ANT_BT_add);
+        mRemoveTrail = (Button) findViewById(R.id.ANT_BT_remove);
+        mAddNewTrailerLayout = (LinearLayout) findViewById(R.id.ANT_LL_add_new_trailers);
         mSend.setOnClickListener(this);
         mCancel.setOnClickListener(this);
+        mAddTrail.setOnClickListener(this);
+        mRemoveTrail.setOnClickListener(this);
 
         mExpress = (CheckBox) findViewById(R.id.ANT_CB_exp_general);
         mExpress.setOnCheckedChangeListener(this);
@@ -108,9 +121,9 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
         if (v.getId() == R.id.ANT_TV_choose_driver) {
             Constants.AdminMenu.getDrivers(AddNewTrip.this, mChooseDriver);
         } else if (v.getId() == R.id.ANT_TV_from) {
-            Constants.AdminMenu.getLocations(AddNewTrip.this, mFrom, "From");
+            Constants.AdminMenu.getLocations(AddNewTrip.this, mFrom, Constants.FromString);
         } else if (v.getId() == R.id.ANT_TV_to) {
-            Constants.AdminMenu.getLocations(AddNewTrip.this, mTo, "To");
+            Constants.AdminMenu.getLocations(AddNewTrip.this, mTo, Constants.ToString);
         } else if (v.getId() == R.id.ANT_TV_date) {
             Constants.AdminMenu.getFromDate(AddNewTrip.this, mDate);
         } else if (v.getId() == R.id.ANT_TV_set_date) {
@@ -119,13 +132,81 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
             addNewTrip();
         } else if (v.getId() == R.id.ANT_BT_cancel) {
             finish();
+        } else if (v.getId() == R.id.ANT_BT_add) {
+            addNewDynamicTextView();
+        } else if (v.getId() == R.id.ANT_BT_remove) {
+            removeDynamicTextView();
         }
     }
 
+    private void removeDynamicTextView() {
+        EditText mRemoveID;
+        if (count == 0) {
+            mRemoveTrail.setVisibility(View.GONE);
+            mRemoveID = (EditText) mAddNewTrailerLayout.findViewById(count);
+            mAddNewTrailerLayout.removeView(mRemoveID);
+            mAllEditText.clear();
+        } else {
+            mRemoveID = (EditText) mAddNewTrailerLayout.findViewById(count--);
+            mAddNewTrailerLayout.removeView(mRemoveID);
+            mAllEditText.remove(count);
+        }
+    }
+
+    private void addNewDynamicTextView() {
+        mRemoveTrail.setVisibility(View.VISIBLE);
+        final ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mDynamicET = new EditText(this);
+        mAllEditText.add(mDynamicET);
+        mDynamicET.setLayoutParams(lparams);
+        mDynamicET.setBackgroundResource(R.drawable.border_gray_box);
+        mDynamicET.setMaxLines(1);
+        mDynamicET.setPadding(10, 10, 10, 10);
+        mDynamicET.setInputType(InputType.TYPE_CLASS_NUMBER);
+        mDynamicET.setId(count++);
+        mAddNewTrailerLayout.addView(mDynamicET);
+    }
+
     private void addNewTrip() {
-        if (mFrom.getText().toString().isEmpty()) {
-            mFrom.setError(getString(R.string.err_from));
-            mFrom.requestFocus();
+        if (mChooseDriver.getText().toString().isEmpty()) {
+            mChooseDriver.setError(getString(R.string.err_driver_name));
+            mChooseDriver.requestFocus();
+        } else if (mTruckNo.getText().toString().isEmpty()) {
+            mTruckNo.setError(getString(R.string.err_truck_no));
+            mTruckNo.requestFocus();
+        } else if (mTrailers.getText().toString().isEmpty()) {
+            mTrailers.setError(getString(R.string.err_trailers));
+            mTrailers.requestFocus();
+        } else if (mTrailers.getText().toString().isEmpty()) {
+            mTrailers.setError(getString(R.string.err_trailers));
+            mTrailers.requestFocus();
+        } else if (mManifestNo.getText().toString().isEmpty()) {
+            mManifestNo.setError(getString(R.string.err_manifest_no));
+            mManifestNo.requestFocus();
+        } else if (mDollyNo.getText().toString().isEmpty()) {
+            mDollyNo.setError(getString(R.string.err_dolly_no));
+            mDollyNo.requestFocus();
+        } else if (mLoadavailable.getText().toString().isEmpty()) {
+            mLoadavailable.setError(getString(R.string.err_load_available));
+            mLoadavailable.requestFocus();
+        } else if (mFromWho.getText().toString().isEmpty()) {
+            mFromWho.setError(getString(R.string.err_from_who));
+            mFromWho.requestFocus();
+        } else if (mLoadDue.getText().toString().isEmpty()) {
+            mLoadDue.setError(getString(R.string.err_load_due));
+            mLoadDue.requestFocus();
+        } else if (mBy.getText().toString().isEmpty()) {
+            mBy.setError(getString(R.string.err_by));
+            mBy.requestFocus();
+        } else if (mSetDate.getText().toString().isEmpty()) {
+            mSetDate.setError(getString(R.string.err_date_set));
+            mSetDate.requestFocus();
+        } else if (mChangeOver.getText().toString().isEmpty()) {
+            mChangeOver.setError(getString(R.string.err_change_over));
+            mChangeOver.requestFocus();
+        } else if (mDriver.getText().toString().isEmpty()) {
+            mDriver.setError(getString(R.string.err_driver));
+            mDriver.requestFocus();
         } else if (mTo.getText().toString().isEmpty()) {
             mTo.setError(getString(R.string.err_to));
             mTo.requestFocus();
@@ -193,7 +274,18 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
         HashMap<String, String> params = new HashMap<>();
         params.put(Constants.PARAMS_DRIVER_ID, Constants.driverList.get(Util.adapterPosition).getId());
         params.put(Constants.PARAMS_TRUCK_NO, mTruckNo.getText().toString());
-        params.put(Constants.PARAMS_TRAILERS, mTrailers.getText().toString());
+        if (mDynamicET != null && mAllEditText.size() > 0) {
+            String appendValues = "";
+            for (int i = 0; i < mAllEditText.size(); i++) {
+                appendValues += mAllEditText.get(i).getText().toString() + ", ";
+            }
+            trailers = mTrailers.getText().toString() + "," + appendValues;
+            params.put(Constants.PARAMS_TRAILERS, trailers);
+        } else {
+            trailers = mTrailers.getText().toString();
+            params.put(Constants.PARAMS_TRAILERS, trailers);
+        }
+        Log.i(TAG, trailers);
         params.put(Constants.PARAMS_MNO, mManifestNo.getText().toString());
         params.put(Constants.PARAMS_DOLLYNO, mDollyNo.getText().toString());
         params.put(Constants.PARAMS_LTIME, mLoadavailable.getText().toString());
