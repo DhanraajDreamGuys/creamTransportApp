@@ -24,19 +24,20 @@
                 android:layout_gravity="center">
 
                 <co.in.dreamguys.cream.utils.CircularImageView
-                    android:id="@+id/AUAE_CIV_profile_image"
+                    android:id="@+id/AVU_CIV_profile_image"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
                     android:src="@drawable/cream_logo" />
 
                 <ImageView
-                    android:id="@+id/AUAE_IV_camera"
+                    android:id="@+id/AVU_IV_camera"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
                     android:background="@drawable/border_gray_oval"
                     android:padding="@dimen/_10sdp"
-                    android:src="@drawable/ic_camera" />
+                    android:src="@drawable/ic_camera"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -58,12 +59,16 @@
 
 
                 <EditText
-                    android:id="@+id/AUAED_ET_firstname"
+                    android:id="@+id/AVU_ET_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/str_firstname"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
@@ -72,13 +77,17 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/AUAED_ET_lastname"
+                android:id="@+id/AVU_ET_lastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/border_gray_box"
+                android:clickable="false"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="@string/str_lastname"
                 android:padding="@dimen/_8sdp"
                 android:singleLine="true"
@@ -103,11 +112,16 @@
 
 
                 <EditText
+                    android:id="@+id/AVU_ET_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/str_email_id"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
@@ -133,12 +147,16 @@
 
 
                 <EditText
-                    android:id="@+id/AUAED_ET_phoneno"
+                    android:id="@+id/AVU_ET_phoneno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/str_phone"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
@@ -164,12 +182,16 @@
 
 
                 <EditText
-                    android:id="@+id/AUAED_ET_streetno"
+                    android:id="@+id/AVU_ET_streetno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/str_street"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
@@ -178,54 +200,70 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/AUAED_ET_city"
+                android:id="@+id/AVU_ET_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/border_gray_box"
+                android:clickable="false"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="@string/str_city"
                 android:padding="@dimen/_8sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
-                android:id="@+id/AUAED_ET_state"
+                android:id="@+id/AVU_ET_state"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/border_gray_box"
+                android:clickable="false"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="@string/str_state"
                 android:padding="@dimen/_8sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
-                android:id="@+id/AUAED_ET_country"
+                android:id="@+id/AVU_ET_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/border_gray_box"
+                android:clickable="false"
                 android:drawablePadding="@dimen/_10sdp"
                 android:drawableRight="@drawable/down_arrow"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="@string/str_country"
                 android:padding="@dimen/_8sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
-                android:id="@+id/AUAED_ET_postal_code"
+                android:id="@+id/AVU_ET_postal_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/border_gray_box"
+                android:clickable="false"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:hint="@string/str_postal"
                 android:inputType="number"
                 android:padding="@dimen/_8sdp"
@@ -250,13 +288,17 @@
 
 
                 <EditText
-                    android:id="@+id/AUAED_ET_usertype"
+                    android:id="@+id/AVU_ET_usertype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
+                    android:clickable="false"
                     android:drawableRight="@drawable/down_arrow"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/str_user_type"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
@@ -269,6 +311,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -282,13 +325,17 @@
 
 
                 <EditText
-                    android:id="@+id/AUAED_ET_branch_location"
+                    android:id="@+id/AVU_ET_branch_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
+                    android:clickable="false"
                     android:drawableRight="@drawable/down_arrow"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/str_branch_location"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
@@ -297,7 +344,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/AUAED_BT_search"
+                android:id="@+id/AVU_BT_update"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_gravity="center"
@@ -307,7 +354,8 @@
                 android:drawableLeft="@drawable/ic_save_as"
                 android:drawablePadding="@dimen/_10sdp"
                 android:padding="@dimen/_10sdp"
-                android:text="@string/save_changes"
+                android:text="@string/update"
+                android:visibility="gone"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white" />
 

@@ -54,7 +54,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".EditUserAccounts"
+            android:name=".AddUsers"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ViewUsers"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

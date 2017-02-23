@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import co.in.dreamguys.cream.adapter.AdminMenuAdapter;
-import co.in.dreamguys.cream.adapter.CountryListAdapter;
+import co.in.dreamguys.cream.adapter.BranchListAdapter;
 import co.in.dreamguys.cream.adapter.DriverListAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
@@ -335,7 +335,7 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
         ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
 
 
-        CountryListAdapter aDriverListAdapter = new CountryListAdapter(mContext, Constants.countries);
+        BranchListAdapter aDriverListAdapter = new BranchListAdapter(mContext, Constants.countries);
         mDriverViews.setAdapter(aDriverListAdapter);
         final AlertDialog alert = builder.create();
         alert.show();

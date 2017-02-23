@@ -10,6 +10,7 @@
     <color name="cream_window_bckgrd">#fafafa</color>
     <color name="darker_gray">#666666</color>
     <color name="clr_gray">#eeeeee</color>
+    <color name="accept_color">#089c83</color>
 
 
 </resources>

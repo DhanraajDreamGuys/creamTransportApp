@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -32,9 +33,12 @@ import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.Trips;
+import co.in.dreamguys.cream.Users;
+import co.in.dreamguys.cream.adapter.CountryListAdapter;
 import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.adapter.TripAdapter;
+import co.in.dreamguys.cream.adapter.UserTypeListAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
@@ -50,16 +54,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static co.in.dreamguys.cream.utils.Constants.usertype;
+
 /**
  * Created by user5 on 13-02-2017.
  */
 
 public class Util {
 
-    static CustomProgressDialog mCustomProgressDialog;
+    private static CustomProgressDialog mCustomProgressDialog;
     public static int adapterPosition;
     public static TripListReport mTripReport = new TripListReport();
     public static TripAdapter aTripAdapter;
+
 
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
@@ -74,7 +81,7 @@ public class Util {
     }
 
 
-    public static HashMap<String, String> sendValueWithRetrofit(TextView mFromDate, TextView mFromTo) {
+    private static HashMap<String, String> sendValueWithRetrofit(TextView mFromDate, TextView mFromTo) {
         HashMap<String, String> params = new HashMap<>();
         params.put(Constants.USER_ID, Constants.driverList.get(adapterPosition).getId());
         params.put(Constants.PARAMS_START_DATE, mFromDate.getText().toString());
@@ -362,7 +369,7 @@ public class Util {
     }
 
 
-    public static void fillRepairSheetData(Context mContext, List<RepairsheetCurrentDayAPI.Datum> data, ListView mPaysheetView) {
+    private static void fillRepairSheetData(Context mContext, List<RepairsheetCurrentDayAPI.Datum> data, ListView mPaysheetView) {
         RepairsheetAdapter aRepairsheetAdapter;
         RepairSheetData mRepairSheetData;
         RepairSheetReport mRepairSheetReport = new RepairSheetReport();
@@ -436,6 +443,10 @@ public class Util {
                     case "TRIP":
                         ((Trips) mContext).delete(delete_id, position);
                         break;
+                    case "USERS":
+                        ((Users) mContext).delete(delete_id, position);
+                        break;
+
                 }
                 dialog.dismiss();
             }
@@ -449,4 +460,48 @@ public class Util {
         mBuilder.show();
     }
 
+
+    public static void buildCountryAlert(Context mContext, LayoutInflater mInflater, final TextView mCountry) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        View driverlayout = mInflater.inflate(R.layout.dialog_sub_items_list, null);
+        builder.setView(driverlayout);
+
+        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
+
+
+        CountryListAdapter aCountryListAdapter = new CountryListAdapter(mContext, Constants.countrieslist);
+        mDriverViews.setAdapter(aCountryListAdapter);
+        final AlertDialog alert = builder.create();
+        alert.show();
+
+        mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mCountry.setText(Constants.countrieslist.get(position).getCountry());
+                alert.dismiss();
+            }
+        });
+    }
+
+    public static void buildUserTypeAlert(Context mContext, LayoutInflater mInflater, final TextView mUserType) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        View driverlayout = mInflater.inflate(R.layout.dialog_sub_items_list, null);
+        builder.setView(driverlayout);
+
+        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
+
+
+        UserTypeListAdapter aUserTypeListAdapter = new UserTypeListAdapter(mContext, usertype);
+        mDriverViews.setAdapter(aUserTypeListAdapter);
+        final AlertDialog alert = builder.create();
+        alert.show();
+
+        mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mUserType.setText(Constants.usertype.get(position).getName());
+                alert.dismiss();
+            }
+        });
+    }
 }

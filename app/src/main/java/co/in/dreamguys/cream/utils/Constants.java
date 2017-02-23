@@ -3,8 +3,11 @@ package co.in.dreamguys.cream.utils;
 import java.util.List;
 
 import co.in.dreamguys.cream.RepairSheet;
-import co.in.dreamguys.cream.apis.CountriesAPI;
+import co.in.dreamguys.cream.Users;
+import co.in.dreamguys.cream.apis.BranchAPI;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
+import co.in.dreamguys.cream.apis.ListCountriesAPI;
+import co.in.dreamguys.cream.apis.UserTypeAPI;
 
 /**
  * Created by user5 on 13-02-2017.
@@ -13,6 +16,7 @@ import co.in.dreamguys.cream.apis.DriverListsAPI;
 public class Constants {
 
 
+    public static String USERS_DATA = "user_data";
     public static String USER_ID = "user_id";
     public static String PARAMS_PASSWORD = "password";
     public static String PARAMS_EMAILID = "user_name";
@@ -26,6 +30,7 @@ public class Constants {
     public static List<DriverListsAPI.Datum> driverList;
     public static String PAYSHEETDETAILS = "paysheetdetails";
     public static String TYPE = "type";
+    public static String VIEW_TYPE = "view_type";
     public static String MODE = "mode";
     public static String PARAMS_START_DATE = "sdate";
     public static String PARAMS_END_DATE = "edate";
@@ -40,7 +45,7 @@ public class Constants {
     public static String PARAMS_OFFICE_USE = "office_use_comts";
     public static String REPAIRSHEETDETAILS = "repair_sheet_details";
     public static String TRIPSHEETDETAILS = "trip_sheet";
-    public static List<CountriesAPI.Datum> countries;
+    public static List<BranchAPI.Datum> countries;
     public static int From, To;
     public static co.in.dreamguys.cream.AdminMenu AdminMenu;
     public static String PARAMS_DRIVER_ID = "driver_id";
@@ -67,4 +72,22 @@ public class Constants {
     public static String ToString = "To";
     public static String PARAMS_LDATE = "ldate";
     public static String PARAMS_DID = "did";
+    public static String USERS = "USERS";
+    public static String PARAMS_FIRSTNAME = "fname";
+    public static String PARAMS_LASTTNAME = "lname";
+    public static String PARAMS_EMAIL = "email";
+    public static String PARAMS_PHONE = "phone";
+    public static String PARAMS_STREET = "street";
+    public static String PARAMS_CITY = "city";
+    public static String PARAMS_STATE = "state";
+    public static String PARAMS_COUNTRY = "country";
+    public static String PARAMS_PINCODE = "pincode";
+    public static String PARAMS_UTYPE = "usrtype";
+    public static String PARAMS_BRNACHID = "brlocation";
+    public static String PARAMS_C_DATE = "c_date";
+
+
+    public static Users USERSCLASS;
+    public static List<ListCountriesAPI.Datum> countrieslist;
+    public static List<UserTypeAPI.Datum> usertype;
 }

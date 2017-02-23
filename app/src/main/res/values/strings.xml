@@ -144,4 +144,22 @@
     <string name="no_danger">No dangerous goods</string>
     <string name="product">Product/Market</string>
     <string name="has_danger">Has dangerous goods</string>
+    <string name="tool_user_title">Users</string>
+    <string name="str_on_leave">on Leave</string>
+    <string name="str_main_driver">Main Driver</string>
+    <string name="str_change_over_driver">Change over driver</string>
+    <string name="str_mechanic">Mechanic</string>
+    <string name="tool_add_user_title">Add User</string>
+    <string name="tool_view_user_title">View User</string>
+    <string name="tool_edit_user_title">Edit User</string>
+    <string name="err_first_name">Enter firstname</string>
+    <string name="err_last_name">Enter lastname</string>
+    <string name="err_phone">Enter phone</string>
+    <string name="err_street_no">Enter street no</string>
+    <string name="err_city">Enter city</string>
+    <string name="err_state">Enter state</string>
+    <string name="err_country">Enter country</string>
+    <string name="err_psotal_code">Enter postal code</string>
+    <string name="err_user_type">Enter user type</string>
+    <string name="err_branch">Enter branch</string>
 </resources>

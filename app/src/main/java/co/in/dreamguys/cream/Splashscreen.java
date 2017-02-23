@@ -1,5 +1,6 @@
 package co.in.dreamguys.cream;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,9 @@ import android.widget.Toast;
 
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
-import co.in.dreamguys.cream.apis.CountriesAPI;
+import co.in.dreamguys.cream.apis.BranchAPI;
+import co.in.dreamguys.cream.apis.ListCountriesAPI;
+import co.in.dreamguys.cream.apis.UserTypeAPI;
 import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
@@ -33,6 +36,9 @@ public class Splashscreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         mCustomProgressDialog = new CustomProgressDialog(this);
         getFromandTo();
+
+        new CountryList().execute();
+        new UserType().execute();
     }
 
     private void getFromandTo() {
@@ -41,11 +47,11 @@ public class Splashscreen extends AppCompatActivity {
         } else {
             ApiInterface apiService =
                     ApiClient.getClient().create(ApiInterface.class);
-            Call<CountriesAPI.CountryListResponse> loginCall = apiService.getCountries();
+            Call<BranchAPI.CountryListResponse> loginCall = apiService.getCountries();
             mCustomProgressDialog.showDialog();
-            loginCall.enqueue(new Callback<CountriesAPI.CountryListResponse>() {
+            loginCall.enqueue(new Callback<BranchAPI.CountryListResponse>() {
                 @Override
-                public void onResponse(Call<CountriesAPI.CountryListResponse> call, Response<CountriesAPI.CountryListResponse> response) {
+                public void onResponse(Call<BranchAPI.CountryListResponse> call, Response<BranchAPI.CountryListResponse> response) {
                     mCustomProgressDialog.dismiss();
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
                         Constants.countries = response.body().getData();
@@ -62,11 +68,69 @@ public class Splashscreen extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<CountriesAPI.CountryListResponse> call, Throwable t) {
+                public void onFailure(Call<BranchAPI.CountryListResponse> call, Throwable t) {
                     Log.i(TAG, t.getMessage());
                     mCustomProgressDialog.dismiss();
                 }
             });
+        }
+    }
+
+    private class CountryList extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            if (!Util.isNetworkAvailable(getApplicationContext())) {
+                Toast.makeText(Splashscreen.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+            } else {
+                ApiInterface apiService =
+                        ApiClient.getClient().create(ApiInterface.class);
+                Call<ListCountriesAPI.CountryListResponse> loginCall = apiService.getListCountries();
+                loginCall.enqueue(new Callback<ListCountriesAPI.CountryListResponse>() {
+                    @Override
+                    public void onResponse(Call<ListCountriesAPI.CountryListResponse> call, Response<ListCountriesAPI.CountryListResponse> response) {
+                        if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                            Constants.countrieslist = response.body().getData();
+                        } else {
+                            Toast.makeText(Splashscreen.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ListCountriesAPI.CountryListResponse> call, Throwable t) {
+                        Log.i(TAG, t.getMessage());
+                    }
+                });
+            }
+            return null;
+        }
+    }
+
+    private class UserType extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            if (!Util.isNetworkAvailable(getApplicationContext())) {
+                Toast.makeText(Splashscreen.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+            } else {
+                ApiInterface apiService =
+                        ApiClient.getClient().create(ApiInterface.class);
+                Call<UserTypeAPI.UsersTypeResponse> loginCall = apiService.getUsersType();
+                loginCall.enqueue(new Callback<UserTypeAPI.UsersTypeResponse>() {
+                    @Override
+                    public void onResponse(Call<UserTypeAPI.UsersTypeResponse> call, Response<UserTypeAPI.UsersTypeResponse> response) {
+                        if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                            Constants.usertype = response.body().getData();
+                        } else {
+                            Toast.makeText(Splashscreen.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserTypeAPI.UsersTypeResponse> call, Throwable t) {
+                        Log.i(TAG, t.getMessage());
+                    }
+                });
+            }
+            return null;
         }
     }
 }

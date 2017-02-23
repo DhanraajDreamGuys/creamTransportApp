@@ -33,7 +33,7 @@ public interface ApiInterface {
     Call<DriverListsAPI.DriverResponse> getDriverLists();
 
     @GET("country_list")
-    Call<CountriesAPI.CountryListResponse> getCountries();
+    Call<BranchAPI.CountryListResponse> getCountries();
 
     @GET("repair_currentDay_result")
     Call<RepairsheetCurrentDayAPI.RepairsheetResponse> getRepairsheet();
@@ -91,6 +91,30 @@ public interface ApiInterface {
 
     @GET("dashboard")
     Call<DashboardAPI.DashboardResponse> getDashboard();
+
+    @GET("users_list")
+    Call<UsersAPI.UsersResponse> getUsers();
+
+    @GET("list_country")
+    Call<ListCountriesAPI.CountryListResponse> getListCountries();
+
+    @GET("user_type")
+    Call<UserTypeAPI.UsersTypeResponse> getUsersType();
+
+
+    @Multipart
+    @POST("users_edit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> getUpdateUser(@Part("id") String user_id, @Part("fname") String first_name,
+                                                              @Part("lname") String last_name, @Part("email") String email,
+                                                              @Part("phone") String phone, @Part("street") String street, @Part("city") String city,
+                                                              @Part("state") String state, @Part("country") String country,
+                                                              @Part("pincode") String pincode, @Part("usrtype") String usrtype,
+                                                              @Part("brlocation") String brlocation, @Part("c_date") String c_date,
+                                                              @Part MultipartBody.Part file);
+
+    @FormUrlEncoded
+    @POST("delete_user")
+    Call<UpdateUsersAPI.UpdateUsersResponse> getDeleteUser(@Field("id") String id);
 
 
 }

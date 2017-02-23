@@ -10,17 +10,19 @@ import android.widget.TextView;
 import java.util.List;
 
 import co.in.dreamguys.cream.R;
-import co.in.dreamguys.cream.apis.ListCountriesAPI;
+import co.in.dreamguys.cream.apis.BranchAPI;
 
 /**
- * Created by user5 on 22-02-2017.
+ * Created by user5 on 17-02-2017.
  */
-public class CountryListAdapter extends BaseAdapter {
-    Context mContext;
-    private List<ListCountriesAPI.Datum> countries;
-    private LayoutInflater mInflater;
+public class BranchListAdapter extends BaseAdapter {
 
-    public CountryListAdapter(Context mContext, List<ListCountriesAPI.Datum> countries) {
+    Context mContext;
+    List<BranchAPI.Datum> countries;
+    LayoutInflater mInflater;
+
+
+    public BranchListAdapter(Context mContext, List<BranchAPI.Datum> countries) {
         this.mContext = mContext;
         this.countries = countries;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -32,7 +34,7 @@ public class CountryListAdapter extends BaseAdapter {
     }
 
     @Override
-    public ListCountriesAPI.Datum getItem(int position) {
+    public BranchAPI.Datum getItem(int position) {
         return countries.get(position);
     }
 
@@ -53,12 +55,13 @@ public class CountryListAdapter extends BaseAdapter {
             mHolder = (ViewHolder) convertView.getTag();
         }
 
-        mHolder.mDriverName.setText(countries.get(position).getCountry());
+        mHolder.mDriverName.setText(countries.get(position).getName());
 
         return convertView;
     }
 
-    private class ViewHolder {
+    public class ViewHolder {
         TextView mDriverName;
     }
+
 }

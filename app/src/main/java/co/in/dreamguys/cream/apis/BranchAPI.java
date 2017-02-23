@@ -8,14 +8,14 @@ import java.util.List;
 /**
  * Created by user5 on 17-02-2017.
  */
-public class CountriesAPI {
-    private static CountriesAPI ourInstance = new CountriesAPI();
+public class BranchAPI {
+    private static BranchAPI ourInstance = new BranchAPI();
 
-    public static CountriesAPI getInstance() {
+    public static BranchAPI getInstance() {
         return ourInstance;
     }
 
-    private CountriesAPI() {
+    private BranchAPI() {
     }
 
     public class CountryListResponse {
