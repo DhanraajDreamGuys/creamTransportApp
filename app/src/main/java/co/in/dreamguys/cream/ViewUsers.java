@@ -43,13 +43,18 @@ import co.in.dreamguys.cream.model.UsersModel;
 import co.in.dreamguys.cream.utils.CircularImageView;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-import co.in.dreamguys.cream.utils.Util;
+
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.buildCountryAlert;
+import static co.in.dreamguys.cream.utils.Util.buildUserTypeAlert;
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
+import static co.in.dreamguys.cream.utils.Util.isValidEmail;
 
 /**
  * Created by user5 on 22-02-2017.
@@ -194,9 +199,9 @@ public class ViewUsers extends AppCompatActivity implements View.OnClickListener
         if (v.getId() == R.id.AAU_IV_camera) {
             sendImage();
         } else if (v.getId() == R.id.AAU_ET_country) {
-            Util.buildCountryAlert(ViewUsers.this, getLayoutInflater(), mCountry);
+            buildCountryAlert(ViewUsers.this, getLayoutInflater(), mCountry);
         } else if (v.getId() == R.id.AAU_ET_usertype) {
-            Util.buildUserTypeAlert(ViewUsers.this, getLayoutInflater(), mUserType);
+            buildUserTypeAlert(ViewUsers.this, getLayoutInflater(), mUserType);
         } else if (v.getId() == R.id.AAU_ET_branch_location) {
             Constants.AdminMenu.getLocations(ViewUsers.this, mBranch, Constants.FromString);
         } else if (v.getId() == R.id.AAU_BT_save) {
@@ -209,7 +214,7 @@ public class ViewUsers extends AppCompatActivity implements View.OnClickListener
             } else if (mEmail.getText().toString().isEmpty()) {
                 mEmail.setError(getString(R.string.err_email));
                 mEmail.requestFocus();
-            } else if (!Util.isValidEmail(mEmail.getText().toString())) {
+            } else if (!isValidEmail(mEmail.getText().toString())) {
                 mEmail.setError(getString(R.string.err_emailInvalid));
                 mEmail.requestFocus();
             } else if (mPhoneNo.getText().toString().isEmpty()) {
@@ -235,7 +240,7 @@ public class ViewUsers extends AppCompatActivity implements View.OnClickListener
             } else if (mBranch.getText().toString().isEmpty()) {
                 mBranch.setError(getString(R.string.err_branch));
                 mBranch.requestFocus();
-            } else if (!Util.isNetworkAvailable(this)) {
+            } else if (!isNetworkAvailable(this)) {
                 Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
             } else {
                 mCustomProgressDialog.showDialog();

@@ -17,10 +17,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import co.in.dreamguys.cream.Accidentreport;
 import co.in.dreamguys.cream.Dashboard;
+import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
+import co.in.dreamguys.cream.Settings;
 import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
@@ -109,7 +112,15 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
                 case 10:
                     ActivityConstants.callPage(mContext, RepairSheet.class);
                     break;
-
+                case 12:
+                    ActivityConstants.callPage(mContext, Leave.class);
+                    break;
+                case 13:
+                    ActivityConstants.callPage(mContext, Accidentreport.class);
+                    break;
+                case 19:
+                    ActivityConstants.callPage(mContext, Settings.class);
+                    break;
             }
         }
     }

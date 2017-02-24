@@ -26,10 +26,16 @@ import co.in.dreamguys.cream.interfaces.TripsheetInterface;
 import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-import co.in.dreamguys.cream.utils.Util;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.aTripAdapter;
+import static co.in.dreamguys.cream.utils.Util.fillTripData;
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
+import static co.in.dreamguys.cream.utils.Util.mTripReport;
+import static co.in.dreamguys.cream.utils.Util.searchPopUpWindow;
 
 /**
  * Created by user5 on 17-02-2017.
@@ -54,7 +60,7 @@ public class Trips extends AppCompatActivity implements TripsheetInterface,Searc
     }
 
     private void getCurrentTrips() {
-        if (!Util.isNetworkAvailable(this)) {
+        if (!isNetworkAvailable(this)) {
             Toast.makeText(Trips.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
             mCustomProgressDialog.showDialog();
@@ -66,7 +72,7 @@ public class Trips extends AppCompatActivity implements TripsheetInterface,Searc
                 public void onResponse(Call<TripListAPI.TripsResponse> call, Response<TripListAPI.TripsResponse> response) {
                     mCustomProgressDialog.dismiss();
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
-                        Util.fillTripData(Trips.this, response.body().getData(), mTripWidget);
+                        fillTripData(Trips.this, response.body().getData(), mTripWidget);
                     } else {
                         Toast.makeText(Trips.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -115,7 +121,7 @@ public class Trips extends AppCompatActivity implements TripsheetInterface,Searc
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             int height = displaymetrics.heightPixels;
             if (!mPopsearch.isShowing()) {
-                Util.searchPopUpWindow(Trips.this, mPopsearch, Constants.TRIPS, getLayoutInflater(), mTripWidget);
+                searchPopUpWindow(Trips.this, mPopsearch, Constants.TRIPS, getLayoutInflater(), mTripWidget);
                 layoutParams.setMargins(0, (height / 4), 0, 0);
                 mTripWidget.setLayoutParams(layoutParams);
             }
@@ -167,8 +173,8 @@ public class Trips extends AppCompatActivity implements TripsheetInterface,Searc
             public void onResponse(Call<DeleteSheetAPI.DeleteTripsResponse> call, Response<DeleteSheetAPI.DeleteTripsResponse> response) {
                 if (response.body().getMeta().equals(Constants.SUCCESS)) {
                     Toast.makeText(Trips.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    Util.mTripReport.getData().remove(position);
-                    Util.aTripAdapter.notifyDataSetChanged();
+                    mTripReport.getData().remove(position);
+                    aTripAdapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(Trips.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 }

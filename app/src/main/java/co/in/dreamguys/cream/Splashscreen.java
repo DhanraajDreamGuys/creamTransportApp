@@ -16,10 +16,11 @@ import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
 import co.in.dreamguys.cream.utils.SessionHandler;
-import co.in.dreamguys.cream.utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 /**
  * Created by user5 on 14-02-2017.
@@ -36,13 +37,16 @@ public class Splashscreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         mCustomProgressDialog = new CustomProgressDialog(this);
         getFromandTo();
-
-        new CountryList().execute();
-        new UserType().execute();
+        if (!isNetworkAvailable(getApplicationContext())) {
+            Toast.makeText(Splashscreen.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+        } else {
+            new CountryList().execute();
+            new UserType().execute();
+        }
     }
 
     private void getFromandTo() {
-        if (!Util.isNetworkAvailable(this)) {
+        if (!isNetworkAvailable(this)) {
             Toast.makeText(Splashscreen.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
             ApiInterface apiService =
@@ -79,7 +83,7 @@ public class Splashscreen extends AppCompatActivity {
     private class CountryList extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... params) {
-            if (!Util.isNetworkAvailable(getApplicationContext())) {
+            if (!isNetworkAvailable(getApplicationContext())) {
                 Toast.makeText(Splashscreen.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
             } else {
                 ApiInterface apiService =
@@ -108,7 +112,7 @@ public class Splashscreen extends AppCompatActivity {
     private class UserType extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... params) {
-            if (!Util.isNetworkAvailable(getApplicationContext())) {
+            if (!isNetworkAvailable(getApplicationContext())) {
                 Toast.makeText(Splashscreen.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
             } else {
                 ApiInterface apiService =

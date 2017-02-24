@@ -19,7 +19,9 @@ import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.ViewUsers;
 import co.in.dreamguys.cream.model.UsersModel;
 import co.in.dreamguys.cream.utils.Constants;
-import co.in.dreamguys.cream.utils.Util;
+
+import static co.in.dreamguys.cream.utils.Util.showDeleteAlert;
+
 
 /**
  * Created by user5 on 22-02-2017.
@@ -123,7 +125,7 @@ public class UsersAdapter extends BaseAdapter {
         mHolder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Util.showDeleteAlert(mContext, data.get(position).getId(), position ,Constants.USERS);
+                showDeleteAlert(mContext, data.get(position).getId(), position ,Constants.USERS);
             }
         });
 

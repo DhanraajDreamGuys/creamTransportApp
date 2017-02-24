@@ -22,10 +22,12 @@ import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
 import co.in.dreamguys.cream.utils.SessionHandler;
-import co.in.dreamguys.cream.utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
+import static co.in.dreamguys.cream.utils.Util.isValidEmail;
 
 /**
  * Created by user5 on 09-02-2017.
@@ -88,7 +90,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             } else if (email.getText().toString().isEmpty()) {
                 email.setError(getString(R.string.err_email));
                 email.requestFocus();
-            } else if (!Util.isValidEmail(email.getText().toString())) {
+            } else if (!isValidEmail(email.getText().toString())) {
                 email.setError(getString(R.string.err_emailInvalid));
                 email.requestFocus();
             } else if (password.getText().toString().isEmpty()) {
@@ -97,7 +99,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             } else if (password.getText().toString().length() < 5) {
                 password.setError(getString(R.string.err_password_length));
                 password.requestFocus();
-            } else if (!Util.isNetworkAvailable(this)) {
+            } else if (!isNetworkAvailable(this)) {
                 Toast.makeText(Login.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
             } else {
                 mCustomProgressDialog.showDialog();

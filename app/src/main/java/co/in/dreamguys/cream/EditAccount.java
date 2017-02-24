@@ -35,13 +35,15 @@ import co.in.dreamguys.cream.utils.CircularImageView;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
 import co.in.dreamguys.cream.utils.SessionHandler;
-import co.in.dreamguys.cream.utils.Util;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
+import static co.in.dreamguys.cream.utils.Util.isValidEmail;
 
 /**
  * Created by User on 2/13/2017.
@@ -112,10 +114,10 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
             if (mEmailAddress.getText().toString().isEmpty()) {
                 mEmailAddress.setError(getString(R.string.err_email));
                 mEmailAddress.requestFocus();
-            } else if (!Util.isValidEmail(mEmailAddress.getText().toString())) {
+            } else if (!isValidEmail(mEmailAddress.getText().toString())) {
                 mEmailAddress.setError(getString(R.string.err_emailInvalid));
                 mEmailAddress.requestFocus();
-            } else if (!Util.isNetworkAvailable(this)) {
+            } else if (!isNetworkAvailable(this)) {
                 Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
             } else {
                 mCustomProgressDialog.showDialog();

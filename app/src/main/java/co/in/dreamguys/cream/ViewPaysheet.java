@@ -23,10 +23,13 @@ import co.in.dreamguys.cream.apis.UpdateSheetAPI;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-import co.in.dreamguys.cream.utils.Util;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
+import static co.in.dreamguys.cream.utils.Util.setListViewHeightBasedOnChildren;
 
 /**
  * Created by user5 on 13-02-2017.
@@ -63,7 +66,7 @@ public class ViewPaysheet extends AppCompatActivity implements View.OnClickListe
 
         aViewpaysheetAdapter = new ViewpaysheetAdapter(ViewPaysheet.this, mData);
         mPaysheetViews.setAdapter(aViewpaysheetAdapter);
-        Util.setListViewHeightBasedOnChildren(mPaysheetViews);
+        setListViewHeightBasedOnChildren(mPaysheetViews);
 
         if (getIntent().getIntExtra(Constants.MODE, -1) == 0) {
             mOfficalUse.setFocusable(true);
@@ -115,7 +118,7 @@ public class ViewPaysheet extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.AVP_BT_save) {
-            if (!Util.isNetworkAvailable(this)) {
+            if (!isNetworkAvailable(this)) {
                 Toast.makeText(ViewPaysheet.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
             } else {
                 mCustomProgressDialog.showDialog();

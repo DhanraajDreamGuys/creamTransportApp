@@ -32,10 +32,13 @@ import co.in.dreamguys.cream.model.RepairSheetData;
 import co.in.dreamguys.cream.model.RepairSheetReport;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-import co.in.dreamguys.cream.utils.Util;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
+import static co.in.dreamguys.cream.utils.Util.searchPopUpWindow;
 
 /**
  * Created by user5 on 15-02-2017.
@@ -65,7 +68,7 @@ public class RepairSheet extends AppCompatActivity implements SearchListViewNoti
     }
 
     private void currentDayRepairSheet() {
-        if (!Util.isNetworkAvailable(this)) {
+        if (!isNetworkAvailable(this)) {
             Toast.makeText(RepairSheet.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
             mCustomProgressDialog.showDialog();
@@ -160,7 +163,7 @@ public class RepairSheet extends AppCompatActivity implements SearchListViewNoti
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             int height = displaymetrics.heightPixels;
             if (!popupSearch.isShowing()) {
-                Util.searchPopUpWindow(RepairSheet.this, popupSearch, Constants.REPAIR, getLayoutInflater(), mRepairSheetView);
+                searchPopUpWindow(RepairSheet.this, popupSearch, Constants.REPAIR, getLayoutInflater(), mRepairSheetView);
                 layoutParams.setMargins(0, (height / 4), 0, 0);
                 mRepairSheetView.setLayoutParams(layoutParams);
             }
@@ -234,7 +237,7 @@ public class RepairSheet extends AppCompatActivity implements SearchListViewNoti
 
     @Override
     public void updateRepairSheet(String id, String comments) {
-        if (!Util.isNetworkAvailable(this)) {
+        if (!isNetworkAvailable(this)) {
             Toast.makeText(RepairSheet.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
             mCustomProgressDialog.showDialog();

@@ -117,4 +117,17 @@ public interface ApiInterface {
     Call<UpdateUsersAPI.UpdateUsersResponse> getDeleteUser(@Field("id") String id);
 
 
+    @GET("leave_form_list")
+    Call<LeaveAPI.LeaveListResponse> getLeaveLists();
+
+    @FormUrlEncoded
+    @POST("edit_leave_form")
+    Call<UpdateUsersAPI.UpdateUsersResponse> saveLeaveForm(@FieldMap HashMap<String, String> meta);
+
+    @GET("accident_list")
+    Call<AccidentReportAPI.AccidentReportResponse> getAccidentResports();
+
+    @FormUrlEncoded
+    @POST("accident_search_result")
+    Call<AccidentReportAPI.AccidentReportResponse> getSearchAccidentResports(@FieldMap HashMap<String, String> meta);
 }

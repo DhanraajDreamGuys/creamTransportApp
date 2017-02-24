@@ -34,10 +34,12 @@ import co.in.dreamguys.cream.apis.TripListAPI;
 import co.in.dreamguys.cream.apis.UpdateSheetAPI;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-import co.in.dreamguys.cream.utils.Util;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 /**
  * Created by user5 on 20-02-2017.
@@ -449,7 +451,7 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
         } else if (mEditTo.getText().toString().isEmpty()) {
             mEditTo.setError(getString(R.string.err_to));
             mEditTo.requestFocus();
-        } else if (!Util.isNetworkAvailable(this)) {
+        } else if (!isNetworkAvailable(this)) {
             Toast.makeText(ViewTripsheet.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
             mCustomProgressDialog.showDialog();

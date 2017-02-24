@@ -2,6 +2,7 @@ package co.in.dreamguys.cream.utils;
 
 import java.util.List;
 
+import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.apis.BranchAPI;
@@ -90,4 +91,14 @@ public class Constants {
     public static Users USERSCLASS;
     public static List<ListCountriesAPI.Datum> countrieslist;
     public static List<UserTypeAPI.Datum> usertype;
+    public static String EDIT_LEAVE_DATA = "leave_edit_data";
+    public static String PARAMS_APP_DATE = "app_date";
+    public static String PARAMS_SIGNATURE = "signature";
+    public static String PARAMS_PRINTED_NAME = "printed_name";
+    public static String PARAMS_APPROVE = "approve";
+    public static Leave LEAVEFORM;
+    public static String EDIT_ACCIDENT_DATA = "edit_accident_data";
+    public static String ACCIDENT_REPORT = "ACCIDENT REPORT";
+    public static String PREVIEW_ACCIDENT_REPORT = "preview_accident_report";
+    public static String CURRENT_IMAGE = "current_image";
 }

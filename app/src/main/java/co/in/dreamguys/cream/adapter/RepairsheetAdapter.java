@@ -14,7 +14,9 @@ import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.model.RepairSheetData;
 import co.in.dreamguys.cream.utils.Constants;
-import co.in.dreamguys.cream.utils.Util;
+
+import static co.in.dreamguys.cream.utils.Util.showDeleteAlert;
+
 
 /**
  * Created by user5 on 15-02-2017.
@@ -93,7 +95,7 @@ public class RepairsheetAdapter extends BaseAdapter {
         mHolder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Util.showDeleteAlert(mContext, data.get(position).getRid(), position, Constants.REPAIR);
+                showDeleteAlert(mContext, data.get(position).getRid(), position, Constants.REPAIR);
 
             }
         });

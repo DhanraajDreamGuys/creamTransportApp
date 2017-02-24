@@ -15,7 +15,9 @@ import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.apis.BranchAPI;
 import co.in.dreamguys.cream.model.TripList;
 import co.in.dreamguys.cream.utils.Constants;
-import co.in.dreamguys.cream.utils.Util;
+
+import static co.in.dreamguys.cream.utils.Util.showDeleteAlert;
+
 
 /**
  * Created by user5 on 20-02-2017.
@@ -98,7 +100,7 @@ public class TripAdapter extends BaseAdapter {
         mHolder.mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Util.showDeleteAlert(mContext, data.get(position).getTid(), position ,Constants.TRIPS);
+                showDeleteAlert(mContext, data.get(position).getTid(), position ,Constants.TRIPS);
             }
         });
 

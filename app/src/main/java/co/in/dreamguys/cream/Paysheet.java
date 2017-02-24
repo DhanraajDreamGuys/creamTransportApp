@@ -26,10 +26,13 @@ import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.model.PaysheetReport;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-import co.in.dreamguys.cream.utils.Util;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
+import static co.in.dreamguys.cream.utils.Util.searchPopUpWindow;
 
 /**
  * Created by user5 on 14-02-2017.
@@ -57,7 +60,7 @@ public class Paysheet extends AppCompatActivity implements SearchListViewNotify 
     }
 
     private void LastWeeklyReport() {
-        if (!Util.isNetworkAvailable(this)) {
+        if (!isNetworkAvailable(this)) {
             Toast.makeText(Paysheet.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
             mCustomProgressDialog.showDialog();
@@ -158,7 +161,7 @@ public class Paysheet extends AppCompatActivity implements SearchListViewNotify 
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             int height = displaymetrics.heightPixels;
             if (!popupSearch.isShowing()) {
-                Util.searchPopUpWindow(Paysheet.this, popupSearch, Constants.PAYSHEET, getLayoutInflater(), mPaysheetView);
+                searchPopUpWindow(Paysheet.this, popupSearch, Constants.PAYSHEET, getLayoutInflater(), mPaysheetView);
                 layoutParams.setMargins(0, (height / 4), 0, 0);
                 mPaysheetView.setLayoutParams(layoutParams);
             }

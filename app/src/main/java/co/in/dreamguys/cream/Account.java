@@ -19,10 +19,11 @@ import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
 import co.in.dreamguys.cream.utils.SessionHandler;
-import co.in.dreamguys.cream.utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 /**
  * Created by user5 on 14-02-2017.
@@ -51,7 +52,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
 
     private void getAccountData() {
 
-        if (Util.isNetworkAvailable(Account.this)) {
+        if (isNetworkAvailable(Account.this)) {
             ApiInterface apiService =
                     ApiClient.getClient().create(ApiInterface.class);
             Call<AccountAPI.AccountResponse> loginCall = apiService.getAccount(SessionHandler.getStringPref(Constants.USER_ID));

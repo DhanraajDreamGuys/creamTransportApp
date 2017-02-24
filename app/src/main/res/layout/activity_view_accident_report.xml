@@ -21,7 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -46,15 +47,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/AVAR_ET_Vname"
+                    android:id="@+id/AVAR_ET_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
                     android:editable="false"
@@ -66,11 +66,9 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
-                    android:id="@+id/AA_ET_lastname"
+                    android:id="@+id/AVAR_ET_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -89,11 +87,9 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/AA_ET_email"
+                        android:id="@+id/AVAR_ET_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:background="@drawable/border_gray_box"
@@ -107,11 +103,10 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <EditText
-                        android:id="@+id/AA_ET_userType"
+                        android:id="@+id/AVAR_ET_time_acc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_3sdp"
-                        android:layout_marginRight="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:background="@drawable/border_gray_box"
@@ -131,13 +126,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:text="@string/other_details"
                     android:textSize="@dimen/_12sdp" />
@@ -147,7 +143,6 @@
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_6sdp"
                     android:background="@color/app_color" />
 
@@ -157,6 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical">
 
@@ -164,8 +160,6 @@
                     android:id="@+id/AVAR_ET_od_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
                     android:editable="false"
@@ -180,8 +174,6 @@
                     android:id="@+id/AVAR_ET_od_phoneno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -197,8 +189,6 @@
                     android:id="@+id/AVAR_ET_od_regno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -214,8 +204,6 @@
                     android:id="@+id/AVAR_ET_od_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -231,8 +219,6 @@
                     android:id="@+id/AVAR_ET_od_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -249,8 +235,6 @@
                     android:id="@+id/AVAR_ET_od_licenseno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -266,8 +250,6 @@
                     android:id="@+id/AVAR_ET_od_make"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -283,8 +265,6 @@
                     android:id="@+id/AVAR_ET_od_insurance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -301,13 +281,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:text="@string/my_vehicle"
                     android:textSize="@dimen/_12sdp" />
@@ -317,7 +298,6 @@
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_6sdp"
                     android:background="@color/app_color" />
 
@@ -327,6 +307,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical">
 
@@ -334,8 +315,6 @@
                     android:id="@+id/AVAR_ET_mv_regno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
                     android:editable="false"
@@ -350,8 +329,6 @@
                     android:id="@+id/AVAR_ET_mv_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -367,8 +344,6 @@
                     android:id="@+id/AVAR_ET_mv_licenseno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -384,8 +359,6 @@
                     android:id="@+id/AVAR_ET_mv_policy_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -401,8 +374,6 @@
                     android:id="@+id/AVAR_ET_mv_contactname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -419,8 +390,6 @@
                     android:id="@+id/AVAR_ET_mv_Insurancebroker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -436,8 +405,6 @@
                     android:id="@+id/AVAR_ET_mv_make"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -453,8 +420,6 @@
                     android:id="@+id/AVAR_ET_mv_chassis_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -470,8 +435,6 @@
                     android:id="@+id/AVAR_ET_mv_insurance_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -484,11 +447,9 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
-                    android:id="@+id/AVAR_ET_renewal_date"
+                    android:id="@+id/AVAR_ET_mv_renewal_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -501,11 +462,9 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
-                    android:id="@+id/AVAR_ET_contact_no"
+                    android:id="@+id/AVAR_ET_mv_contact_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -518,11 +477,9 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <EditText
-                    android:id="@+id/AVAR_ET_contact_email"
+                    android:id="@+id/AVAR_ET_mv_contact_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -539,13 +496,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:text="@string/witness"
                     android:textSize="@dimen/_12sdp" />
@@ -555,7 +513,6 @@
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_6sdp"
                     android:background="@color/app_color" />
 
@@ -565,6 +522,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical">
 
@@ -572,8 +530,6 @@
                     android:id="@+id/AVAR_ET_w_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
                     android:editable="false"
@@ -588,8 +544,6 @@
                     android:id="@+id/AVAR_ET_w_phone_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_gray_box"
                     android:clickable="false"
@@ -605,13 +559,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:text="@string/images"
                     android:textSize="@dimen/_12sdp" />
@@ -621,29 +576,31 @@
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_6sdp"
                     android:background="@color/app_color" />
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/AA_BT_update"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_gravity="center"
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/button_background"
-                android:drawableLeft="@drawable/ic_save_as"
-                android:drawablePadding="@dimen/_10sdp"
-                android:padding="@dimen/_10sdp"
-                android:text="@string/update"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white" />
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/AVAR_LL_images"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
         </LinearLayout>
-
 
     </ScrollView>
 

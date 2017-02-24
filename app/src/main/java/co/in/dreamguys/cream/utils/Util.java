@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.util.Patterns;
@@ -21,24 +22,29 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
+import co.in.dreamguys.cream.Accidentreport;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.Users;
+import co.in.dreamguys.cream.adapter.AccidentReportAdapter;
 import co.in.dreamguys.cream.adapter.CountryListAdapter;
 import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.adapter.TripAdapter;
 import co.in.dreamguys.cream.adapter.UserTypeListAdapter;
+import co.in.dreamguys.cream.apis.AccidentReportAPI;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
@@ -66,7 +72,10 @@ public class Util {
     public static int adapterPosition;
     public static TripListReport mTripReport = new TripListReport();
     public static TripAdapter aTripAdapter;
-
+    private static int TYPE_WIFI = 1;
+    private static int TYPE_MOBILE = 2;
+    private static int TYPE_NOT_CONNECTED = 0;
+    public static AccidentReportAdapter aAccidentReportAdapter;
 
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
@@ -77,9 +86,45 @@ public class Util {
 
 
     public static boolean isNetworkAvailable(final Context context) {
-        return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
+        int conn = getConnectivityStatus(context);
+        boolean status = false;
+        if (conn == TYPE_WIFI) {
+            status = true;
+        } else if (conn == TYPE_MOBILE) {
+            status = true;
+        } else if (conn == TYPE_NOT_CONNECTED) {
+            status = false;
+        }
+        return status;
     }
 
+    private static int getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (null != activeNetwork) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
+                return TYPE_WIFI;
+
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
+                return TYPE_MOBILE;
+        }
+        return TYPE_NOT_CONNECTED;
+    }
+
+    public static String getDateFormat(String fromdate) {
+        SimpleDateFormat dateFormatOfStringInDB = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = null;
+        try {
+            d1 = dateFormatOfStringInDB.parse(fromdate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat dateFormatYouWant = new SimpleDateFormat("dd/MM/yyyy");
+        String sCertDate = dateFormatYouWant.format(d1);
+        return sCertDate;
+    }
 
     private static HashMap<String, String> sendValueWithRetrofit(TextView mFromDate, TextView mFromTo) {
         HashMap<String, String> params = new HashMap<>();
@@ -87,6 +132,24 @@ public class Util {
         params.put(Constants.PARAMS_START_DATE, mFromDate.getText().toString());
         params.put(Constants.PARAMS_END_DATE, mFromTo.getText().toString());
         return params;
+    }
+
+
+    public static void searchPopupWindowUsers(final Context mContext, final PopupWindow popupSearch, final String PAGE, final LayoutInflater layoutInflater, final ListView mPaysheetView) {
+        mCustomProgressDialog = new CustomProgressDialog(mContext);
+        popupSearch.setAnimationStyle(android.R.style.Animation_Dialog);
+        popupSearch.setOutsideTouchable(false);
+        View searchView = layoutInflater.inflate(R.layout.include_search, null);
+        popupSearch.setContentView(searchView);
+        popupSearch.setBackgroundDrawable(new ColorDrawable(
+                android.graphics.Color.TRANSPARENT));
+        popupSearch.setWindowLayoutMode(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupSearch.setHeight(1);
+        popupSearch.setWidth(1);
+
+
     }
 
 
@@ -152,7 +215,7 @@ public class Util {
                 } else if (mFromTo.getText().toString().isEmpty()) {
                     mFromTo.setError(mContext.getString(R.string.err_end_date));
                     mFromTo.requestFocus();
-                } else if (!Util.isNetworkAvailable(mContext)) {
+                } else if (!isNetworkAvailable(mContext)) {
                     Toast.makeText(mContext, mContext.getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
                 } else {
                     mCustomProgressDialog.showDialog();
@@ -227,6 +290,32 @@ public class Util {
 
                             break;
 
+                        case "ACCIDENT REPORT":
+                            Call<AccidentReportAPI.AccidentReportResponse> accidentReportCall = apiService.getSearchAccidentResports(sendValueWithRetrofit(mFromDate, mFromTo));
+
+                            accidentReportCall.enqueue(new Callback<AccidentReportAPI.AccidentReportResponse>() {
+                                @Override
+                                public void onResponse(Call<AccidentReportAPI.AccidentReportResponse> call, Response<AccidentReportAPI.AccidentReportResponse> response) {
+                                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                                        mPaysheetView.setAdapter(null);
+                                        aAccidentReportAdapter = new AccidentReportAdapter(mContext, response.body().getData());
+                                        mPaysheetView.setAdapter(aAccidentReportAdapter);
+                                        aAccidentReportAdapter.notifyDataSetChanged();
+                                    } else {
+                                        mPaysheetView.setAdapter(null);
+                                        Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    mCustomProgressDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onFailure(Call<AccidentReportAPI.AccidentReportResponse> call, Throwable t) {
+                                    Log.i(((Accidentreport) mContext).getPackageName(), t.getMessage());
+                                    mCustomProgressDialog.dismiss();
+                                }
+                            });
+                            break;
+
                     }
 
 
@@ -253,6 +342,11 @@ public class Util {
                     case "TRIP":
                         mPaysheetView.setAdapter(null);
                         ((Trips) mContext).searchNotify();
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
+                    case "ACCIDENT REPORT":
+                        mPaysheetView.setAdapter(null);
+                        ((Accidentreport) mContext).searchNotify();
                         listAdjustableMethod(popupSearch, mPaysheetView);
                         break;
                 }

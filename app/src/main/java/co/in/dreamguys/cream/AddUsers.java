@@ -29,7 +29,10 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 
 import co.in.dreamguys.cream.utils.CircularImageView;
-import co.in.dreamguys.cream.utils.Util;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
+import static co.in.dreamguys.cream.utils.Util.isValidEmail;
+
 
 /**
  * Created by User on 2/14/2017.
@@ -123,7 +126,7 @@ public class AddUsers extends AppCompatActivity implements View.OnClickListener 
         } else if (mEmail.getText().toString().isEmpty()) {
             mEmail.setError(getString(R.string.err_email));
             mEmail.requestFocus();
-        } else if (!Util.isValidEmail(mEmail.getText().toString())) {
+        } else if (!isValidEmail(mEmail.getText().toString())) {
             mEmail.setError(getString(R.string.err_emailInvalid));
             mEmail.requestFocus();
         } else if (mPhoneNo.getText().toString().isEmpty()) {
@@ -150,7 +153,7 @@ public class AddUsers extends AppCompatActivity implements View.OnClickListener 
         } else if (mBranch.getText().toString().isEmpty()) {
             mBranch.setError(getString(R.string.err_branch));
             mBranch.requestFocus();
-        } else if (!Util.isNetworkAvailable(this)) {
+        } else if (!isNetworkAvailable(this)) {
             Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         }
         return true;

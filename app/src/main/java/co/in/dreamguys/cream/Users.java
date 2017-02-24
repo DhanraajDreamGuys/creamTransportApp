@@ -25,10 +25,12 @@ import co.in.dreamguys.cream.model.UsersData;
 import co.in.dreamguys.cream.model.UsersModel;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-import co.in.dreamguys.cream.utils.Util;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 /**
  * Created by user5 on 14-02-2017.
@@ -58,7 +60,7 @@ public class Users extends AppCompatActivity implements TripsheetInterface {
 
     public void getUserLists() {
 
-        if (Util.isNetworkAvailable(Users.this)) {
+        if (isNetworkAvailable(Users.this)) {
             ApiInterface apiService =
                     ApiClient.getClient().create(ApiInterface.class);
             Call<UsersAPI.UsersResponse> loginCall = apiService.getUsers();

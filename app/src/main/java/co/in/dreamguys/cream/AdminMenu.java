@@ -43,10 +43,17 @@ import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
 import co.in.dreamguys.cream.utils.SessionHandler;
-import co.in.dreamguys.cream.utils.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Constants.From;
+import static co.in.dreamguys.cream.utils.Constants.To;
+import static co.in.dreamguys.cream.utils.Constants.USER_ID;
+import static co.in.dreamguys.cream.utils.Constants.countries;
+import static co.in.dreamguys.cream.utils.Constants.driverList;
+import static co.in.dreamguys.cream.utils.Util.adapterPosition;
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 
 /**
@@ -85,7 +92,7 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
 
     private void getDriverLists() {
 
-        if (!Util.isNetworkAvailable(this)) {
+        if (!isNetworkAvailable(this)) {
             Toast.makeText(AdminMenu.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
             mCustomProgressDialog.showDialog();
@@ -98,7 +105,7 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
                 public void onResponse(Call<DriverListsAPI.DriverResponse> call, Response<DriverListsAPI.DriverResponse> response) {
                     mCustomProgressDialog.dismiss();
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
-                        Constants.driverList = response.body().getData();
+                        driverList = response.body().getData();
                     } else {
                         Toast.makeText(AdminMenu.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -288,7 +295,7 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
         if (item.getItemId() == R.id.action_account) {
             ActivityConstants.callPage(AdminMenu.this, Account.class);
         } else if (item.getItemId() == R.id.action_logout) {
-            if (!SessionHandler.getStringPref(Constants.USER_ID).isEmpty()) {
+            if (!SessionHandler.getStringPref(USER_ID).isEmpty()) {
                 SessionHandler.clearPrefs();
                 Intent mCallLogin = new Intent(this, Login.class);
                 mCallLogin.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -311,7 +318,7 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
         ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
 
 
-        DriverListAdapter aDriverListAdapter = new DriverListAdapter(mContext, Constants.driverList);
+        DriverListAdapter aDriverListAdapter = new DriverListAdapter(mContext, driverList);
         mDriverViews.setAdapter(aDriverListAdapter);
         final AlertDialog alert = builder.create();
         alert.show();
@@ -319,8 +326,8 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
         mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                value.setText(Constants.driverList.get(position).getFirst_name() + " " + Constants.driverList.get(position).getLast_name());
-                Util.adapterPosition = position;
+                value.setText(driverList.get(position).getFirst_name() + " " + driverList.get(position).getLast_name());
+                adapterPosition = position;
                 alert.dismiss();
             }
         });
@@ -335,7 +342,7 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
         ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
 
 
-        BranchListAdapter aDriverListAdapter = new BranchListAdapter(mContext, Constants.countries);
+        BranchListAdapter aDriverListAdapter = new BranchListAdapter(mContext, countries);
         mDriverViews.setAdapter(aDriverListAdapter);
         final AlertDialog alert = builder.create();
         alert.show();
@@ -343,11 +350,11 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
         mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                value.setText(Constants.countries.get(position).getName());
+                value.setText(countries.get(position).getName());
                 if (mFromorTo.equalsIgnoreCase("From")) {
-                    Constants.From = position;
+                    From = position;
                 } else {
-                    Constants.To = position;
+                    To = position;
                 }
                 alert.dismiss();
             }

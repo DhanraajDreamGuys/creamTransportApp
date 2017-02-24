@@ -6,30 +6,6 @@
 
     <include layout="@layout/activity_toolbar" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@color/cream_window_bckgrd"
-        android:text="@string/company_name"
-        android:textColor="@color/app_color"
-        android:textSize="@dimen/_16sdp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@color/cream_window_bckgrd"
-        android:text="@string/leave_form"
-        android:textColor="@color/app_color"
-        android:textSize="@dimen/_14sdp" />
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -42,38 +18,86 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/cream_window_bckgrd"
+                android:text="@string/company_name"
+                android:textColor="@color/app_color"
+                android:textSize="@dimen/_16sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/cream_window_bckgrd"
+                android:text="@string/leave_form"
+                android:textColor="@color/app_color"
+                android:textSize="@dimen/_14sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical">
 
 
                 <TextView
+                    android:id="@+id/AELF_TV_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint=" Name"
+                    android:maxLines="1"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp" />
 
-                <TextView
+                <ImageView
+                    android:id="@+id/AELF_IV_signature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Signature"
+                    android:scaleType="fitXY" />
+
+
+                <TextView
+                    android:id="@+id/AELF_TV_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_gray_box"
+                    android:gravity="center_vertical"
+                    android:hint=" Date"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp" />
+
+
+                <TextView
+                    android:id="@+id/AELF_TV_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint=" Location"
+                    android:maxLines="1"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp" />
 
@@ -82,14 +106,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/apply_leave"
                     android:textSize="@dimen/_12sdp" />
@@ -99,7 +123,6 @@
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_4sdp"
                     android:background="@color/app_color" />
 
@@ -108,15 +131,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/AELF_TV_date_from"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
@@ -124,13 +147,15 @@
                     android:drawableRight="@drawable/ic_calendar_filled"
                     android:gravity="center_vertical"
                     android:hint=" Date from"
+                    android:maxLines="1"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
+                    android:id="@+id/AELF_TV_date_to"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
@@ -138,6 +163,7 @@
                     android:drawableRight="@drawable/ic_calendar_filled"
                     android:gravity="center_vertical"
                     android:hint=" Date to"
+                    android:maxLines="1"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
@@ -145,14 +171,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/work_from_to"
                     android:textSize="@dimen/_12sdp" />
@@ -162,7 +188,6 @@
                     android:layout_height="1dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_4sdp"
                     android:background="@color/app_color" />
 
@@ -171,16 +196,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/AELF_TV_from_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_8sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
@@ -188,13 +214,14 @@
                     android:drawableRight="@drawable/ic_calendar_filled"
                     android:gravity="center_vertical"
                     android:hint=" Date from"
+                    android:maxLines="1"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp" />
 
                 <TextView
+                    android:id="@+id/AELF_TV_to_last_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
@@ -205,6 +232,278 @@
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp" />
 
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/AELF_TV_no_days"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/border_gray_box"
+                android:gravity="center_vertical"
+                android:hint=" No.of.days"
+                android:maxLines="1"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@string/type_leave"
+                    android:textSize="@dimen/_12sdp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:background="@color/app_color" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/AELF_CB_annual_leave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/check_annual_leave" />
+
+                <CheckBox
+                    android:id="@+id/AELF_CB_annual_lsl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/long_service_leave" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/AELF_CB_unpaid_leave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/check_unpaid_leave" />
+
+                <CheckBox
+                    android:id="@+id/AELF_CB_sick_leave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/sick_leave" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/AELF_CB_bereavement_leave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/check_bereavement_leave" />
+
+                <CheckBox
+                    android:id="@+id/AELF_CB_maternity_leave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/maternity_leave" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/AELF_TV_others"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/border_gray_box"
+                android:gravity="center_vertical"
+                android:hint=" Other - Specify"
+                android:maxLines="1"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/supervisior_app"
+                android:textColor="@color/app_color"
+                android:textSize="@dimen/_14sdp" />
+
+
+            <RadioGroup
+                android:id="@+id/AELF_RG_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/AELF_RB_approve"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/radio_button_approve" />
+
+                <RadioButton
+                    android:id="@+id/AELF_RB_not_approve"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/radio_button_not_approve" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/AELF_ET_printed_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:background="@drawable/border_gray_box"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_printed_name"
+                android:maxLines="1"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp" />
+
+            <EditText
+                android:id="@+id/AELF_ET_position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:background="@drawable/border_gray_box"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_position"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp" />
+
+            <EditText
+                android:id="@+id/AELF_ET_signature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:background="@drawable/border_gray_box"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_signature"
+                android:maxLines="1"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/AELF_ET_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:background="@drawable/border_gray_box"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/ic_calendar_filled"
+                android:gravity="center_vertical"
+                android:hint=" Choose Date"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/AELF_ET_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/button_background"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/str_save_changes"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/AELF_ET_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/button_background"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/cancel"
+                    android:textColor="@android:color/white" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

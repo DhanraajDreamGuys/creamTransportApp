@@ -27,10 +27,13 @@ import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-import co.in.dreamguys.cream.utils.Util;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static co.in.dreamguys.cream.utils.Util.adapterPosition;
+import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 /**
  * Created by user5 on 11-02-2017.
@@ -213,7 +216,7 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
         } else if (mTo.getText().toString().isEmpty()) {
             mTo.setError(getString(R.string.err_to));
             mTo.requestFocus();
-        } else if (!Util.isNetworkAvailable(this)) {
+        } else if (!isNetworkAvailable(this)) {
             Toast.makeText(AddNewTrip.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
             mCustomProgressDialog.showDialog();
@@ -275,7 +278,7 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
 
     private HashMap<String, String> sendValueWithRetrofit() {
         HashMap<String, String> params = new HashMap<>();
-        params.put(Constants.PARAMS_DRIVER_ID, Constants.driverList.get(Util.adapterPosition).getId());
+        params.put(Constants.PARAMS_DRIVER_ID, Constants.driverList.get(adapterPosition).getId());
         params.put(Constants.PARAMS_TRUCK_NO, mTruckNo.getText().toString());
         if (mDynamicET != null && mAllEditText.size() > 0) {
             String appendValues = "";
