@@ -132,15 +132,23 @@ public class EditAccount extends AppCompatActivity implements View.OnClickListen
                     }
                 }
 
-                Call<EditAccountAPI.EditAccountResponse> loginCall = apiService.getEditAccount(SessionHandler.getStringPref(Constants.USER_ID),
-                        mFirstname.getText().toString(), mLastname.getText().toString(), mEmailAddress.getText().toString(),
-                        mUserType.getText().toString(), body, mPassword.getText().toString(), mChangePassword.getText().toString());
+                RequestBody userid = RequestBody.create(okhttp3.MultipartBody.FORM, SessionHandler.getStringPref(Constants.USER_ID));
+                RequestBody firstName = RequestBody.create(okhttp3.MultipartBody.FORM, mFirstname.getText().toString());
+                RequestBody lastname = RequestBody.create(okhttp3.MultipartBody.FORM, mLastname.getText().toString());
+                RequestBody emailAddress = RequestBody.create(okhttp3.MultipartBody.FORM, mEmailAddress.getText().toString());
+                RequestBody userType = RequestBody.create(okhttp3.MultipartBody.FORM, "1");
+                RequestBody password = RequestBody.create(okhttp3.MultipartBody.FORM, mPassword.getText().toString());
+                RequestBody changepassword = RequestBody.create(okhttp3.MultipartBody.FORM, mChangePassword.getText().toString());
+
+                Call<EditAccountAPI.EditAccountResponse> loginCall = apiService.getEditAccount(userid,
+                        firstName, lastname, emailAddress, userType, body, password, changepassword);
                 loginCall.enqueue(new Callback<EditAccountAPI.EditAccountResponse>() {
                     @Override
                     public void onResponse(Call<EditAccountAPI.EditAccountResponse> call, Response<EditAccountAPI.EditAccountResponse> response) {
                         mCustomProgressDialog.dismiss();
                         if (response.body().equals(Constants.SUCCESS)) {
                             Toast.makeText(EditAccount.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            finish();
                         } else {
                             Toast.makeText(EditAccount.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }

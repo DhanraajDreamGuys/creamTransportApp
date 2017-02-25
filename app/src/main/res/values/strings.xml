@@ -140,7 +140,7 @@
     <string name="err_driver">Enter driver</string>
     <string name="tool_edit_trip_title">Edit Trip</string>
     <string name="tool_view_trips_title">View Trip</string>
-    <string name="express"><![CDATA[Express &amp; General]]></string>
+    <string name="express">Express &amp; General</string>
     <string name="no_danger">No dangerous goods</string>
     <string name="product">Product/Market</string>
     <string name="has_danger">Has dangerous goods</string>
@@ -189,4 +189,6 @@
     <string name="tool_accident_title">Accident Report</string>
     <string name="tool_view_accident_title">View Accident Report</string>
     <string name="tool_preview_accident_title">Preview Accident Report</string>
+    <string name="str_search">Please search word</string>
+    <string name="toolbar_dashboard_title">Dashboard</string>
 </resources>

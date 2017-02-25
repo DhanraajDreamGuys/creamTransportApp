@@ -33,6 +33,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
@@ -44,6 +46,7 @@ import co.in.dreamguys.cream.utils.CircularImageView;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
 
+import co.in.dreamguys.cream.utils.SessionHandler;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -264,18 +267,14 @@ public class ViewUsers extends AppCompatActivity implements View.OnClickListener
                         countryName = branch.getId();
                 }
 
-                Call<UpdateUsersAPI.UpdateUsersResponse> repairsheet = apiService.getUpdateUser(mUsersModel.getId(),
-                        mFirstName.getText().toString(), mLastname.getText().toString(), mEmail.getText().toString(),
-                        mPhoneNo.getText().toString(), mStreetNo.getText().toString(), mCity.getText().toString(),
-                        mState.getText().toString(), mCountry.getText().toString(), mPostalCode.getText().toString()
-                        , userType, countryName, currentDate, body);
+                Call<UpdateUsersAPI.UpdateUsersResponse> repairsheet = apiService.getEditUser(sendPartMap(), body);
                 repairsheet.enqueue(new Callback<UpdateUsersAPI.UpdateUsersResponse>() {
                     @Override
                     public void onResponse(Call<UpdateUsersAPI.UpdateUsersResponse> call, Response<UpdateUsersAPI.UpdateUsersResponse> response) {
                         if (response.body().getMeta().equals(Constants.SUCCESS)) {
                             Constants.USERSCLASS.mUserWidget.setAdapter(null);
                             Constants.USERSCLASS.getUserLists();
-                            Constants.USERSCLASS.finish();
+                            finish();
                             Toast.makeText(ViewUsers.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(ViewUsers.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -394,6 +393,55 @@ public class ViewUsers extends AppCompatActivity implements View.OnClickListener
 
         }
         return true;
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mCustomProgressDialog!=null && mCustomProgressDialog.isShowing()){
+            mCustomProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mCustomProgressDialog!=null && mCustomProgressDialog.isShowing()){
+            mCustomProgressDialog.dismiss();
+        }
+    }
+
+    private Map<String, RequestBody> sendPartMap() {
+        RequestBody userid = RequestBody.create(okhttp3.MultipartBody.FORM, SessionHandler.getStringPref(Constants.USER_ID));
+        RequestBody firstName = RequestBody.create(okhttp3.MultipartBody.FORM, mFirstName.getText().toString());
+        RequestBody lastname = RequestBody.create(okhttp3.MultipartBody.FORM, mLastname.getText().toString());
+        RequestBody emailAddress = RequestBody.create(okhttp3.MultipartBody.FORM, mEmail.getText().toString());
+        RequestBody phoneno = RequestBody.create(okhttp3.MultipartBody.FORM, mPhoneNo.getText().toString());
+        RequestBody streetno = RequestBody.create(okhttp3.MultipartBody.FORM, mStreetNo.getText().toString());
+        RequestBody city = RequestBody.create(okhttp3.MultipartBody.FORM, mCity.getText().toString());
+        RequestBody state = RequestBody.create(okhttp3.MultipartBody.FORM, mState.getText().toString());
+        RequestBody country = RequestBody.create(okhttp3.MultipartBody.FORM, mCountry.getText().toString());
+        RequestBody pincode = RequestBody.create(okhttp3.MultipartBody.FORM, mPostalCode.getText().toString());
+        RequestBody usertype = RequestBody.create(okhttp3.MultipartBody.FORM, userType);
+        RequestBody userbranch = RequestBody.create(okhttp3.MultipartBody.FORM, countryName);
+        RequestBody orderAsc = RequestBody.create(okhttp3.MultipartBody.FORM, currentDate);
+
+        Map<String, RequestBody> map = new HashMap<>();
+        map.put(Constants.PARAMS_ID, userid);
+        map.put(Constants.PARAMS_FTNAME, firstName);
+        map.put(Constants.PARAMS_LTNAME, lastname);
+        map.put(Constants.PARAMS_EMAIL, emailAddress);
+        map.put(Constants.PARAMS_PHONE, phoneno);
+        map.put(Constants.PARAMS_STREET, streetno);
+        map.put(Constants.PARAMS_CITY, city);
+        map.put(Constants.PARAMS_STATE, state);
+        map.put(Constants.PARAMS_COUNTRY, country);
+        map.put(Constants.PARAMS_PINCODE, pincode);
+        map.put(Constants.PARAMS_UTYPE, usertype);
+        map.put(Constants.PARAMS_UBRANCH, userbranch);
+        map.put(Constants.PARAMS_CDATE, orderAsc);
+        return map;
     }
 
 }

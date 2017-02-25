@@ -21,6 +21,7 @@
             <FrameLayout
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_gravity="center">
 
                 <co.in.dreamguys.cream.utils.CircularImageView

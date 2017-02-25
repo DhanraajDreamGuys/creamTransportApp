@@ -4,22 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/AD_BC_dashboard_data"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_250sdp"
-        android:visibility="gone" />
-
-
-    <include layout="@layout/activity_toolbar" />
-
 
     <ListView
-        android:id="@+id/AD_GV_dashboard_list"
+        android:id="@+id/DUT_LV_sub_lists"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"
-        android:listSelector="@android:color/transparent"
         android:scrollbars="none" />
 
 </LinearLayout>

@@ -75,7 +75,7 @@ public class Paysheet extends AppCompatActivity implements SearchListViewNotify 
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
                         filldataDetails(response.body().getData());
                     } else {
-                        Log.i(TAG, response.body().getMessage());
+                        Toast.makeText(Paysheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
 

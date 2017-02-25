@@ -17,6 +17,7 @@ import co.in.dreamguys.cream.apis.UserTypeAPI;
 public class Constants {
 
 
+
     public static String USERS_DATA = "user_data";
     public static String USER_ID = "user_id";
     public static String PARAMS_PASSWORD = "password";
@@ -74,8 +75,8 @@ public class Constants {
     public static String PARAMS_LDATE = "ldate";
     public static String PARAMS_DID = "did";
     public static String USERS = "USERS";
-    public static String PARAMS_FIRSTNAME = "fname";
-    public static String PARAMS_LASTTNAME = "lname";
+    public static String PARAMS_FIRSTNAME = "first_name";
+    public static String PARAMS_LASTTNAME = "last_name";
     public static String PARAMS_EMAIL = "email";
     public static String PARAMS_PHONE = "phone";
     public static String PARAMS_STREET = "street";
@@ -83,9 +84,7 @@ public class Constants {
     public static String PARAMS_STATE = "state";
     public static String PARAMS_COUNTRY = "country";
     public static String PARAMS_PINCODE = "pincode";
-    public static String PARAMS_UTYPE = "usrtype";
-    public static String PARAMS_BRNACHID = "brlocation";
-    public static String PARAMS_C_DATE = "c_date";
+
 
 
     public static Users USERSCLASS;
@@ -101,4 +100,12 @@ public class Constants {
     public static String ACCIDENT_REPORT = "ACCIDENT REPORT";
     public static String PREVIEW_ACCIDENT_REPORT = "preview_accident_report";
     public static String CURRENT_IMAGE = "current_image";
+    public static String PARAMS_USER_TYPE = "user_type";
+    public static String PARAMS_USER_BRANCH="user_branch";
+    public static String PARAMS_ORDER_ASC="order_acss";
+    public static String PARAMS_FTNAME="fname";
+    public static String PARAMS_LTNAME="lname";
+    public static String PARAMS_UTYPE="usrtype";
+    public static String PARAMS_UBRANCH = "brlocation";
+    public static String PARAMS_CDATE = "c_date";
 }

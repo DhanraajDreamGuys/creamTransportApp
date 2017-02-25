@@ -3,6 +3,8 @@ package co.in.dreamguys.cream.apis;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by Dhanraaj on 2/21/2017.
  */
@@ -26,7 +28,7 @@ public class DashboardAPI {
         private Integer meta;
         @SerializedName("data")
         @Expose
-        private Data data;
+        private List<Datum> data = null;
         @SerializedName("message")
         @Expose
         private String message;
@@ -47,11 +49,11 @@ public class DashboardAPI {
             this.meta = meta;
         }
 
-        public Data getData() {
+        public List<Datum> getData() {
             return data;
         }
 
-        public void setData(Data data) {
+        public void setData(List<Datum> data) {
             this.data = data;
         }
 
@@ -66,29 +68,40 @@ public class DashboardAPI {
     }
 
 
-    public class Data {
+    public class Datum {
 
-        @SerializedName("user_list")
+        @SerializedName("id")
         @Expose
-        private Integer user_list;
-        @SerializedName("paysheet_list")
+        private Integer id;
+        @SerializedName("name")
         @Expose
-        private Integer paysheet_list;
+        private String name;
+        @SerializedName("count")
+        @Expose
+        private Integer count;
 
-        public Integer getUser_list() {
-            return user_list;
+        public Integer getId() {
+            return id;
         }
 
-        public void setUser_list(Integer user_list) {
-            this.user_list = user_list;
+        public void setId(Integer id) {
+            this.id = id;
         }
 
-        public Integer getPaysheet_list() {
-            return paysheet_list;
+        public String getName() {
+            return name;
         }
 
-        public void setPaysheet_list(Integer paysheet_list) {
-            this.paysheet_list = paysheet_list;
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Integer getCount() {
+            return count;
+        }
+
+        public void setCount(Integer count) {
+            this.count = count;
         }
 
     }

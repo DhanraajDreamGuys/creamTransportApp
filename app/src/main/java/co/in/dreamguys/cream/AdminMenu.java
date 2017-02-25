@@ -11,12 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,12 +49,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static co.in.dreamguys.cream.utils.Constants.From;
-import static co.in.dreamguys.cream.utils.Constants.To;
 import static co.in.dreamguys.cream.utils.Constants.USER_ID;
 import static co.in.dreamguys.cream.utils.Constants.countries;
 import static co.in.dreamguys.cream.utils.Constants.driverList;
-import static co.in.dreamguys.cream.utils.Util.adapterPosition;
 import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 
@@ -314,23 +313,31 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View driverlayout = getLayoutInflater().inflate(R.layout.dialog_sub_items_list, null);
         builder.setView(driverlayout);
-
-        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
-
-
-        DriverListAdapter aDriverListAdapter = new DriverListAdapter(mContext, driverList);
-        mDriverViews.setAdapter(aDriverListAdapter);
         final AlertDialog alert = builder.create();
-        alert.show();
+        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
+        final EditText mSearchWord = (EditText) driverlayout.findViewById(R.id.DSIL_ET_search_word);
 
-        mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final DriverListAdapter aDriverListAdapter = new DriverListAdapter(mContext, driverList, alert, value);
+        mDriverViews.setAdapter(aDriverListAdapter);
+        mSearchWord.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                value.setText(driverList.get(position).getFirst_name() + " " + driverList.get(position).getLast_name());
-                adapterPosition = position;
-                alert.dismiss();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                aDriverListAdapter.setSearchEnabled(true, s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
+        alert.show();
+
+
     }
 
     @Override
@@ -340,25 +347,32 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
         builder.setView(driverlayout);
 
         ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
-
-
-        BranchListAdapter aDriverListAdapter = new BranchListAdapter(mContext, countries);
-        mDriverViews.setAdapter(aDriverListAdapter);
+        final EditText mSearchWord = (EditText) driverlayout.findViewById(R.id.DSIL_ET_search_word);
         final AlertDialog alert = builder.create();
+
+        final BranchListAdapter aDriverListAdapter = new BranchListAdapter(mContext, countries, value, alert, mFromorTo);
+        mDriverViews.setAdapter(aDriverListAdapter);
+
         alert.show();
 
-        mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mSearchWord.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                value.setText(countries.get(position).getName());
-                if (mFromorTo.equalsIgnoreCase("From")) {
-                    From = position;
-                } else {
-                    To = position;
-                }
-                alert.dismiss();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                aDriverListAdapter.setSearchEnabled(true, s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
+
+
     }
 
     @Override
@@ -377,6 +391,8 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
 
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
         fromDatePickerDialog.show();
+        fromDatePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
+
 
 }

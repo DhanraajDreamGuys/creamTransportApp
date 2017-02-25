@@ -1,8 +1,10 @@
 package co.in.dreamguys.cream.apis;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -11,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 
 public interface ApiInterface {
 
@@ -24,10 +27,10 @@ public interface ApiInterface {
 
     @Multipart
     @POST("edit_profile")
-    Call<EditAccountAPI.EditAccountResponse> getEditAccount(@Part("user_id") String user_id, @Part("first_name") String first_name,
-                                                            @Part("last_name") String last_name, @Part("email") String email,
-                                                            @Part("usertype") String usertype, @Part MultipartBody.Part file,
-                                                            @Part("password") String password, @Part("pure_password") String pure_password);
+    Call<EditAccountAPI.EditAccountResponse> getEditAccount(@Part("user_id") RequestBody user_id, @Part("first_name") RequestBody first_name,
+                                                            @Part("last_name") RequestBody last_name, @Part("email") RequestBody email,
+                                                            @Part("usertype") RequestBody usertype, @Part MultipartBody.Part file,
+                                                            @Part("password") RequestBody password, @Part("pure_password") RequestBody pure_password);
 
     @GET("drivers_list")
     Call<DriverListsAPI.DriverResponse> getDriverLists();
@@ -101,17 +104,15 @@ public interface ApiInterface {
     @GET("user_type")
     Call<UserTypeAPI.UsersTypeResponse> getUsersType();
 
-
     @Multipart
     @POST("users_edit")
-    Call<UpdateUsersAPI.UpdateUsersResponse> getUpdateUser(@Part("id") String user_id, @Part("fname") String first_name,
-                                                              @Part("lname") String last_name, @Part("email") String email,
-                                                              @Part("phone") String phone, @Part("street") String street, @Part("city") String city,
-                                                              @Part("state") String state, @Part("country") String country,
-                                                              @Part("pincode") String pincode, @Part("usrtype") String usrtype,
-                                                              @Part("brlocation") String brlocation, @Part("c_date") String c_date,
-                                                              @Part MultipartBody.Part file);
+    Call<UpdateUsersAPI.UpdateUsersResponse> getEditUser(@PartMap() Map<String, RequestBody> partMap,
+                                                        @Part MultipartBody.Part file);
 
+    @Multipart
+    @POST("add_users")
+    Call<UpdateUsersAPI.UpdateUsersResponse> getAddUser(@PartMap() Map<String, RequestBody> partMap,
+                                                        @Part MultipartBody.Part file);
     @FormUrlEncoded
     @POST("delete_user")
     Call<UpdateUsersAPI.UpdateUsersResponse> getDeleteUser(@Field("id") String id);

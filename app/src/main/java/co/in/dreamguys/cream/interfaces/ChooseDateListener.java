@@ -9,4 +9,6 @@ import android.widget.TextView;
 
 public interface ChooseDateListener {
     void getFromDate(Context mContext, TextView value);
+
+
 }

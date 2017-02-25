@@ -4,6 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+    <EditText
+        android:id="@+id/DSIL_ET_search_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/border_gray_box"
+        android:drawableLeft="@drawable/ic_search_gray"
+        android:drawablePadding="@dimen/_10sdp"
+        android:hint="@string/str_search"
+        android:padding="@dimen/_9sdp"
+        android:singleLine="true"
+        android:textSize="@dimen/_12sdp" />
+
     <ListView
         android:id="@+id/DSIL_LV_sub_lists"
         android:layout_width="match_parent"

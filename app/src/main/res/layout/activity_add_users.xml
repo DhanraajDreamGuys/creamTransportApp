@@ -21,6 +21,7 @@
             <FrameLayout
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_gravity="center">
 
                 <co.in.dreamguys.cream.utils.CircularImageView
@@ -110,6 +111,7 @@
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_email_id"
+                    android:inputType="textEmailAddress"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -142,6 +144,7 @@
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_phone"
                     android:padding="@dimen/_8sdp"
+                    android:inputType="phone"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
 

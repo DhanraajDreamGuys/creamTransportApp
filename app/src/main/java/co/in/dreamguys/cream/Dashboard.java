@@ -1,19 +1,28 @@
 package co.in.dreamguys.cream;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
@@ -36,8 +45,8 @@ public class Dashboard extends AppCompatActivity {
     BarDataSet dataset;
     CustomProgressDialog mCustomProgressDialog;
     private static String TAG = Dashboard.class.getSimpleName();
-
-    GridView mDashBoardWidget;
+    Toolbar mToolbar;
+    ListView mDashBoardWidget;
 
 
     @Override
@@ -49,11 +58,6 @@ public class Dashboard extends AppCompatActivity {
         mCustomProgressDialog = new CustomProgressDialog(this);
 
         getDashboardData();
-/*
-        createDataSet();
-        defineXaxislabels();
-        createChart();*/
-
 
     }
 
@@ -81,42 +85,79 @@ public class Dashboard extends AppCompatActivity {
         });
     }
 
-    private void fillDashboardData(DashboardAPI.Data data) {
-
+    private void fillDashboardData(List<DashboardAPI.Datum> data) {
+        DashboardAdpater aDashboardAdpater = new DashboardAdpater(Dashboard.this, data);
+        mDashBoardWidget.setAdapter(aDashboardAdpater);
+        aDashboardAdpater.notifyDataSetChanged();
     }
 
     private void initWidgets() {
-//        mBarChart = (BarChart) findViewById(R.id.AD_BC_dashboard_data);
-        mDashBoardWidget = (GridView) findViewById(R.id.AD_GV_dashboard_list);
+        mToolbar = (Toolbar) findViewById(R.id.ATTB_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mToolbar.setTitle(getString(R.string.toolbar_dashboard_title));
+        mToolbar.setTitleTextColor(Color.WHITE);
+
+        mDashBoardWidget = (ListView) findViewById(R.id.AD_GV_dashboard_list);
     }
 
-    private void createChart() {
-        BarData data = new BarData(dataset);
-        mBarChart.setData(data);
-        mBarChart.animateY(5000);
+    private class DashboardAdpater extends BaseAdapter {
+        Context mContext;
+        List<DashboardAPI.Datum> data;
+        LayoutInflater mInflater;
+
+        DashboardAdpater(Context mContext, List<DashboardAPI.Datum> data) {
+            this.mContext = mContext;
+            this.data = data;
+            mInflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public int getCount() {
+            return data.size();
+        }
+
+        @Override
+        public DashboardAPI.Datum getItem(int position) {
+            return data.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder mHolder;
+            if (convertView == null) {
+                mHolder = new ViewHolder();
+                convertView = mInflater.inflate(R.layout.adapter_dashboard, null);
+                mHolder.mCount = (TextView) convertView.findViewById(R.id.AD_TV_count);
+                mHolder.mName = (TextView) convertView.findViewById(R.id.AD_TV_name);
+                convertView.setTag(mHolder);
+            } else {
+                mHolder = (ViewHolder) convertView.getTag();
+            }
+
+            mHolder.mCount.setText("" + data.get(position).getCount());
+            mHolder.mName.setText(data.get(position).getName());
+
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView mCount, mName;
+        }
     }
 
-    private void defineXaxislabels() {
-        labels = new ArrayList<String>();
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-    }
-
-    private void createDataSet() {
-        entries = new ArrayList<>();
-        entries.add(new BarEntry(4f, 0));
-        entries.add(new BarEntry(8f, 1));
-        entries.add(new BarEntry(6f, 2));
-        entries.add(new BarEntry(12f, 3));
-        entries.add(new BarEntry(18f, 4));
-        entries.add(new BarEntry(9f, 5));
-        dataset = new BarDataSet(entries, "# of Calls");
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-        /*for (String label : labels)
-            dataset.setLabel(label);*/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

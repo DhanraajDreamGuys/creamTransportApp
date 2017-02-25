@@ -65,7 +65,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener {
                         mFirstname.setText(response.body().getData().get(0).getFirst_name());
                         mLastname.setText(response.body().getData().get(0).getLast_name());
                         mEmailAddress.setText(response.body().getData().get(0).getEmail());
-                        if (response.body().getData().get(0).getUser_type().equals(1)) {
+                        if (response.body().getData().get(0).getUser_type().equalsIgnoreCase("1")) {
                             mUserType.setText(getString(R.string.str_administrator));
                         }
                     } else {

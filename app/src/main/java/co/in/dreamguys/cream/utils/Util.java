@@ -6,6 +6,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.util.TypedValue;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -559,31 +562,39 @@ public class Util {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         View driverlayout = mInflater.inflate(R.layout.dialog_sub_items_list, null);
         builder.setView(driverlayout);
-
-        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
-
-
-        CountryListAdapter aCountryListAdapter = new CountryListAdapter(mContext, Constants.countrieslist);
-        mDriverViews.setAdapter(aCountryListAdapter);
         final AlertDialog alert = builder.create();
-        alert.show();
+        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
+        final EditText mSearchWord = (EditText) driverlayout.findViewById(R.id.DSIL_ET_search_word);
 
-        mDriverViews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final CountryListAdapter aCountryListAdapter = new CountryListAdapter(mContext, Constants.countrieslist, alert, mCountry);
+        mDriverViews.setAdapter(aCountryListAdapter);
+        mSearchWord.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mCountry.setText(Constants.countrieslist.get(position).getCountry());
-                alert.dismiss();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                aCountryListAdapter.setSearchEnabled(true, s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
+
+        alert.show();
+
     }
 
     public static void buildUserTypeAlert(Context mContext, LayoutInflater mInflater, final TextView mUserType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        View driverlayout = mInflater.inflate(R.layout.dialog_sub_items_list, null);
+        View driverlayout = mInflater.inflate(R.layout.dialog_user_type, null);
         builder.setView(driverlayout);
 
-        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DSIL_LV_sub_lists);
-
+        ListView mDriverViews = (ListView) driverlayout.findViewById(R.id.DUT_LV_sub_lists);
 
         UserTypeListAdapter aUserTypeListAdapter = new UserTypeListAdapter(mContext, usertype);
         mDriverViews.setAdapter(aUserTypeListAdapter);

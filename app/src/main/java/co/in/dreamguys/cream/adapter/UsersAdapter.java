@@ -17,6 +17,7 @@ import java.util.List;
 
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.ViewUsers;
+import co.in.dreamguys.cream.apis.UserTypeAPI;
 import co.in.dreamguys.cream.model.UsersModel;
 import co.in.dreamguys.cream.utils.Constants;
 
@@ -85,16 +86,12 @@ public class UsersAdapter extends BaseAdapter {
         String sCertDate = dateFormatYouWant.format(d1);
         mHolder.mDate.setText(sCertDate);
 
-        if (mUsersModel.getUser_type().equalsIgnoreCase("1")) {
-            mHolder.mUserType.setText(mContext.getString(R.string.str_on_leave));
-        } else if (mUsersModel.getUser_type().equalsIgnoreCase("2")) {
-            mHolder.mUserType.setText(mContext.getString(R.string.str_main_driver));
-        } else if (mUsersModel.getUser_type().equalsIgnoreCase("3")) {
-            mHolder.mUserType.setText(mContext.getString(R.string.str_change_over_driver));
-        } else if (mUsersModel.getUser_type().equalsIgnoreCase("4")) {
-            mHolder.mUserType.setText(mContext.getString(R.string.str_mechanic));
-        }
 
+        for (UserTypeAPI.Datum usertype: Constants.usertype){
+            if (usertype.getId().equalsIgnoreCase(mUsersModel.getUser_type())){
+                mHolder.mUserType.setText(usertype.getName());
+            }
+        }
 
         if (mUsersModel.getStatus().equalsIgnoreCase("0")) {
             mHolder.mStatus.setImageResource(R.drawable.ic_user_online);
