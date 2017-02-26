@@ -107,12 +107,13 @@ public interface ApiInterface {
     @Multipart
     @POST("users_edit")
     Call<UpdateUsersAPI.UpdateUsersResponse> getEditUser(@PartMap() Map<String, RequestBody> partMap,
-                                                        @Part MultipartBody.Part file);
+                                                         @Part MultipartBody.Part file);
 
     @Multipart
     @POST("add_users")
     Call<UpdateUsersAPI.UpdateUsersResponse> getAddUser(@PartMap() Map<String, RequestBody> partMap,
                                                         @Part MultipartBody.Part file);
+
     @FormUrlEncoded
     @POST("delete_user")
     Call<UpdateUsersAPI.UpdateUsersResponse> getDeleteUser(@Field("id") String id);
@@ -131,4 +132,16 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("accident_search_result")
     Call<AccidentReportAPI.AccidentReportResponse> getSearchAccidentResports(@FieldMap HashMap<String, String> meta);
+
+    @GET("fuelsheet_current_list")
+    Call<FuelsheetAPI.FuelSheetListResponse> getFuelsheetLists();
+
+    @FormUrlEncoded
+    @POST("fuelsheet_search_result")
+    Call<FuelsheetAPI.FuelSheetListResponse> getFuelsheetLists(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("delete_fuelsheet")
+    Call<UpdateUsersAPI.UpdateUsersResponse> getDeleteFuelSheet(@Field("id") String id);
+
 }

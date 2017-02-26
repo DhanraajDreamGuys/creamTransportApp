@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/MAR_search_accident_report"
-        android:icon="@drawable/ic_searchs"
+        android:icon="@drawable/ic_filter"
         android:title="@string/action_search"
         app:showAsAction="ifRoom" />
 </menu>

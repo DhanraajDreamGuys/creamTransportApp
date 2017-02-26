@@ -39,6 +39,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static co.in.dreamguys.cream.utils.Util.getDateFormat;
 import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 /**
@@ -150,7 +151,8 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
 
     private void upateViewTrip() {
         mEditChooseDriver.setText(mTripsheet.getFirst_name() + " " + mTripsheet.getLast_name());
-        mEditDate.setText(mTripsheet.getCreated_date());
+        String cdate = getDateFormat(mTripsheet.getCreated_date());
+        mEditDate.setText(cdate);
         mEditTruckNo.setText(mTripsheet.getTruck());
         for (int i = 0; i < Constants.countries.size(); i++) {
             if (Constants.countries.get(i).getId().equalsIgnoreCase(mTripsheet.getFrom())) {
@@ -206,10 +208,8 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
         mEditChangeOver.setText(covertedObject.get("ctruck").toString().replace("\"", ""));
         mEditDriver.setText(covertedObject.get("cdriver").toString().replace("\"", ""));
 
-
         String[] mLoadType = mTripsheet.getLoad_type().split(",");
         for (String aMLoadType : mLoadType) {
-
             if (aMLoadType.equalsIgnoreCase("Express and General")) {
                 mEditExpress.setChecked(true);
                 checkedExpress = aMLoadType;
@@ -384,15 +384,15 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.AET_TV_choose_driver) {
-            Constants.AdminMenu.getDrivers(ViewTripsheet.this, mChooseDriver);
+            Constants.AdminMenu.getDrivers(ViewTripsheet.this, mEditChooseDriver);
         } else if (v.getId() == R.id.AET_TV_from) {
-            Constants.AdminMenu.getLocations(ViewTripsheet.this, mFrom, Constants.FromString);
+            Constants.AdminMenu.getLocations(ViewTripsheet.this, mEditFrom, Constants.FromString);
         } else if (v.getId() == R.id.AET_TV_to) {
-            Constants.AdminMenu.getLocations(ViewTripsheet.this, mTo, Constants.ToString);
+            Constants.AdminMenu.getLocations(ViewTripsheet.this, mEditTo, Constants.ToString);
         } else if (v.getId() == R.id.AET_TV_date) {
-            Constants.AdminMenu.getFromDate(ViewTripsheet.this, mDate);
+            Constants.AdminMenu.getFromDate(ViewTripsheet.this, mEditDate);
         } else if (v.getId() == R.id.AET_TV_set_date) {
-            Constants.AdminMenu.getFromDate(ViewTripsheet.this, mSetDate);
+            Constants.AdminMenu.getFromDate(ViewTripsheet.this, mEditSetDate);
         } else if (v.getId() == R.id.AET_BT_send) {
             upadteTrip();
         } else if (v.getId() == R.id.AET_BT_cancel) {
@@ -464,6 +464,7 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
                     mCustomProgressDialog.dismiss();
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
                         Toast.makeText(ViewTripsheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Constants.TRIPCLASS.searchNotify();
                         finish();
                     } else {
                         Toast.makeText(ViewTripsheet.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -540,6 +541,7 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
         params.put(Constants.PARAMS_CTRUCK, mEditChangeOver.getText().toString());
         params.put(Constants.PARAMS_CDRIVER, mEditDriver.getText().toString());
         params.put(Constants.PARAMS_ITYPE, checkedItems);
+        Log.i(TAG, checkedItems);
         params.put(Constants.PARAMS_SDATE, mEditDate.getText().toString());
         params.put(Constants.PARAMS_LDATE, mEditSetDate.getText().toString());
         params.put(Constants.PARAMS_FROM, Constants.countries.get(Constants.From).getId());

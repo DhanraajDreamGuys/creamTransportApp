@@ -9,7 +9,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/MAT_search_trip"
-        android:icon="@drawable/ic_searchs"
+        android:icon="@drawable/ic_filter"
         android:title="@string/action_search"
         app:showAsAction="ifRoom" />
 </menu>

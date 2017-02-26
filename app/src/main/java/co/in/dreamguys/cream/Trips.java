@@ -41,7 +41,7 @@ import static co.in.dreamguys.cream.utils.Util.searchPopUpWindow;
  * Created by user5 on 17-02-2017.
  */
 
-public class Trips extends AppCompatActivity implements TripsheetInterface,SearchListViewNotify {
+public class Trips extends AppCompatActivity implements TripsheetInterface, SearchListViewNotify {
     Toolbar mToolbar;
     PopupWindow mPopsearch;
     ListView mTripWidget;
@@ -52,6 +52,7 @@ public class Trips extends AppCompatActivity implements TripsheetInterface,Searc
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trips);
+        Constants.TRIPCLASS = this;
         mPopsearch = new PopupWindow(this);
         mCustomProgressDialog = new CustomProgressDialog(this);
         intiWidgets();

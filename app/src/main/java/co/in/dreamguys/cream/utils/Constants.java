@@ -2,8 +2,10 @@ package co.in.dreamguys.cream.utils;
 
 import java.util.List;
 
+import co.in.dreamguys.cream.Fuelsheet;
 import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.RepairSheet;
+import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.apis.BranchAPI;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
@@ -15,7 +17,6 @@ import co.in.dreamguys.cream.apis.UserTypeAPI;
  */
 
 public class Constants {
-
 
 
     public static String USERS_DATA = "user_data";
@@ -86,7 +87,6 @@ public class Constants {
     public static String PARAMS_PINCODE = "pincode";
 
 
-
     public static Users USERSCLASS;
     public static List<ListCountriesAPI.Datum> countrieslist;
     public static List<UserTypeAPI.Datum> usertype;
@@ -101,11 +101,16 @@ public class Constants {
     public static String PREVIEW_ACCIDENT_REPORT = "preview_accident_report";
     public static String CURRENT_IMAGE = "current_image";
     public static String PARAMS_USER_TYPE = "user_type";
-    public static String PARAMS_USER_BRANCH="user_branch";
-    public static String PARAMS_ORDER_ASC="order_acss";
-    public static String PARAMS_FTNAME="fname";
-    public static String PARAMS_LTNAME="lname";
-    public static String PARAMS_UTYPE="usrtype";
+    public static String PARAMS_USER_BRANCH = "user_branch";
+    public static String PARAMS_ORDER_ASC = "order_acss";
+    public static String PARAMS_FTNAME = "fname";
+    public static String PARAMS_LTNAME = "lname";
+    public static String PARAMS_UTYPE = "usrtype";
     public static String PARAMS_UBRANCH = "brlocation";
     public static String PARAMS_CDATE = "c_date";
+    public static String FUEL_SHEET = "fuel_sheet";
+    public static String FUELSHEET = "FUELSHEET";
+    public static String FUEL_SHEET_DATA = "fuel_sheet_data";
+    public static Fuelsheet FUELSHEETCLASS;
+    public static Trips TRIPCLASS;
 }

@@ -32,6 +32,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static co.in.dreamguys.cream.utils.Constants.From;
+import static co.in.dreamguys.cream.utils.Constants.To;
 import static co.in.dreamguys.cream.utils.Util.adapterPosition;
 import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
@@ -229,6 +231,7 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
                     mCustomProgressDialog.dismiss();
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
                         Toast.makeText(AddNewTrip.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Constants.TRIPCLASS.searchNotify();
                         finish();
                     } else {
                         Toast.makeText(AddNewTrip.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -301,9 +304,10 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
         params.put(Constants.PARAMS_CTRUCK, mChangeOver.getText().toString());
         params.put(Constants.PARAMS_CDRIVER, mDriver.getText().toString());
         params.put(Constants.PARAMS_ITYPE, checkedItems);
-        params.put(Constants.PARAMS_SDATE, mSetDate.getText().toString());
-        params.put(Constants.PARAMS_FROM, Constants.countries.get(Constants.From).getId());
-        params.put(Constants.PARAMS_TRIP_TO, Constants.countries.get(Constants.To).getId());
+        params.put(Constants.PARAMS_SDATE, mDate.getText().toString());
+        params.put(Constants.PARAMS_LDATE, mSetDate.getText().toString());
+        params.put(Constants.PARAMS_FROM, Constants.countries.get(From).getId());
+        params.put(Constants.PARAMS_TRIP_TO, Constants.countries.get(To).getId());
         params.put(Constants.PARAMS_ADMIN_COMMENT, mComments.getText().toString());
         return params;
     }

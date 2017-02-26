@@ -191,4 +191,15 @@
     <string name="tool_preview_accident_title">Preview Accident Report</string>
     <string name="str_search">Please search word</string>
     <string name="toolbar_dashboard_title">Dashboard</string>
+    <string name="str_current_km">Current KM</string>
+    <string name="str_previous_km">Previous KM</string>
+    <string name="str_diseal">Diseal</string>
+    <string name="str_oil">Oil</string>
+    <string name="str_mileage">Mileage</string>
+    <string name="toolbar_view_fuel_title">View Fuelsheet</string>
+    <string name="toolbar_edit_fuel_title">Edit Fuelsheet</string>
+    <string name="err_location">Location</string>
+    <string name="toolbar_fuel_title">Fuelsheet</string>
+    <string name="truck">Truck no</string>
+    <string name="search_truck_no">Search Truck</string>
 </resources>

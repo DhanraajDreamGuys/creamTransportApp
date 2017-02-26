@@ -9,7 +9,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/MAU_search_trip"
-        android:icon="@drawable/ic_searchs"
+        android:icon="@drawable/ic_filter"
         android:title="@string/action_search"
         android:visible="false"
         app:showAsAction="ifRoom" />

@@ -45,8 +45,6 @@ import co.in.dreamguys.cream.model.UsersModel;
 import co.in.dreamguys.cream.utils.CircularImageView;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
-
-import co.in.dreamguys.cream.utils.SessionHandler;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -399,7 +397,7 @@ public class ViewUsers extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onStop() {
         super.onStop();
-        if (mCustomProgressDialog!=null && mCustomProgressDialog.isShowing()){
+        if (mCustomProgressDialog != null && mCustomProgressDialog.isShowing()) {
             mCustomProgressDialog.dismiss();
         }
     }
@@ -407,13 +405,13 @@ public class ViewUsers extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mCustomProgressDialog!=null && mCustomProgressDialog.isShowing()){
+        if (mCustomProgressDialog != null && mCustomProgressDialog.isShowing()) {
             mCustomProgressDialog.dismiss();
         }
     }
 
     private Map<String, RequestBody> sendPartMap() {
-        RequestBody userid = RequestBody.create(okhttp3.MultipartBody.FORM, SessionHandler.getStringPref(Constants.USER_ID));
+        RequestBody userid = RequestBody.create(okhttp3.MultipartBody.FORM, mUsersModel.getId());
         RequestBody firstName = RequestBody.create(okhttp3.MultipartBody.FORM, mFirstName.getText().toString());
         RequestBody lastname = RequestBody.create(okhttp3.MultipartBody.FORM, mLastname.getText().toString());
         RequestBody emailAddress = RequestBody.create(okhttp3.MultipartBody.FORM, mEmail.getText().toString());

@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import co.in.dreamguys.cream.Accidentreport;
+import co.in.dreamguys.cream.Fuelsheet;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
@@ -43,6 +44,7 @@ import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.adapter.AccidentReportAdapter;
 import co.in.dreamguys.cream.adapter.CountryListAdapter;
+import co.in.dreamguys.cream.adapter.FuelSheetAdapter;
 import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.adapter.TripAdapter;
@@ -50,10 +52,13 @@ import co.in.dreamguys.cream.adapter.UserTypeListAdapter;
 import co.in.dreamguys.cream.apis.AccidentReportAPI;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
+import co.in.dreamguys.cream.apis.FuelsheetAPI;
 import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
 import co.in.dreamguys.cream.apis.RepairsheetCurrentDayAPI;
 import co.in.dreamguys.cream.apis.TripListAPI;
 import co.in.dreamguys.cream.model.Data;
+import co.in.dreamguys.cream.model.FuelSheetData;
+import co.in.dreamguys.cream.model.FuelSheetModel;
 import co.in.dreamguys.cream.model.PaysheetReport;
 import co.in.dreamguys.cream.model.RepairSheetData;
 import co.in.dreamguys.cream.model.RepairSheetReport;
@@ -74,11 +79,13 @@ public class Util {
     private static CustomProgressDialog mCustomProgressDialog;
     public static int adapterPosition;
     public static TripListReport mTripReport = new TripListReport();
+    public static FuelSheetData mFuelSheetData = new FuelSheetData();
     public static TripAdapter aTripAdapter;
     private static int TYPE_WIFI = 1;
     private static int TYPE_MOBILE = 2;
     private static int TYPE_NOT_CONNECTED = 0;
-    public static AccidentReportAdapter aAccidentReportAdapter;
+    private static AccidentReportAdapter aAccidentReportAdapter;
+    public static FuelSheetAdapter aFuelSheetAdapter;
 
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
@@ -319,6 +326,29 @@ public class Util {
                             });
                             break;
 
+                        case "FUELSHEET":
+                            Call<FuelsheetAPI.FuelSheetListResponse> fuelSheetCall = apiService.getFuelsheetLists(sendValueWithRetrofit(mFromDate, mFromTo));
+
+                            fuelSheetCall.enqueue(new Callback<FuelsheetAPI.FuelSheetListResponse>() {
+                                @Override
+                                public void onResponse(Call<FuelsheetAPI.FuelSheetListResponse> call, Response<FuelsheetAPI.FuelSheetListResponse> response) {
+                                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                                        fillFuelSheetData(mContext, response.body().getData(), mPaysheetView);
+                                    } else {
+                                        mPaysheetView.setAdapter(null);
+                                        Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    mCustomProgressDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onFailure(Call<FuelsheetAPI.FuelSheetListResponse> call, Throwable t) {
+                                    Log.i(((Fuelsheet) mContext).getPackageName(), t.getMessage());
+                                    mCustomProgressDialog.dismiss();
+                                }
+                            });
+                            break;
+
                     }
 
 
@@ -352,6 +382,12 @@ public class Util {
                         ((Accidentreport) mContext).searchNotify();
                         listAdjustableMethod(popupSearch, mPaysheetView);
                         break;
+
+                    case "FUELSHEET":
+                        mPaysheetView.setAdapter(null);
+                        ((Fuelsheet) mContext).searchNotify();
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
                 }
 
 
@@ -363,7 +399,6 @@ public class Util {
             int actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, mContext.getResources().getDisplayMetrics());
             popupSearch.showAtLocation(searchView, Gravity.TOP, 0, actionBarHeight + 60);
         }
-
 
     }
 
@@ -543,7 +578,9 @@ public class Util {
                     case "USERS":
                         ((Users) mContext).delete(delete_id, position);
                         break;
-
+                    case "FUELSHEET":
+                        ((Fuelsheet) mContext).delete(delete_id, position);
+                        break;
                 }
                 dialog.dismiss();
             }
@@ -608,5 +645,35 @@ public class Util {
                 alert.dismiss();
             }
         });
+    }
+
+    public static void fillFuelSheetData(Context mContext, List<FuelsheetAPI.Datum> data, ListView mPaysheetView) {
+        ArrayList<FuelSheetModel> mFuelListData;
+        mFuelListData = new ArrayList<FuelSheetModel>();
+        for (FuelsheetAPI.Datum mData : data) {
+            FuelSheetModel mFuelSheetModel = new FuelSheetModel();
+            mFuelSheetModel.setFdate(mData.getFdate());
+            mFuelSheetModel.setTruckNo(mData.getTruckNo());
+            mFuelSheetModel.setTrailerNo(mData.getTrailerNo());
+            mFuelSheetModel.setTrlDiesel(mData.getTrlDiesel());
+            mFuelSheetModel.setTrlOil(mData.getTrlOil());
+            mFuelSheetModel.setPlace(mData.getPlace());
+            mFuelSheetModel.setCurKm(mData.getCurKm());
+            mFuelSheetModel.setPreKm(mData.getPreKm());
+            mFuelSheetModel.setDiesel(mData.getDiesel());
+            mFuelSheetModel.setOil(mData.getOil());
+            mFuelSheetModel.setEmail(mData.getEmail());
+            mFuelSheetModel.setFid(mData.getFid());
+            mFuelSheetModel.setFirstName(mData.getFirstName());
+            mFuelSheetModel.setLastName(mData.getLastName());
+            mFuelListData.add(mFuelSheetModel);
+            mFuelSheetData.setData(mFuelListData);
+        }
+
+        if (mFuelSheetData.getData().size() > 0) {
+            aFuelSheetAdapter = new FuelSheetAdapter(mContext, mFuelSheetData.getData());
+            mPaysheetView.setAdapter(aFuelSheetAdapter);
+            aFuelSheetAdapter.notifyDataSetChanged();
+        }
     }
 }
