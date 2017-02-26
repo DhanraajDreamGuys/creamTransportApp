@@ -425,6 +425,7 @@ public class Util {
             mTripList.setRtbd(datas.getRtbd());
             mTripList.setStatus(datas.getStatus()); // 0 - wait , 1 - accept, 2 - denied
             mTripList.setTid(datas.getTid());
+            mTripList.setTrip_id(datas.getTrip_id());
             mTripList.setTo(datas.getTo());
             mTripList.setTrailers(datas.getTrailers());
             mTripList.setTruck(datas.getTruck());

@@ -309,6 +309,7 @@ public class AddNewTrip extends AppCompatActivity implements View.OnClickListene
         params.put(Constants.PARAMS_FROM, Constants.countries.get(From).getId());
         params.put(Constants.PARAMS_TRIP_TO, Constants.countries.get(To).getId());
         params.put(Constants.PARAMS_ADMIN_COMMENT, mComments.getText().toString());
+
         return params;
     }
 }

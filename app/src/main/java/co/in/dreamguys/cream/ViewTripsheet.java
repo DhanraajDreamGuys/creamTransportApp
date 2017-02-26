@@ -210,7 +210,7 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
 
         String[] mLoadType = mTripsheet.getLoad_type().split(",");
         for (String aMLoadType : mLoadType) {
-            if (aMLoadType.equalsIgnoreCase("Express and General")) {
+            if (aMLoadType.equalsIgnoreCase(getString(R.string.express))) {
                 mEditExpress.setChecked(true);
                 checkedExpress = aMLoadType;
             }
@@ -279,7 +279,7 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
         String[] mLoadType = mTripsheet.getLoad_type().split(",");
         for (String aMLoadType : mLoadType) {
 
-            if (aMLoadType.equalsIgnoreCase("Express and General")) {
+            if (aMLoadType.equalsIgnoreCase(getString(R.string.express))) {
                 mExpress.setChecked(true);
             }
             if (aMLoadType.equalsIgnoreCase(getString(R.string.no_danger))) {
@@ -513,11 +513,13 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
 
     private HashMap<String, String> sendValueWithRetrofit() {
         HashMap<String, String> params = new HashMap<>();
-        params.put(Constants.PARAMS_TRIP_ID, mTripsheet.getTid());
+        params.put(Constants.PARAMS_TRIP_ID, mTripsheet.getTrip_id());
         for (DriverListsAPI.Datum data : Constants.driverList) {
             String appendValues = data.getFirst_name() + " " + data.getLast_name();
-            if (appendValues.equalsIgnoreCase(mEditChooseDriver.getText().toString().trim()))
+            if (appendValues.trim().equalsIgnoreCase(mEditChooseDriver.getText().toString().trim())) {
                 params.put(Constants.PARAMS_USER_ID, data.getId());
+                Log.i(TAG, data.getId());
+            }
         }
         params.put(Constants.PARAMS_TRUCK_NO, mEditTruckNo.getText().toString());
         if (mEditDynamicET != null && mAllEditText.size() > 0) {
@@ -531,7 +533,7 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
             trailers = mEditTrailers.getText().toString();
             params.put(Constants.PARAMS_TRAILERS, trailers);
         }
-        Log.i(TAG, trailers);
+//        Log.i(TAG, trailers);
         params.put(Constants.PARAMS_MNO, mEditManifestNo.getText().toString());
         params.put(Constants.PARAMS_DOLLYNO, mEditDollyNo.getText().toString());
         params.put(Constants.PARAMS_LTIME, mEditLoadavailable.getText().toString());
@@ -541,13 +543,13 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
         params.put(Constants.PARAMS_CTRUCK, mEditChangeOver.getText().toString());
         params.put(Constants.PARAMS_CDRIVER, mEditDriver.getText().toString());
         params.put(Constants.PARAMS_ITYPE, checkedItems);
-        Log.i(TAG, checkedItems);
+//        Log.i(TAG, checkedItems);
         params.put(Constants.PARAMS_SDATE, mEditDate.getText().toString());
         params.put(Constants.PARAMS_LDATE, mEditSetDate.getText().toString());
         params.put(Constants.PARAMS_FROM, Constants.countries.get(Constants.From).getId());
         params.put(Constants.PARAMS_TRIP_TO, Constants.countries.get(Constants.To).getId());
         params.put(Constants.PARAMS_ADMIN_COMMENT, mEditComments.getText().toString());
-        params.put(Constants.PARAMS_DID, mTripsheet.getTid());
+        params.put(Constants.PARAMS_DID, mTripsheet.getTrip_id());
         return params;
     }
 }

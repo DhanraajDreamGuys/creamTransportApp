@@ -12,6 +12,9 @@ public class TripList {
     @SerializedName("tid")
     @Expose
     private String tid;
+    @SerializedName("trip_id")
+    @Expose
+    private String trip_id;
     @SerializedName("from")
     @Expose
     private String from;
@@ -239,6 +242,14 @@ public class TripList {
 
     public void setAdmin_cmt(String admin_cmt) {
         this.admin_cmt = admin_cmt;
+    }
+
+    public String getTrip_id() {
+        return trip_id;
+    }
+
+    public void setTrip_id(String trip_id) {
+        this.trip_id = trip_id;
     }
 }
 

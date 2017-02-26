@@ -3,6 +3,8 @@ package co.in.dreamguys.cream.apis;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by user5 on 17-02-2017.
  */
@@ -26,7 +28,7 @@ public class UpdateSheetAPI {
         private Integer meta;
         @SerializedName("data")
         @Expose
-        private Boolean data;
+        private List<Object> data;
         @SerializedName("message")
         @Expose
         private String message;
@@ -47,11 +49,11 @@ public class UpdateSheetAPI {
             this.meta = meta;
         }
 
-        public Boolean getData() {
+        public List<Object> getData() {
             return data;
         }
 
-        public void setData(Boolean data) {
+        public void setData(List<Object> data) {
             this.data = data;
         }
 
