@@ -233,4 +233,9 @@
     <string name="tool_view_engine_codec_title">View Engine Codec</string>
     <string name="tool_edit_engine_codec_title">Edit Engine Codec</string>
     <string name="action_engine_codec">Add</string>
+    <string name="From">From</string>
+    <string name="To">To</string>
+    <string name="hours">Hours</string>
+    <string name="str_close">Close</string>
+    <string name="str_add">Add</string>
 </resources>

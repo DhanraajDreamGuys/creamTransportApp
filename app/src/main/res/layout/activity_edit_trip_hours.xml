@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/border_gray_box"
+            android:padding="@dimen/_6sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_locations" />
+
+
+        <EditText
+            android:id="@+id/AAU_ET_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/border_gray_box"
+            android:drawableRight="@drawable/down_arrow"
+            android:hint="@string/From"
+            android:padding="@dimen/_8sdp"
+            android:singleLine="true"
+            android:textSize="@dimen/_12sdp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/AAU_ET_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/border_gray_box"
+        android:drawableRight="@drawable/down_arrow"
+        android:hint="@string/To"
+        android:padding="@dimen/_8sdp"
+        android:singleLine="true"
+        android:textSize="@dimen/_12sdp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/border_gray_box"
+            android:padding="@dimen/_6sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_hours" />
+
+
+        <EditText
+            android:id="@+id/AAU_ET_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/border_gray_box"
+            android:hint="@string/hours"
+            android:padding="@dimen/_8sdp"
+            android:singleLine="true"
+            android:textSize="@dimen/_12sdp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/AAU_BT_save"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/button_background"
+            android:drawableLeft="@drawable/ic_save_as"
+            android:drawablePadding="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/str_save_changes"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
