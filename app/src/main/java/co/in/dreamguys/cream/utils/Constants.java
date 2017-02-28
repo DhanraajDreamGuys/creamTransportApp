@@ -7,6 +7,7 @@ import co.in.dreamguys.cream.FridgeCodec;
 import co.in.dreamguys.cream.Fuelsheet;
 import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.RepairSheet;
+import co.in.dreamguys.cream.TripHours;
 import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.apis.BranchAPI;
@@ -126,4 +127,10 @@ public class Constants {
     public static EngineCodec ENGINE_CODEC;
     public static String ENGINE_CODEC_STRING = "ENGINE CODEC";
     public static String ENGINE_CODE_DATA = "engine_codec_data";
+    public static String EDIT_TRIP_HR_DATA = "trip_hours_data";
+    public static String PARAMS_EDIT_ID = "edit_id";
+    public static String PARAMS_TRIP_HOUR = "trip_hour";
+    public static String PARAMS_FROM_TRIP = "from_trip";
+    public static String PARAMS_TO_TRIP = "to_trip";
+    public static TripHours TRIPHOURS;
 }

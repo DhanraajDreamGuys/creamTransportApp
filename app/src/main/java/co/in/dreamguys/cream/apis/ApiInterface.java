@@ -181,4 +181,12 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("enginecode_codes")
     Call<FridgeCodeAPI.FridgecodeResponse> getEngineCodeList(@Field("type") String type);
+
+    @GET("trip_hours_list")
+    Call<TripHoursAPI.TripHoursResponse> getTripHoursLists();
+
+    @FormUrlEncoded
+    @POST("trip_edit_hour")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addTripHours(@FieldMap HashMap<String, String> meta);
+
 }

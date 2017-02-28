@@ -238,4 +238,11 @@
     <string name="hours">Hours</string>
     <string name="str_close">Close</string>
     <string name="str_add">Add</string>
+    <string name="str_word_search">Type no</string>
+    <string name="tool_trips_hours_title">TripHours</string>
+    <string name="tool_edit_trips_hours_title">Edit Trip Hours</string>
+    <string name="err_hours">Enter hours</string>
+    <string name="choose_to">Please select destination location</string>
+    <string name="choose_from">Please select source location</string>
+    <string name="tool_add_trips_hours_title">Add Trip Hours</string>
 </resources>

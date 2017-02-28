@@ -23,8 +23,8 @@
             android:src="@drawable/ic_locations" />
 
 
-        <EditText
-            android:id="@+id/AAU_ET_firstname"
+        <TextView
+            android:id="@+id/AETH_ET_from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
@@ -33,13 +33,14 @@
             android:drawableRight="@drawable/down_arrow"
             android:hint="@string/From"
             android:padding="@dimen/_8sdp"
+            android:gravity="center_vertical"
             android:singleLine="true"
             android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/AAU_ET_city"
+    <TextView
+        android:id="@+id/AETH_ET_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_50sdp"
@@ -48,6 +49,7 @@
         android:background="@drawable/border_gray_box"
         android:drawableRight="@drawable/down_arrow"
         android:hint="@string/To"
+        android:gravity="center_vertical"
         android:padding="@dimen/_8sdp"
         android:singleLine="true"
         android:textSize="@dimen/_12sdp" />
@@ -70,7 +72,7 @@
 
 
         <EditText
-            android:id="@+id/AAU_ET_firstname"
+            android:id="@+id/AETH_ET_hours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
@@ -93,7 +95,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/AAU_BT_save"
+            android:id="@+id/AETH_BT_save"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_35sdp"
             android:layout_marginBottom="@dimen/_10sdp"
@@ -105,7 +107,6 @@
             android:text="@string/str_save_changes"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
-
 
     </LinearLayout>
 
