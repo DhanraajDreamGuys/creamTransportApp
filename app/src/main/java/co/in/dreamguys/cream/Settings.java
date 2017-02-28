@@ -24,8 +24,8 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        initWidgets();
+        setContentView(R.layout.activity_add_engine_codec);
+      /*  initWidgets();
         settings = new String[]{
                 getString(R.string.str_working_status),
                 getString(R.string.str_custom_fields),
@@ -36,11 +36,11 @@ public class Settings extends AppCompatActivity {
 
 
         aSettingsAdapter = new SettingsAdapter(Settings.this, settings);
-        mListViewWidgets.setAdapter(aSettingsAdapter);
+        mListViewWidgets.setAdapter(aSettingsAdapter);*/
 
     }
 
-    private void initWidgets() {
+   /* private void initWidgets() {
         mToolbar = (Toolbar) findViewById(R.id.ATTB_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -58,5 +58,5 @@ public class Settings extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

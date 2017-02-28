@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
 
     <include layout="@layout/activity_toolbar" />
@@ -237,7 +238,7 @@
             <EditText
                 android:id="@+id/AVU_ET_country"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
@@ -291,7 +292,7 @@
                 <EditText
                     android:id="@+id/AVU_ET_usertype"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
@@ -328,7 +329,7 @@
                 <EditText
                     android:id="@+id/AVU_ET_branch_location"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"

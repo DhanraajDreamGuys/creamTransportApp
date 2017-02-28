@@ -68,7 +68,7 @@
                     android:background="@drawable/border_gray_box"
                     android:padding="@dimen/_5sdp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_numbers" />
+                    android:src="@drawable/ic_truckno" />
 
                 <EditText
                     android:id="@+id/et_truck_no"

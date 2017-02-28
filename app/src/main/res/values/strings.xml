@@ -238,6 +238,12 @@
     <string name="hours">Hours</string>
     <string name="str_close">Close</string>
     <string name="str_add">Add</string>
+    <string name="str_manager">Manager name</string>
+    <string name="str_name1">Enter name</string>
+    <string name="str_position">Position</string>
+    <string name="str_phone_no">Phone no</string>
+    <string name="codetype">Code type</string>
+    <string name="codecolor">Code color</string>
     <string name="str_word_search">Type no</string>
     <string name="tool_trips_hours_title">TripHours</string>
     <string name="tool_edit_trips_hours_title">Edit Trip Hours</string>

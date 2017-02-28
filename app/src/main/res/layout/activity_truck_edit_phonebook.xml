@@ -20,37 +20,23 @@
             android:background="@drawable/border_gray_box"
             android:padding="@dimen/_6sdp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_locations" />
+            android:src="@drawable/ic_truckno" />
 
 
         <EditText
-            android:id="@+id/AATH_ET_from"
+            android:id="@+id/ATEPB_ET_truckno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_gray_box"
-            android:drawableRight="@drawable/down_arrow"
-            android:hint="@string/From"
+            android:hint="@string/str_truck_no"
             android:padding="@dimen/_8sdp"
             android:singleLine="true"
+            android:inputType="number"
             android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/AAU_ET_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_50sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:background="@drawable/border_gray_box"
-        android:drawableRight="@drawable/down_arrow"
-        android:hint="@string/To"
-        android:padding="@dimen/_8sdp"
-        android:singleLine="true"
-        android:textSize="@dimen/_12sdp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,48 +52,37 @@
             android:background="@drawable/border_gray_box"
             android:padding="@dimen/_6sdp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_hours" />
+            android:src="@drawable/ic_phone_gray" />
 
 
         <EditText
-            android:id="@+id/AAU_ET_firstname"
+            android:id="@+id/ATEPB_ET_phoneno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_gray_box"
-            android:hint="@string/hours"
+            android:inputType="phone"
+            android:hint="@string/str_phone"
             android:padding="@dimen/_8sdp"
             android:singleLine="true"
             android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
+    <Button
+        android:id="@+id/ATEPB_BT_save"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_35sdp"
         android:layout_gravity="center"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/AAU_BT_save"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/button_background"
-            android:drawablePadding="@dimen/_10sdp"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/str_add"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
-
-
-    </LinearLayout>
-
-
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/button_background"
+        android:drawableLeft="@drawable/ic_save_as"
+        android:drawablePadding="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/str_save_changes"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

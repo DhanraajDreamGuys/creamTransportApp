@@ -20,37 +20,27 @@
             android:background="@drawable/border_gray_box"
             android:padding="@dimen/_6sdp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_locations" />
+            android:src="@drawable/ic_name" />
 
 
         <EditText
-            android:id="@+id/AATH_ET_from"
+            android:id="@+id/ACVPB_ET_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_gray_box"
-            android:drawableRight="@drawable/down_arrow"
-            android:hint="@string/From"
+            android:hint="@string/str_name"
+            android:clickable="false"
+            android:editable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:padding="@dimen/_8sdp"
             android:singleLine="true"
             android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/AAU_ET_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_50sdp"
-        android:layout_marginRight="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:background="@drawable/border_gray_box"
-        android:drawableRight="@drawable/down_arrow"
-        android:hint="@string/To"
-        android:padding="@dimen/_8sdp"
-        android:singleLine="true"
-        android:textSize="@dimen/_12sdp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,17 +56,21 @@
             android:background="@drawable/border_gray_box"
             android:padding="@dimen/_6sdp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_hours" />
+            android:src="@drawable/ic_position" />
 
 
         <EditText
-            android:id="@+id/AAU_ET_firstname"
+            android:id="@+id/ACVPB_ET_position"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_gray_box"
-            android:hint="@string/hours"
+            android:hint="@string/str_position"
+            android:clickable="false"
+            android:editable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:padding="@dimen/_8sdp"
             android:singleLine="true"
             android:textSize="@dimen/_12sdp" />
@@ -88,26 +82,34 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:gravity="center">
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/AAU_BT_save"
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/button_background"
-            android:drawablePadding="@dimen/_10sdp"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/str_add"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white" />
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/border_gray_box"
+            android:padding="@dimen/_6sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_phone_gray" />
 
+
+        <EditText
+            android:id="@+id/ACVPB_ET_phoneno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/border_gray_box"
+            android:hint="@string/str_phone_no"
+            android:inputType="phone"
+            android:clickable="false"
+            android:editable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:padding="@dimen/_8sdp"
+            android:singleLine="true"
+            android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
-
-
-
 </LinearLayout>

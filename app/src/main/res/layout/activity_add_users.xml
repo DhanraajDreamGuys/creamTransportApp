@@ -21,8 +21,8 @@
             <FrameLayout
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp">
 
                 <co.in.dreamguys.cream.utils.CircularImageView
                     android:id="@+id/AAU_CIV_profile_image"
@@ -143,8 +143,8 @@
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_phone"
-                    android:padding="@dimen/_8sdp"
                     android:inputType="phone"
+                    android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
 
@@ -170,7 +170,7 @@
                 <EditText
                     android:id="@+id/AAU_ET_streetno"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_28sdp"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
@@ -184,7 +184,7 @@
             <EditText
                 android:id="@+id/AAU_ET_city"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_28sdp"
                 android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
@@ -258,13 +258,14 @@
                     android:id="@+id/AAU_ET_usertype"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
-                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginLeft="@dimen/_7sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:drawableRight="@drawable/down_arrow"
+                    android:drawablePadding="@dimen/_10sdp"
                     android:gravity="center_vertical"
                     android:hint="@string/str_user_type"
-                    android:padding="@dimen/_8sdp"
+                    android:padding="@dimen/_7sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
 
@@ -284,7 +285,7 @@
                     android:background="@drawable/border_gray_box"
                     android:padding="@dimen/_6sdp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_name" />
+                    android:src="@drawable/ic_locations" />
 
 
                 <TextView
