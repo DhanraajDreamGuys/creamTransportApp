@@ -3,18 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_add_fridge"
+        android:icon="@drawable/ic_add"
+        android:title="@string/action_fridge_codec"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/menu_report_search"
-        app:icon="@drawable/ic_report_search"
         android:orderInCategory="100"
         android:title=""
         android:visible="true"
         app:actionViewClass="android.support.v7.widget.SearchView"
+        app:icon="@drawable/ic_report_search"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_filter"
         android:orderInCategory="100"
-        android:title=""
+        android:title="@string/str_search_string"
         app:showAsAction="ifRoom" />
 </menu>

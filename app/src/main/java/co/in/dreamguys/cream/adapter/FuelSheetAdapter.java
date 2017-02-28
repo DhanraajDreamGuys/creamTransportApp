@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.in.dreamguys.cream.Fuelsheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.ViewFuelsheet;
 import co.in.dreamguys.cream.model.FuelSheetModel;
@@ -88,6 +89,8 @@ public class FuelSheetAdapter extends BaseAdapter {
                 mCallFuelSheet.putExtra(Constants.FUEL_SHEET, 1);
                 mCallFuelSheet.putExtra(Constants.FUEL_SHEET_DATA, mData);
                 mContext.startActivity(mCallFuelSheet);
+                if (Fuelsheet.searchView != null)
+                    Fuelsheet.searchView.onActionViewCollapsed();
             }
         });
 
@@ -98,7 +101,9 @@ public class FuelSheetAdapter extends BaseAdapter {
                 mCallFuelSheet.putExtra(Constants.FUEL_SHEET, 0);
                 mCallFuelSheet.putExtra(Constants.FUEL_SHEET_DATA, mData);
                 mContext.startActivity(mCallFuelSheet);
-            }
+                if (Fuelsheet.searchView != null)
+                    Fuelsheet.searchView.onActionViewCollapsed();
+                            }
         });
 
 

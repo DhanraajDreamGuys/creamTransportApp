@@ -33,9 +33,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
 import co.in.dreamguys.cream.Accidentreport;
+import co.in.dreamguys.cream.EngineCodec;
+import co.in.dreamguys.cream.FridgeCodec;
 import co.in.dreamguys.cream.Fuelsheet;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
@@ -48,6 +51,7 @@ import co.in.dreamguys.cream.adapter.FuelSheetAdapter;
 import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.adapter.TripAdapter;
+import co.in.dreamguys.cream.adapter.TypeListAdapter;
 import co.in.dreamguys.cream.adapter.UserTypeListAdapter;
 import co.in.dreamguys.cream.apis.AccidentReportAPI;
 import co.in.dreamguys.cream.apis.ApiClient;
@@ -86,6 +90,10 @@ public class Util {
     private static int TYPE_NOT_CONNECTED = 0;
     private static AccidentReportAdapter aAccidentReportAdapter;
     public static FuelSheetAdapter aFuelSheetAdapter;
+    private static Map.Entry<String, String> type;
+    private static TypeListAdapter aTypeListAdapter;
+    private static Map<String, String> map;
+
 
     public static boolean isValidEmail(CharSequence target) {
         if (target == null) {
@@ -132,8 +140,7 @@ public class Util {
             e.printStackTrace();
         }
         SimpleDateFormat dateFormatYouWant = new SimpleDateFormat("dd/MM/yyyy");
-        String sCertDate = dateFormatYouWant.format(d1);
-        return sCertDate;
+        return dateFormatYouWant.format(d1);
     }
 
     private static HashMap<String, String> sendValueWithRetrofit(TextView mFromDate, TextView mFromTo) {
@@ -158,6 +165,119 @@ public class Util {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         popupSearch.setHeight(1);
         popupSearch.setWidth(1);
+
+
+    }
+
+    public static void searchFridgeCodec(final Context mContext, final PopupWindow popupSearch, final String PAGE, final LayoutInflater layoutInflater, final ListView mPaysheetView) {
+        mCustomProgressDialog = new CustomProgressDialog(mContext);
+        popupSearch.setAnimationStyle(android.R.style.Animation_Dialog);
+        popupSearch.setOutsideTouchable(false);
+        View searchView = layoutInflater.inflate(R.layout.include_search_fridge_codec, null);
+        popupSearch.setContentView(searchView);
+        popupSearch.setBackgroundDrawable(new ColorDrawable(
+                android.graphics.Color.TRANSPARENT));
+        popupSearch.setWindowLayoutMode(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupSearch.setHeight(1);
+        popupSearch.setWidth(1);
+        Button fireSearch = (Button) searchView.findViewById(R.id.ISFC_BT_search);
+        final Button firecancel = (Button) searchView.findViewById(R.id.ISFC_BT_cancel);
+        final TextView fireType = (TextView) searchView.findViewById(R.id.ISFC_TV_choose_type);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        View typeLayout = layoutInflater.inflate(R.layout.dialog_type_list, null);
+        builder.setView(typeLayout);
+        final AlertDialog alert = builder.create();
+        final ListView mTypeWidgets = (ListView) typeLayout.findViewById(R.id.DTL_LV_type);
+
+
+        fireType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (PAGE) {
+                    case "FRIDGE CODEC":
+                        map = new HashMap<String, String>();
+                        map.put("thermal", mContext.getString(R.string.str_thermal));
+                        map.put("carrier", mContext.getString(R.string.str_carrier));
+                        aTypeListAdapter = new TypeListAdapter(mContext, map);
+                        mTypeWidgets.setAdapter(aTypeListAdapter);
+
+                        mTypeWidgets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                type = aTypeListAdapter.getItem(position);
+                                fireType.setText(type.getValue());
+                                alert.dismiss();
+                            }
+                        });
+
+                        alert.show();
+                        break;
+
+                    case "ENGINE CODEC":
+                        map = new HashMap<String, String>();
+                        map.put("cummins", mContext.getString(R.string.str_cummins));
+                        map.put("catapillar", mContext.getString(R.string.str_catapillar));
+                        aTypeListAdapter = new TypeListAdapter(mContext, map);
+                        mTypeWidgets.setAdapter(aTypeListAdapter);
+
+                        mTypeWidgets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                type = aTypeListAdapter.getItem(position);
+                                fireType.setText(type.getValue());
+                                alert.dismiss();
+                            }
+                        });
+
+                        alert.show();
+                        break;
+                }
+
+
+            }
+        });
+
+        fireSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (PAGE) {
+                    case "FRIDGE CODEC":
+                        ((FridgeCodec) mContext).typeSearch(type.getKey());
+                        break;
+                    case "ENGINE CODEC":
+                        ((EngineCodec) mContext).typeSearch(type.getKey());
+                        break;
+                }
+            }
+        });
+
+        firecancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (PAGE) {
+                    case "FRIDGE CODEC":
+                        mPaysheetView.setAdapter(null);
+                        ((FridgeCodec) mContext).refresh();
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
+                    case "ENGINE CODEC":
+                        mPaysheetView.setAdapter(null);
+                        ((EngineCodec) mContext).refresh();
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
+                }
+
+            }
+        });
+
+        TypedValue tv = new TypedValue();
+        if (mContext.getTheme().resolveAttribute(R.attr.actionBarSize, tv, true)) {
+            int actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, mContext.getResources().getDisplayMetrics());
+            popupSearch.showAtLocation(searchView, Gravity.TOP, 0, actionBarHeight + 60);
+        }
 
 
     }

@@ -2,6 +2,8 @@ package co.in.dreamguys.cream.utils;
 
 import java.util.List;
 
+import co.in.dreamguys.cream.EngineCodec;
+import co.in.dreamguys.cream.FridgeCodec;
 import co.in.dreamguys.cream.Fuelsheet;
 import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.RepairSheet;
@@ -113,4 +115,15 @@ public class Constants {
     public static String FUEL_SHEET_DATA = "fuel_sheet_data";
     public static Fuelsheet FUELSHEETCLASS;
     public static Trips TRIPCLASS;
+    public static String FRIDGE_CODE_DATA = "fridge_code_data";
+    public static String PARAMS_TYPE = "type";
+    public static String PARAMS_CODE = "code";
+    public static String PARAMS_COLOR = "color";
+    public static String PARAMS_DESC = "desc";
+    public static String PARAMS_OPERATION = "operation";
+    public static FridgeCodec FRIDGE_CODEC;
+    public static String FRIDGE_CODEC_STRING = "FRIDGE CODEC";
+    public static EngineCodec ENGINE_CODEC;
+    public static String ENGINE_CODEC_STRING = "ENGINE CODEC";
+    public static String ENGINE_CODE_DATA = "engine_codec_data";
 }

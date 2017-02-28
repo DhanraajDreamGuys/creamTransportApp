@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_toolbar" />
+
+    <ToggleButton
+        android:id="@+id/AVFC_TB_status_update"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/button_background"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textColor="@android:color/white"
+        android:textOff="Inactive"
+        android:textOn="Active" />
+
+    <EditText
+        android:id="@+id/AVFC_ET_code_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@drawable/border_gray_box"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical"
+        android:hint="@string/enter_code_type"
+        android:maxLines="1"
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp" />
+
+    <EditText
+        android:id="@+id/AVFC_ET_code_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@drawable/border_gray_box"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical"
+        android:hint="@string/enter_code_no"
+        android:maxLines="1"
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp" />
+
+
+    <RadioGroup
+        android:id="@+id/AVFC_RG_code_colors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/AVFC_RB_green"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="@string/color_green" />
+
+        <RadioButton
+            android:id="@+id/AVFC_RB_red"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="@string/color_red" />
+
+        <RadioButton
+            android:id="@+id/AVFC_RB_yellow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="@string/color_yellow" />
+
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/AVFC_ET_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/border_gray_box"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical"
+        android:hint="@string/desc"
+        android:maxLines="1"
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp" />
+
+    <EditText
+        android:id="@+id/AVFC_ET_operation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@drawable/border_gray_box"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="top"
+        android:hint="@string/operation"
+        android:lines="4"
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp" />
+
+
+</LinearLayout>

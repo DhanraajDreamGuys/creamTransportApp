@@ -48,7 +48,6 @@ import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 
 public class ViewTripsheet extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     Toolbar mToolbar;
-
     TextView mChooseDriver, mFrom, mTo, mDate, mSetDate;
     EditText mTruckNo, mTrailers, mManifestNo, mDollyNo, mLoadavailable, mFromWho, mLoadDue, mBy, mChangeOver, mDriver, mComments;
     LinearLayout mAddNewTrailerLayout;
@@ -533,7 +532,6 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
             trailers = mEditTrailers.getText().toString();
             params.put(Constants.PARAMS_TRAILERS, trailers);
         }
-//        Log.i(TAG, trailers);
         params.put(Constants.PARAMS_MNO, mEditManifestNo.getText().toString());
         params.put(Constants.PARAMS_DOLLYNO, mEditDollyNo.getText().toString());
         params.put(Constants.PARAMS_LTIME, mEditLoadavailable.getText().toString());
@@ -543,7 +541,6 @@ public class ViewTripsheet extends AppCompatActivity implements View.OnClickList
         params.put(Constants.PARAMS_CTRUCK, mEditChangeOver.getText().toString());
         params.put(Constants.PARAMS_CDRIVER, mEditDriver.getText().toString());
         params.put(Constants.PARAMS_ITYPE, checkedItems);
-//        Log.i(TAG, checkedItems);
         params.put(Constants.PARAMS_SDATE, mEditDate.getText().toString());
         params.put(Constants.PARAMS_LDATE, mEditSetDate.getText().toString());
         params.put(Constants.PARAMS_FROM, Constants.countries.get(Constants.From).getId());

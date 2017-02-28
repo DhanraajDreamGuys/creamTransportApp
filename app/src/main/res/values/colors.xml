@@ -11,6 +11,7 @@
     <color name="darker_gray">#666666</color>
     <color name="clr_gray">#eeeeee</color>
     <color name="accept_color">#089c83</color>
+    <color name="inactive_color">#FF0000</color>
 
 
 </resources>

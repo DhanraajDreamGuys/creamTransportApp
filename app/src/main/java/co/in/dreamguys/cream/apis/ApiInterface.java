@@ -144,4 +144,41 @@ public interface ApiInterface {
     @POST("delete_fuelsheet")
     Call<UpdateUsersAPI.UpdateUsersResponse> getDeleteFuelSheet(@Field("id") String id);
 
+    @FormUrlEncoded
+    @POST("fridgecode_codes")
+    Call<FridgeCodeAPI.FridgecodeResponse> getFridgeCodeList(@Field("type") String type);
+
+    @GET("fridgecode")
+    Call<FridgeCodeAPI.FridgecodeResponse> getFridgeCodeList();
+
+    @FormUrlEncoded
+    @POST("fridgecode_add")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addFridgeCodec(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("fridgecode_edit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> updateFridgeCodec(@FieldMap HashMap<String, String> meta);
+
+    @GET("enginecode")
+    Call<FridgeCodeAPI.FridgecodeResponse> getEngineCodeList();
+
+    @FormUrlEncoded
+    @POST("enginecode_add")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addEngineCodec(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("enginecode_edit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> updateEngineCodec(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("fridgecode_status")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addFridgeCodec(@Field("id") String id, @Field("status") String status);
+
+    @FormUrlEncoded
+    @POST("enginecode_status")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addEngineCodec(@Field("id") String id, @Field("status") String status);
+
+    @FormUrlEncoded
+    @POST("enginecode_codes")
+    Call<FridgeCodeAPI.FridgecodeResponse> getEngineCodeList(@Field("type") String type);
 }
