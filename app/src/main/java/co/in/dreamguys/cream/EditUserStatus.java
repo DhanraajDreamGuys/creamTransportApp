@@ -101,34 +101,32 @@ public class EditUserStatus extends AppCompatActivity implements View.OnClickLis
                     ApiClient.getClient().create(ApiInterface.class);
             Call<UpdateUsersAPI.UpdateUsersResponse> loginCall = apiService.updateUserStatus(sendValueWithRetrofit());
             loginCall.enqueue(new Callback<UpdateUsersAPI.UpdateUsersResponse>() {
-                                  @Override
-                                  public void onResponse(Call<UpdateUsersAPI.UpdateUsersResponse> call, Response<UpdateUsersAPI.UpdateUsersResponse> response) {
-                                      mCustomProgressDialog.dismiss();
-                                      if (response.body().getMeta().equals(Constants.SUCCESS)) {
-                                          if (statusString.equalsIgnoreCase("on")) {
-                                              mStatusUpdated.setText(getString(R.string.active));
-                                              mStatusUpdated.setBackgroundColor(ContextCompat.getColor(EditUserStatus.this, R.color.accept_color));
-                                          } else {
-                                              mStatusUpdated.setText(getString(R.string.inactive));
-                                              mStatusUpdated.setBackgroundColor(ContextCompat.getColor(EditUserStatus.this, R.color.inactive_color));
-                                          }
-                                          Toast.makeText(EditUserStatus.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                                          Constants.USER_STATUS.refresh();
-                                          finish();
-                                      } else {
-                                          Toast.makeText(EditUserStatus.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                                      }
-                                  }
+                @Override
+                public void onResponse(Call<UpdateUsersAPI.UpdateUsersResponse> call, Response<UpdateUsersAPI.UpdateUsersResponse> response) {
+                    mCustomProgressDialog.dismiss();
+                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                        if (statusString.equalsIgnoreCase("on")) {
+                            mStatusUpdated.setText(getString(R.string.active));
+                            mStatusUpdated.setBackgroundColor(ContextCompat.getColor(EditUserStatus.this, R.color.accept_color));
+                        } else {
+                            mStatusUpdated.setText(getString(R.string.inactive));
+                            mStatusUpdated.setBackgroundColor(ContextCompat.getColor(EditUserStatus.this, R.color.inactive_color));
+                        }
+                        Toast.makeText(EditUserStatus.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Constants.USER_STATUS.refresh();
+                        finish();
+                    } else {
+                        Toast.makeText(EditUserStatus.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
 
-                                  @Override
-                                  public void onFailure
-                                          (Call<UpdateUsersAPI.UpdateUsersResponse> call, Throwable t) {
-                                      Log.i(TAG, t.getMessage());
-                                      mCustomProgressDialog.dismiss();
-                                  }
-                              }
-
-            );
+                @Override
+                public void onFailure
+                        (Call<UpdateUsersAPI.UpdateUsersResponse> call, Throwable t) {
+                    Log.i(TAG, t.getMessage());
+                    mCustomProgressDialog.dismiss();
+                }
+            });
         }
 
     }

@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_color"
-    android:gravity="center"
     android:orientation="vertical">
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:src="@drawable/ic_cream_logo" />
 
+    <ProgressBar
+        android:id="@+id/AS_PB_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_above="@+id/AS_TV_please_wait"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:indeterminate="true" />
+
     <TextView
+        android:id="@+id/AS_TV_please_wait"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:gravity="center"
-        android:text="Loading....."
+        android:text="Please wait..."
         android:textColor="@android:color/white"
         android:textSize="@dimen/_16sdp" />
 
 
-</LinearLayout>
+</RelativeLayout>

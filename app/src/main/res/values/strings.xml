@@ -256,4 +256,8 @@
     <string name="tool_user_status_title">User Status</string>
     <string name="tool_custom_fields_title">Custom Fields</string>
     <string name="tool_add_custom_fields_title">Add Custom Fields</string>
+    <string name="err_field">Enter custom field</string>
+    <string name="custom_type">Please select type</string>
+    <string name="str_type">Choose which</string>
+    <string name="str_new_custom">Enter new custom Field</string>
 </resources>

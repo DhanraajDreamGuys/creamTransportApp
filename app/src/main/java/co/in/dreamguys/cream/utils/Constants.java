@@ -2,6 +2,7 @@ package co.in.dreamguys.cream.utils;
 
 import java.util.List;
 
+import co.in.dreamguys.cream.CustomFields;
 import co.in.dreamguys.cream.EngineCodec;
 import co.in.dreamguys.cream.FridgeCodec;
 import co.in.dreamguys.cream.Fuelsheet;
@@ -12,6 +13,7 @@ import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.UserStatus;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.apis.BranchAPI;
+import co.in.dreamguys.cream.apis.CustomFieldTypeAPI;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
 import co.in.dreamguys.cream.apis.ListCountriesAPI;
 import co.in.dreamguys.cream.apis.UserTypeAPI;
@@ -24,6 +26,7 @@ import co.in.dreamguys.cream.apis.UserstatuslistAPI;
 public class Constants {
 
 
+    public static List<CustomFieldTypeAPI.Datum> CUSTOM_FIELD_TYPE;
     public static UserStatus USER_STATUS;
     public static List<UserstatuslistAPI.Statu> USER_STATUS_LISTS;
     public static String USERS_DATA = "user_data";
@@ -141,4 +144,7 @@ public class Constants {
     public static String PARAMS_UID = "uid";
     public static String PARAMS_REASON = "reason";
     public static String PARAMS_ONOFF = "onoff";
+    public static String PARAMS_CUSTOM_TYPE = "type";
+    public static String PARAMS_CUSTOM_NAME = "name";
+    public static CustomFields CUSTOM_FIELD;
 }

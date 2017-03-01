@@ -17,7 +17,7 @@
         android:drawablePadding="@dimen/_10sdp"
         android:drawableRight="@drawable/down_arrow"
         android:gravity="center_vertical"
-        android:hint="@string/str_country"
+        android:hint="@string/str_type"
         android:padding="@dimen/_8sdp"
         android:singleLine="true"
         android:textSize="@dimen/_12sdp" />
@@ -30,7 +30,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_3sdp"
         android:background="@drawable/border_gray_box"
-        android:hint="@string/str_state"
+        android:hint="@string/str_new_custom"
         android:padding="@dimen/_8sdp"
         android:singleLine="true"
         android:textSize="@dimen/_12sdp" />

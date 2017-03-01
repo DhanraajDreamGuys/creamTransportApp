@@ -199,4 +199,11 @@ public interface ApiInterface {
     @GET("custom_fields_list")
     Call<CustomFieldsAPI.CustomFieldResponse> getCustomFields();
 
+    @GET("custom_fields_type")
+    Call<CustomFieldTypeAPI.CustomFieldTypeResponse> getCustomFieldsType();
+
+    @FormUrlEncoded
+    @POST("custom_fields_add")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addCustomFieldsType(@FieldMap HashMap<String, String> meta);
+
 }

@@ -1,20 +1,23 @@
 package co.in.dreamguys.cream;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.BranchAPI;
+import co.in.dreamguys.cream.apis.CustomFieldTypeAPI;
 import co.in.dreamguys.cream.apis.ListCountriesAPI;
 import co.in.dreamguys.cream.apis.UserTypeAPI;
 import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
-import co.in.dreamguys.cream.utils.CustomProgressDialog;
 import co.in.dreamguys.cream.utils.SessionHandler;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,19 +32,21 @@ import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
 public class Splashscreen extends AppCompatActivity {
 
     private static String TAG = Splashscreen.class.getName();
-    CustomProgressDialog mCustomProgressDialog;
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        mCustomProgressDialog = new CustomProgressDialog(this);
-        getFromandTo();
+        mProgressBar = (ProgressBar) findViewById(R.id.AS_PB_progress);
+        mProgressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
         if (!isNetworkAvailable(getApplicationContext())) {
             Toast.makeText(Splashscreen.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
         } else {
+            getFromandTo();
             new CountryList().execute();
             new UserType().execute();
+            new CustomFieldTypes().execute();
         }
     }
 
@@ -52,11 +57,10 @@ public class Splashscreen extends AppCompatActivity {
             ApiInterface apiService =
                     ApiClient.getClient().create(ApiInterface.class);
             Call<BranchAPI.CountryListResponse> loginCall = apiService.getCountries();
-            mCustomProgressDialog.showDialog();
             loginCall.enqueue(new Callback<BranchAPI.CountryListResponse>() {
                 @Override
                 public void onResponse(Call<BranchAPI.CountryListResponse> call, Response<BranchAPI.CountryListResponse> response) {
-                    mCustomProgressDialog.dismiss();
+//                    mCustomProgressDialog.dismiss();
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
                         Constants.countries = response.body().getData();
                         if (!SessionHandler.getStringPref(Constants.USER_ID).isEmpty()) {
@@ -74,7 +78,6 @@ public class Splashscreen extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<BranchAPI.CountryListResponse> call, Throwable t) {
                     Log.i(TAG, t.getMessage());
-                    mCustomProgressDialog.dismiss();
                 }
             });
         }
@@ -130,6 +133,35 @@ public class Splashscreen extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<UserTypeAPI.UsersTypeResponse> call, Throwable t) {
+                        Log.i(TAG, t.getMessage());
+                    }
+                });
+            }
+            return null;
+        }
+    }
+
+    private class CustomFieldTypes extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            if (!isNetworkAvailable(getApplicationContext())) {
+                Toast.makeText(Splashscreen.this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+            } else {
+                ApiInterface apiService =
+                        ApiClient.getClient().create(ApiInterface.class);
+                Call<CustomFieldTypeAPI.CustomFieldTypeResponse> loginCall = apiService.getCustomFieldsType();
+                loginCall.enqueue(new Callback<CustomFieldTypeAPI.CustomFieldTypeResponse>() {
+                    @Override
+                    public void onResponse(Call<CustomFieldTypeAPI.CustomFieldTypeResponse> call, Response<CustomFieldTypeAPI.CustomFieldTypeResponse> response) {
+                        if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                            Constants.CUSTOM_FIELD_TYPE = response.body().getData();
+                        } else {
+                            Toast.makeText(Splashscreen.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CustomFieldTypeAPI.CustomFieldTypeResponse> call, Throwable t) {
                         Log.i(TAG, t.getMessage());
                     }
                 });

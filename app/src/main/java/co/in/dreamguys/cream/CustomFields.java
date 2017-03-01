@@ -19,6 +19,7 @@ import java.util.List;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.CustomFieldsAPI;
+import co.in.dreamguys.cream.interfaces.FridgeCodeTypeInterface;
 import co.in.dreamguys.cream.utils.ActivityConstants;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
@@ -32,7 +33,7 @@ import static co.in.dreamguys.cream.utils.Util.isNetworkAvailable;
  * Created by user5 on 01-03-2017.
  */
 
-public class CustomFields extends AppCompatActivity {
+public class CustomFields extends AppCompatActivity implements FridgeCodeTypeInterface {
     Toolbar mToolbar;
     CustomProgressDialog mCustomProgressDialog;
     public static String TAG = CustomFields.class.getName();
@@ -42,6 +43,7 @@ public class CustomFields extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_fields);
+        Constants.CUSTOM_FIELD = this;
         mCustomProgressDialog = new CustomProgressDialog(this);
         initWidgets();
         getCustomFields();
@@ -78,6 +80,8 @@ public class CustomFields extends AppCompatActivity {
     }
 
     private void dynamicScrolledCustomFieldsViews(List<CustomFieldsAPI.Datum> data) {
+        if (mDynamicView != null)
+            mDynamicView.removeAllViews();
         for (CustomFieldsAPI.Datum mData : data) {
             View sectionLayout = getLayoutInflater().inflate(R.layout.adapter_category_name, null);
             TextView mCategoryName = (TextView) sectionLayout.findViewById(R.id.ACN_TV_category_name);
@@ -115,6 +119,16 @@ public class CustomFields extends AppCompatActivity {
         mToolbar.setTitleTextColor(Color.WHITE);
 
         mDynamicView = (LinearLayout) findViewById(R.id.ACF_LL_dynamic_custom_fields);
+    }
+
+    @Override
+    public void typeSearch(String type) {
+
+    }
+
+    @Override
+    public void refresh() {
+        getCustomFields();
     }
 
     private class editCustomFields implements View.OnClickListener {
