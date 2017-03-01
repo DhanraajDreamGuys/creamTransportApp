@@ -189,4 +189,7 @@ public interface ApiInterface {
     @POST("trip_edit_hour")
     Call<UpdateUsersAPI.UpdateUsersResponse> addTripHours(@FieldMap HashMap<String, String> meta);
 
+    @GET("settings_user_status_list")
+    Call<UserstatuslistAPI.UserStatusListResponse> getUserStatusLists();
+
 }
