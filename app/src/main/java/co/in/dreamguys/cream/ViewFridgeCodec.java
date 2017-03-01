@@ -79,7 +79,7 @@ public class ViewFridgeCodec extends AppCompatActivity {
         mGreen = (RadioButton) findViewById(R.id.AVFC_RB_green);
         mRed = (RadioButton) findViewById(R.id.AVFC_RB_red);
         mYellow = (RadioButton) findViewById(R.id.AVFC_RB_yellow);
-        mStatus = (ToggleButton) findViewById(R.id.AEFS_TB_status_update);
+        mStatus = (ToggleButton) findViewById(R.id.AVFC_TB_status_update);
     }
 
     @Override
