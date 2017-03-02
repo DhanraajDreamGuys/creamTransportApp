@@ -206,4 +206,11 @@ public interface ApiInterface {
     @POST("custom_fields_add")
     Call<UpdateUsersAPI.UpdateUsersResponse> addCustomFieldsType(@FieldMap HashMap<String, String> meta);
 
+    @GET("usefulllinks_list")
+    Call<UsefulLinksAPI.UsefulLinksResponse> getUsefulLinks();
+
+    @FormUrlEncoded
+    @POST("usefulllinks_add")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addUsefulLinks(@FieldMap HashMap<String, String> meta);
+
 }
