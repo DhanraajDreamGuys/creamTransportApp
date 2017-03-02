@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_toolbar" />
+
+    <TextView
+        android:id="@+id/AACF_ET_type"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/border_gray_box"
+        android:drawablePadding="@dimen/_10sdp"
+        android:drawableRight="@drawable/down_arrow"
+        android:gravity="center_vertical"
+        android:hint="@string/str_country"
+        android:padding="@dimen/_8sdp"
+        android:singleLine="true"
+        android:textSize="@dimen/_12sdp" />
+
+    <EditText
+        android:id="@+id/AACF_ET_new_fields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@drawable/border_gray_box"
+        android:hint="@string/str_state"
+        android:padding="@dimen/_8sdp"
+        android:singleLine="true"
+        android:textSize="@dimen/_12sdp" />
+
+
+    <Button
+        android:id="@+id/AACF_BT_add"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/button_background"
+        android:padding="@dimen/_10sdp"
+        android:text="@string/str_add"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+
+</LinearLayout>

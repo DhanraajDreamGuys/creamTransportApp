@@ -8,7 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
         <item name="android:navigationBarColor">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/cream_window_bckgrd</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0</item>
     </style>
 
 
@@ -51,7 +52,6 @@
         <item name="searchHintIcon">@null</item>
         <item name="queryHint">@string/search_truck_no</item>
     </style>
-
 
 
 </resources>

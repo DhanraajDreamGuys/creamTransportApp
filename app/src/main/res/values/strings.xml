@@ -251,4 +251,9 @@
     <string name="choose_to">Please select destination location</string>
     <string name="choose_from">Please select source location</string>
     <string name="tool_add_trips_hours_title">Add Trip Hours</string>
+    <string name="edit_user_status_title">Edit User Status</string>
+    <string name="no_reason">Please select reason</string>
+    <string name="tool_user_status_title">User Status</string>
+    <string name="tool_custom_fields_title">Custom Fields</string>
+    <string name="tool_add_custom_fields_title">Add Custom Fields</string>
 </resources>

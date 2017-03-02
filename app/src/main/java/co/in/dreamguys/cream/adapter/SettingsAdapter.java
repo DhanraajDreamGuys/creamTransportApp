@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import co.in.dreamguys.cream.CustomFields;
 import co.in.dreamguys.cream.R;
+import co.in.dreamguys.cream.UserStatus;
+import co.in.dreamguys.cream.utils.ActivityConstants;
 
 /**
  * Created by user5 on 23-02-2017.
@@ -39,7 +42,7 @@ public class SettingsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder mHolder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.acdapter_settings, null);
@@ -51,6 +54,21 @@ public class SettingsAdapter extends BaseAdapter {
         }
 
         mHolder.mSetttings.setText(settings[position]);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (position) {
+                    case 0:
+                        ActivityConstants.callPage(mContext, UserStatus.class);
+                        break;
+                    case 1:
+                        ActivityConstants.callPage(mContext, CustomFields.class);
+                        break;
+                }
+            }
+        });
+
 
         return convertView;
     }

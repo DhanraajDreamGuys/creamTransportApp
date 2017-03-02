@@ -9,11 +9,13 @@ import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.TripHours;
 import co.in.dreamguys.cream.Trips;
+import co.in.dreamguys.cream.UserStatus;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.apis.BranchAPI;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
 import co.in.dreamguys.cream.apis.ListCountriesAPI;
 import co.in.dreamguys.cream.apis.UserTypeAPI;
+import co.in.dreamguys.cream.apis.UserstatuslistAPI;
 
 /**
  * Created by user5 on 13-02-2017.
@@ -22,6 +24,8 @@ import co.in.dreamguys.cream.apis.UserTypeAPI;
 public class Constants {
 
 
+    public static UserStatus USER_STATUS;
+    public static List<UserstatuslistAPI.Statu> USER_STATUS_LISTS;
     public static String USERS_DATA = "user_data";
     public static String USER_ID = "user_id";
     public static String PARAMS_PASSWORD = "password";
@@ -133,4 +137,8 @@ public class Constants {
     public static String PARAMS_FROM_TRIP = "from_trip";
     public static String PARAMS_TO_TRIP = "to_trip";
     public static TripHours TRIPHOURS;
+    public static String USER_STATUS_DATA = "user_status_data";
+    public static String PARAMS_UID = "uid";
+    public static String PARAMS_REASON = "reason";
+    public static String PARAMS_ONOFF = "onoff";
 }

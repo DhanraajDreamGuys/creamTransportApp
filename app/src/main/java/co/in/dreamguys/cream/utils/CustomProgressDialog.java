@@ -12,8 +12,8 @@ import co.in.dreamguys.cream.R;
  */
 public class CustomProgressDialog extends Dialog {
 
-    Context context;
-    Dialog dialog;
+    private Context context;
+    private Dialog dialog;
 
     public CustomProgressDialog(Context context) {
         super(context);
@@ -31,6 +31,7 @@ public class CustomProgressDialog extends Dialog {
         if (divider != null) {
             divider.setBackgroundColor(context.getResources().getColor(android.R.color.transparent));
         }
+        dialog.getWindow().setDimAmount(0);
 //        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 

@@ -192,4 +192,11 @@ public interface ApiInterface {
     @GET("settings_user_status_list")
     Call<UserstatuslistAPI.UserStatusListResponse> getUserStatusLists();
 
+    @FormUrlEncoded
+    @POST("settings_user_status_edit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> updateUserStatus(@FieldMap HashMap<String, String> meta);
+
+    @GET("custom_fields_list")
+    Call<CustomFieldsAPI.CustomFieldResponse> getCustomFields();
+
 }

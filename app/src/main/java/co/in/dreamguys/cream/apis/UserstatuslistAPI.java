@@ -3,6 +3,7 @@ package co.in.dreamguys.cream.apis;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -143,7 +144,7 @@ public class UserstatuslistAPI {
 
     }
 
-    public class User_list {
+    public class User_list implements Serializable{
 
         @SerializedName("id")
         @Expose

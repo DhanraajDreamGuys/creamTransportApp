@@ -3,7 +3,6 @@ package co.in.dreamguys.cream;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -112,11 +111,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     public void onResponse(Call<LoginAPI.LoginResponse> call, Response<LoginAPI.LoginResponse> response) {
                         if (response.body().getMeta().equals(Constants.SUCCESS)) {
                             SessionHandler.setStringPref(Constants.USER_ID, response.body().getData().get(0).getId());
-                            Snackbar.make(v, response.body().getMessage(), Snackbar.LENGTH_SHORT);
+                            Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             ActivityConstants.callPage(Login.this, AdminMenu.class);
                             finish();
                         } else {
-                            Snackbar.make(v, response.body().getMessage(), Snackbar.LENGTH_SHORT);
+                            Toast.makeText(Login.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         mCustomProgressDialog.dismiss();
                     }

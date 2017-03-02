@@ -23,8 +23,8 @@
             android:src="@drawable/ic_locations" />
 
 
-        <EditText
-            android:id="@+id/AATH_ET_from"
+        <TextView
+            android:id="@+id/AETH_ET_from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
@@ -38,8 +38,8 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/AAU_ET_city"
+    <TextView
+        android:id="@+id/AETH_ET_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_50sdp"
