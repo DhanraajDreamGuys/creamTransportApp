@@ -83,7 +83,7 @@ public class AddCustomFields extends AppCompatActivity implements View.OnClickLi
                 mCustomProgressDialog.showDialog();
                 ApiInterface apiService =
                         ApiClient.getClient().create(ApiInterface.class);
-                Call<UpdateUsersAPI.UpdateUsersResponse> loginCall = apiService.updateUserStatus(sendValueWithRetrofit());
+                Call<UpdateUsersAPI.UpdateUsersResponse> loginCall = apiService.addCustomFieldsType(sendValueWithRetrofit());
                 loginCall.enqueue(new Callback<UpdateUsersAPI.UpdateUsersResponse>() {
                     @Override
                     public void onResponse(Call<UpdateUsersAPI.UpdateUsersResponse> call, Response<UpdateUsersAPI.UpdateUsersResponse> response) {
