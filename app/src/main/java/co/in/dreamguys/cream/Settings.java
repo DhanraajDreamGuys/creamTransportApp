@@ -31,7 +31,6 @@ public class Settings extends AppCompatActivity {
                 getString(R.string.str_custom_fields),
                 getString(R.string.str_useful_links),
                 getString(R.string.str_app_settings),
-                getString(R.string.str_ula),
         };
 
 

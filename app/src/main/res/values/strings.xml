@@ -260,4 +260,10 @@
     <string name="custom_type">Please select type</string>
     <string name="str_type">Choose which</string>
     <string name="str_new_custom">Enter new custom Field</string>
+    <string name="tool_useful_links_title">Useful Links</string>
+    <string name="enter_link_name">Enter link name</string>
+    <string name="enter_links">Enter link</string>
+    <string name="tool_add_useful_links_title">Add Useful Links</string>
+    <string name="err_link_name">Enter link name</string>
+    <string name="err_links">Enter links</string>
 </resources>

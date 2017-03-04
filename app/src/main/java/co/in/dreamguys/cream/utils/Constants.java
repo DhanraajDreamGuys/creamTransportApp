@@ -10,6 +10,7 @@ import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.TripHours;
 import co.in.dreamguys.cream.Trips;
+import co.in.dreamguys.cream.UsefulLinks;
 import co.in.dreamguys.cream.UserStatus;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.apis.BranchAPI;
@@ -147,4 +148,10 @@ public class Constants {
     public static String PARAMS_CUSTOM_TYPE = "type";
     public static String PARAMS_CUSTOM_NAME = "name";
     public static CustomFields CUSTOM_FIELD;
+    public static String PARAMS_LINK_NAME = "name";
+    public static String PARAMS_WEB_LINK = "weblink";
+    public static String PARAMS_LINK_ID = "id";
+    public static String PARAMS_LINK_STATUS = "status";
+    public static UsefulLinks USEFULLINK;
+    public static String EDIT_USEFUL_LINKS = "edit_useful_links";
 }

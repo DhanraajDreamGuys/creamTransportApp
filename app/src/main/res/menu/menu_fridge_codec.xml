@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/menu_add_fridge"
-        android:icon="@drawable/ic_add"
-        android:title="@string/action_fridge_codec"
-        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_report_search"
@@ -16,6 +11,12 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:icon="@drawable/ic_report_search"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_add_fridge"
+        android:icon="@drawable/ic_add"
+        android:title="@string/action_fridge_codec"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_search"
