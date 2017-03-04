@@ -152,6 +152,12 @@ public class Constants {
     public static String PARAMS_WEB_LINK = "weblink";
     public static String PARAMS_LINK_ID = "id";
     public static String PARAMS_LINK_STATUS = "status";
+    public static String PARAMS_DESCRIPTION = "description";
+    public static String PARAMS_SPLASH_TEXT = "splashtext";
+
+
     public static UsefulLinks USEFULLINK;
     public static String EDIT_USEFUL_LINKS = "edit_useful_links";
+    public static String LEAVEFORMSTRING = "LEAVE FORM";
+    public static String URL_LINK = "url_link";
 }

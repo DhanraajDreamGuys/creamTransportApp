@@ -266,4 +266,11 @@
     <string name="tool_add_useful_links_title">Add Useful Links</string>
     <string name="err_link_name">Enter link name</string>
     <string name="err_links">Enter links</string>
+    <string name="tool_app_settings_title">App Settings</string>
+    <string name="entr_app_name">Enter app name</string>
+    <string name="app_splash_text">Enter splash text</string>
+    <string name="splash_screen">Splash screen</string>
+    <string name="logo">Logo</string>
+    <string name="background">Background</string>
+    <string name="action_print">Print</string>
 </resources>

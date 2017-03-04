@@ -1,11 +1,22 @@
 package co.in.dreamguys.cream;
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +34,12 @@ import java.util.HashMap;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.LeaveAPI;
+import co.in.dreamguys.cream.apis.PrintURLAPI;
 import co.in.dreamguys.cream.apis.UpdateUsersAPI;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
+import co.in.dreamguys.cream.utils.Download;
+import co.in.dreamguys.cream.utils.DownloadService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +64,8 @@ public class EditLeave extends AppCompatActivity implements View.OnClickListener
     CustomProgressDialog mCustomProgressDialog;
     public static String TAG = EditLeave.class.getName();
     private String status = "";
+    private static final int PERMISSION_REQUEST_CODE = 1;
+    String URL = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +73,7 @@ public class EditLeave extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_edit_leave_form);
         mCustomProgressDialog = new CustomProgressDialog(this);
         initWidgets();
-
+        registerReceiver();
         mLeavedata = (LeaveAPI.Datum) getIntent().getSerializableExtra(Constants.EDIT_LEAVE_DATA);
 
         if (mLeavedata != null) {
@@ -137,11 +153,53 @@ public class EditLeave extends AppCompatActivity implements View.OnClickListener
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_edit_leave, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
+        } else if (item.getItemId() == R.id.MEL_print) {
+            getPrintUrl();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getPrintUrl() {
+        if (!isNetworkAvailable(this)) {
+            Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show();
+        } else {
+            mCustomProgressDialog.showDialog();
+            ApiInterface apiService =
+                    ApiClient.getClient().create(ApiInterface.class);
+            Call<PrintURLAPI.PrintURLResponse> loginCall = apiService.getPrintURL(mLeavedata.getLid(), "LEAVE FORM");
+
+            loginCall.enqueue(new Callback<PrintURLAPI.PrintURLResponse>() {
+                @Override
+                public void onResponse(Call<PrintURLAPI.PrintURLResponse> call, Response<PrintURLAPI.PrintURLResponse> response) {
+                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                        URL = response.body().getData().getLink();
+                        if (checkPermission()) {
+                            startDownload(URL, Constants.LEAVEFORMSTRING);
+                        } else {
+                            requestPermission();
+                        }
+                    } else {
+                        Toast.makeText(EditLeave.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                    mCustomProgressDialog.dismiss();
+                }
+
+                @Override
+                public void onFailure(Call<PrintURLAPI.PrintURLResponse> call, Throwable t) {
+                    Log.i(TAG, t.getMessage());
+                    mCustomProgressDialog.dismiss();
+                }
+            });
+        }
     }
 
     @Override
@@ -214,4 +272,67 @@ public class EditLeave extends AppCompatActivity implements View.OnClickListener
             }
         }
     }
+
+    private void registerReceiver() {
+
+        LocalBroadcastManager bManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("Message_Progress");
+        bManager.registerReceiver(broadcastReceiver, intentFilter);
+
+    }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (intent.getAction().equals("Message_Progress")) {
+                Download download = intent.getParcelableExtra("download");
+                if (download.getProgress() == 100) {
+                    Snackbar.make(findViewById(R.id.AELF_LL_parent), "Download Completed...", Snackbar.LENGTH_LONG).show();
+                }
+            }
+        }
+    };
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+
+            return true;
+
+        } else {
+
+            return false;
+        }
+    }
+
+    private void requestPermission() {
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startDownload(URL, Constants.LEAVEFORMSTRING);
+                } else {
+                    Snackbar.make(findViewById(R.id.AELF_LL_parent), "Permission Denied, Please allow to proceed !", Snackbar.LENGTH_LONG).show();
+
+                }
+                break;
+        }
+    }
+
+    private void startDownload(String link, String LEAVEFORMSTRING) {
+        Intent intent = new Intent(this, DownloadService.class);
+        intent.putExtra(Constants.URL_LINK, link);
+        intent.putExtra(Constants.TYPE, LEAVEFORMSTRING);
+        startService(intent);
+    }
+
 }

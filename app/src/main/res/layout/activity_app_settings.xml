@@ -1,6 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_toolbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/AAS_ET_app_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/border_gray_box"
+                android:hint="@string/entr_app_name"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_12sdp" />
+
+            <EditText
+                android:id="@+id/AAS_ET_app_splash_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/border_gray_box"
+                android:hint="@string/app_splash_text"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_12sdp" />
+
+            <EditText
+                android:id="@+id/AAS_ET_app_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/border_gray_box"
+                android:hint="@string/desc"
+                android:padding="@dimen/_8sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/AETH_ET_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="@string/splash_screen"
+                    android:padding="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/AAS_IV_splash_screen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_gray_box"
+                    android:padding="@dimen/_6sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_camera" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="@string/logo"
+                    android:padding="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/AAS_IV_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_gray_box"
+                    android:padding="@dimen/_6sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_camera" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:hint="@string/background"
+                    android:padding="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/AAS_IV_background"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border_gray_box"
+                    android:padding="@dimen/_6sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_camera" />
+
+
+            </LinearLayout>
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/AAS_IV_splash_image"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:background="@drawable/app_setting_image_border_line"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/no_image_found" />
+
+                    <ImageView
+                        android:id="@+id/AAS_IV_logo_image"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/_5sdp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/app_setting_image_border_line"
+                        android:scaleType="fitCenter"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:src="@drawable/no_image_found" />
+
+
+                    <ImageView
+                        android:id="@+id/AAS_IV_background_image"
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="@dimen/_150sdp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:padding="@dimen/_5sdp"
+                        android:background="@drawable/app_setting_image_border_line"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/no_image_found" />
+
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <Button
+                android:id="@+id/AAS_BT_save"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/button_background"
+                android:drawableLeft="@drawable/ic_save_as"
+                android:drawablePadding="@dimen/_10sdp"
+                android:layout_gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/str_save_changes"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -14,6 +15,8 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Path;
+import retrofit2.http.Streaming;
 
 public interface ApiInterface {
 
@@ -212,5 +215,27 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("usefulllinks_add")
     Call<UpdateUsersAPI.UpdateUsersResponse> addUsefulLinks(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("appsetting_edit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> editAppSettings(@FieldMap HashMap<String, String> meta);
+
+    @Multipart
+    @POST("appsetting_edit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> saveAppSettings(@PartMap() Map<String, RequestBody> partMap,
+                                                             @Part MultipartBody.Part file,
+                                                             @Part MultipartBody.Part file1,
+                                                             @Part MultipartBody.Part file2);
+
+    @GET("appsetting_list")
+    Call<AppsettingAPI.AppsettingsResponse> getAppSettings();
+
+    @GET("pdf_file/{fullUrl}")
+    @Streaming
+    Call<ResponseBody> downloadFile(@Path("fullUrl") String fullUrl);
+
+    @FormUrlEncoded
+    @POST("pdfform")
+    Call<PrintURLAPI.PrintURLResponse> getPrintURL(@Field("id") String id, @Field("type") String type);
 
 }

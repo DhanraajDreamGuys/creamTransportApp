@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import co.in.dreamguys.cream.AppSettings;
 import co.in.dreamguys.cream.CustomFields;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.UsefulLinks;
@@ -68,6 +69,9 @@ public class SettingsAdapter extends BaseAdapter {
                         break;
                     case 2:
                         ActivityConstants.callPage(mContext, UsefulLinks.class);
+                        break;
+                    case 3:
+                        ActivityConstants.callPage(mContext, AppSettings.class);
                         break;
                 }
             }

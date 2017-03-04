@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AELF_LL_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -78,8 +79,8 @@
                     android:id="@+id/AELF_TV_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_weight="1"
                     android:background="@drawable/border_gray_box"
                     android:gravity="center_vertical"
                     android:hint=" Date"
@@ -506,6 +507,7 @@
                     android:text="@string/cancel"
                     android:textColor="@android:color/white" />
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
