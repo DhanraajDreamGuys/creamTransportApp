@@ -175,7 +175,7 @@ public class EditLeave extends AppCompatActivity implements View.OnClickListener
             mCustomProgressDialog.showDialog();
             ApiInterface apiService =
                     ApiClient.getClient().create(ApiInterface.class);
-            Call<PrintURLAPI.PrintURLResponse> loginCall = apiService.getPrintURL(mLeavedata.getLid(), "LEAVE FORM");
+            Call<PrintURLAPI.PrintURLResponse> loginCall = apiService.getPrintURL(sendValueWithRetrofits());
 
             loginCall.enqueue(new Callback<PrintURLAPI.PrintURLResponse>() {
                 @Override
@@ -183,7 +183,8 @@ public class EditLeave extends AppCompatActivity implements View.OnClickListener
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
                         URL = response.body().getData().getLink();
                         if (checkPermission()) {
-                            startDownload(URL, Constants.LEAVEFORMSTRING);
+                            String LEAVEFORMSTRING = "LEAVE FORM";
+                            startDownload(URL, LEAVEFORMSTRING);
                         } else {
                             requestPermission();
                         }
@@ -334,5 +335,13 @@ public class EditLeave extends AppCompatActivity implements View.OnClickListener
         intent.putExtra(Constants.TYPE, LEAVEFORMSTRING);
         startService(intent);
     }
+
+    private HashMap<String, String> sendValueWithRetrofits() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put(Constants.PARAMS_ID, mLeavedata.getLid());
+        params.put(Constants.PARAMS_TYPE, "LEAVE FORM");
+        return params;
+    }
+
 
 }

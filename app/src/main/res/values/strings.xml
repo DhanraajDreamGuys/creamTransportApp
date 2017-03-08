@@ -239,7 +239,7 @@
     <string name="str_close">Close</string>
     <string name="str_add">Add</string>
     <string name="str_manager">Manager name</string>
-    <string name="str_name1">Enter name</string>
+    <string name="str_entr_name">Enter name</string>
     <string name="str_position">Position</string>
     <string name="str_phone_no">Phone no</string>
     <string name="codetype">Code type</string>
@@ -273,4 +273,27 @@
     <string name="logo">Logo</string>
     <string name="background">Background</string>
     <string name="action_print">Print</string>
+    <string name="str_truck">Truck</string>
+    <string name="str_workshop">Workshop</string>
+    <string name="str_management">Management</string>
+    <string name="str_customers">Customers</string>
+    <string name="tool_phonebook_title">Phonebook</string>
+    <string name="tool_truck_title">Trucks</string>
+    <string name="toolbar_view_pb_truck_title">View Truck</string>
+    <string name="toolbar_edit_pb_truck_title">Edit Truck</string>
+    <string name="tool_workshop_title">Workshop</string>
+    <string name="toolbar_view_pb_workshop_title">View Workshop</string>
+    <string name="toolbar_edit_pb_workshop_title">Edit Workshop</string>
+    <string name="err_address">Enter Address</string>
+    <string name="err_manager">Enter Manager</string>
+    <string name="toolbar_add_pb_truck_title">Add Truck</string>
+    <string name="toolbar_add_pb_workshop_title">Add Workshop</string>
+    <string name="tool_management_title">Management</string>
+    <string name="err_position">Enter Position</string>
+    <string name="toolbar_edit_pb_management_title">Edit Management</string>
+    <string name="toolbar_add_pb_customer_title">Customers</string>
+    <string name="toolbar_view_pb_customer_title">View Customers</string>
+    <string name="toolbar_edit_pb_customer_title">Edit Customers</string>
+    <string name="toolbar_pb_customer_title">Add Customers</string>
+    <string name="fields_empty">Fields are empty</string>
 </resources>

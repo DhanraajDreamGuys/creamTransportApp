@@ -6,6 +6,21 @@
 
     <include layout="@layout/activity_toolbar" />
 
+    <ToggleButton
+        android:id="@+id/ATVPB_TB_status"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/button_background"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textColor="@android:color/white"
+        android:textOff="Inactive"
+        android:textOn="Active" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

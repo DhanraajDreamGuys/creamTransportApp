@@ -6,6 +6,17 @@
 
     <include layout="@layout/activity_toolbar" />
 
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/ATEPB_BT_status"
+        style="@style/SCBSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,9 +42,9 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_gray_box"
             android:hint="@string/str_truck_no"
+            android:inputType="number"
             android:padding="@dimen/_8sdp"
             android:singleLine="true"
-            android:inputType="number"
             android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
@@ -62,8 +73,8 @@
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_gray_box"
-            android:inputType="phone"
             android:hint="@string/str_phone"
+            android:inputType="phone"
             android:padding="@dimen/_8sdp"
             android:singleLine="true"
             android:textSize="@dimen/_12sdp" />
@@ -73,7 +84,7 @@
     <Button
         android:id="@+id/ATEPB_BT_save"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_35sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"

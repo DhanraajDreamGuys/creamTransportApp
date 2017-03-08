@@ -64,6 +64,7 @@ public class Constants {
     public static co.in.dreamguys.cream.AdminMenu AdminMenu;
     public static String PARAMS_DRIVER_ID = "driver_id";
     public static String PARAMS_TRUCK_NO = "truck";
+    public static String PARAMS_TRUCK_ID = "truck_no";
     public static String PARAMS_TRAILERS = "trailers";
     public static String PARAMS_MNO = "mno";
     public static String PARAMS_DOLLYNO = "dolly";
@@ -91,6 +92,7 @@ public class Constants {
     public static String PARAMS_LASTTNAME = "last_name";
     public static String PARAMS_EMAIL = "email";
     public static String PARAMS_PHONE = "phone";
+    public static String PARAMS_PHONE_NO = "phone_no";
     public static String PARAMS_STREET = "street";
     public static String PARAMS_CITY = "city";
     public static String PARAMS_STATE = "state";
@@ -158,6 +160,13 @@ public class Constants {
 
     public static UsefulLinks USEFULLINK;
     public static String EDIT_USEFUL_LINKS = "edit_useful_links";
-    public static String LEAVEFORMSTRING = "LEAVE FORM";
+    public static String LEAVEFORMSTRING = "";
     public static String URL_LINK = "url_link";
+    public static String PB_TRUCK_DATA = "pb_truck_data";
+    public static String PB_WORKSHOP_DATA = "pb_work_shop_data";
+
+    public static String PARAMS_ADDRESS="address";
+    public static String PARAMS_MANAGER="manager";
+    public static String PB_MANAGEMENT_DATA="pb_management_data";
+    public static String PB_CUSTOMER_DATA = "pb_customer_data";
 }

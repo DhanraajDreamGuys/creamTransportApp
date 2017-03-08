@@ -24,6 +24,7 @@ import co.in.dreamguys.cream.FridgeCodec;
 import co.in.dreamguys.cream.Fuelsheet;
 import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.Paysheet;
+import co.in.dreamguys.cream.PhoneBook;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.Settings;
@@ -130,6 +131,9 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
                     break;
                 case 16:
                     ActivityConstants.callPage(mContext, Fuelsheet.class);
+                    break;
+                case 17:
+                    ActivityConstants.callPage(mContext, PhoneBook.class);
                     break;
                 case 18:
                     ActivityConstants.callPage(mContext, TripHours.class);

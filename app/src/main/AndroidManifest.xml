@@ -254,6 +254,95 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".PhoneBook"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".PBTruck"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".PBCustomers"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PBManagement"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".PBWorkShop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ViewPBTruck"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".EditPBTruck"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ViewPBWorkshop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".EditPBWorkshop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".AddPBTruck"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".AddPBWorkShop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ViewPBManagement"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".EditPBManagement"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".AddPBManagement"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".PBCustomers"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ViewPBCustomers"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".EditPBCustomers"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".AddPBCustomer"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service android:name=".utils.DownloadService" />
 
     </application>

@@ -236,6 +236,63 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("pdfform")
-    Call<PrintURLAPI.PrintURLResponse> getPrintURL(@Field("id") String id, @Field("type") String type);
+    Call<PrintURLAPI.PrintURLResponse> getPrintURL(@FieldMap HashMap<String, String> meta);
+
+    @GET("phonebook_trucklist")
+    Call<PBTruckAPI.PBTruckListResponse> getPBTruckLists();
+
+    @FormUrlEncoded
+    @POST("phonebook_truckedit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> editPBTrucks(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("phonebook_statusUpdate")
+    Call<UpdateUsersAPI.UpdateUsersResponse> editStatus(@Field("id") String id, @Field("status") String truck_no, @Field("truck_no") String status);
+
+    @FormUrlEncoded
+    @POST("phonebook_truckadd")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addPBTrucks(@FieldMap HashMap<String, String> meta);
+
+    @GET("phonebook_workshoplist")
+    Call<PBWorkShopAPI.PBWorkShopListResponse> getPBWorkShopLists();
+
+    @FormUrlEncoded
+    @POST("phonebook_workshopedit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> editPBWorkshop(@FieldMap HashMap<String, String> meta);
+
+
+    @FormUrlEncoded
+    @POST("phonebook_workshop_statusUpdate")
+    Call<UpdateUsersAPI.UpdateUsersResponse> editWorkshop(@Field("id") String id, @Field("status") String status);
+
+    @FormUrlEncoded
+    @POST("phonebook_customer_statusUpdate")
+    Call<UpdateUsersAPI.UpdateUsersResponse> updateCustomerStatus(@Field("id") String id, @Field("status") String status);
+
+    @FormUrlEncoded
+    @POST("phonebook_workshopadd")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addPBWorkshop(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("phonebook_customeradd")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addPBCustomer(@FieldMap HashMap<String, String> meta);
+
+    @GET("phonebook_managementlist")
+    Call<PBManagementAPI.PBManagementListResponse> getPBManagementLists();
+
+    @FormUrlEncoded
+    @POST("phonebook_managementedit")
+    Call<UpdateUsersAPI.UpdateUsersResponse> editPBManagement(@FieldMap HashMap<String, String> meta);
+
+    @FormUrlEncoded
+    @POST("phonebook_management_statusUpdate")
+    Call<UpdateUsersAPI.UpdateUsersResponse> editManagementStatus(@Field("id") String id, @Field("status") String status);
+
+    @FormUrlEncoded
+    @POST("phonebook_managementadd")
+    Call<UpdateUsersAPI.UpdateUsersResponse> addPBManagement(@FieldMap HashMap<String, String> meta);
+
+    @GET("phonebook_customerlist")
+    Call<PBCustomerAPI.PBCustomerResponse> getPBCustomerLists();
 
 }

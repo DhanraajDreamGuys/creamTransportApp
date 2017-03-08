@@ -352,6 +352,7 @@ public class Util {
                     ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
                     switch (PAGE) {
                         case "PAYSHEET":
+                            ((Paysheet) mContext).printInstance(fireDriverlist, mFromDate, mFromTo);
                             Call<PaysheetLastWeekAPI.PaysheetLastWeekResponse> loginCall = apiService.getSearchPaysheetReport(sendValueWithRetrofit(mFromDate, mFromTo));
                             loginCall.enqueue(new Callback<PaysheetLastWeekAPI.PaysheetLastWeekResponse>() {
                                 @Override
@@ -375,6 +376,7 @@ public class Util {
                             break;
 
                         case "REPAIR":
+                            ((RepairSheet) mContext).printInstance(fireDriverlist, mFromDate, mFromTo);
                             Call<RepairsheetCurrentDayAPI.RepairsheetResponse> repairsheet = apiService.getSearchRepairsheetReport(sendValueWithRetrofit(mFromDate, mFromTo));
                             repairsheet.enqueue(new Callback<RepairsheetCurrentDayAPI.RepairsheetResponse>() {
                                 @Override
@@ -447,6 +449,7 @@ public class Util {
                             break;
 
                         case "FUELSHEET":
+                            ((Fuelsheet) mContext).printInstance(fireDriverlist, mFromDate, mFromTo);
                             Call<FuelsheetAPI.FuelSheetListResponse> fuelSheetCall = apiService.getFuelsheetLists(sendValueWithRetrofit(mFromDate, mFromTo));
 
                             fuelSheetCall.enqueue(new Callback<FuelsheetAPI.FuelSheetListResponse>() {
@@ -797,4 +800,5 @@ public class Util {
             aFuelSheetAdapter.notifyDataSetChanged();
         }
     }
+
 }

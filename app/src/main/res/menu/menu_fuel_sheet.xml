@@ -9,12 +9,20 @@
         android:title=""
         android:visible="true"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/MS_print"
+        android:icon="@drawable/ic_print"
+        android:title="@string/action_print"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_filter"
         android:orderInCategory="100"
-        android:title=""
-        app:showAsAction="ifRoom" />
+        android:title="Filters"
+        app:showAsAction="never" />
+
 </menu>

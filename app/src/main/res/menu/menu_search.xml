@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/MS_print"
+        android:icon="@drawable/ic_print"
+        android:title="@string/action_print"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_filter"
         android:orderInCategory="100"

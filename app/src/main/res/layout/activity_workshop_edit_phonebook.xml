@@ -6,6 +6,17 @@
 
     <include layout="@layout/activity_toolbar" />
 
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/AWEPB_SC_status"
+        style="@style/SCBSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp" />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,7 +147,7 @@
     <Button
         android:id="@+id/AWEPB_BT_save"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_35sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"

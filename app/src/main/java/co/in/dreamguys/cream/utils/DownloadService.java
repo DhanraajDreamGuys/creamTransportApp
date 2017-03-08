@@ -46,9 +46,16 @@ public class DownloadService extends IntentService {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
-        File pathFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), intent.getStringExtra(Constants.TYPE) + date + ".pdf");
+        String filepath = Environment.getExternalStorageDirectory().getPath();
+        File pathFile = new File(filepath + "/CreamTranspoort");
+        if (!pathFile.exists()) {
+            pathFile.mkdirs();
+        }
+        String append = intent.getStringExtra(Constants.TYPE) + " " + date + ".pdf";
+        String s = pathFile + "/" + append;
+        File path = new File(s);
         Intent outFile = new Intent(Intent.ACTION_VIEW);
-        outFile.setDataAndType(Uri.fromFile(pathFile), "application/pdf");
+        outFile.setDataAndType(Uri.fromFile(path), "application/pdf");
         outFile.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent p = PendingIntent.getActivity(getApplicationContext(), 0, outFile, 0);
         notificationBuilder = new NotificationCompat.Builder(this)
@@ -79,9 +86,9 @@ public class DownloadService extends IntentService {
         byte data[] = new byte[1024 * 4];
         long fileSize = body.contentLength();
         InputStream bis = new BufferedInputStream(body.byteStream(), 1024 * 8);
-        File outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), intent.getStringExtra(Constants.TYPE) + date + ".pdf");
-        Log.i("File Path: ", outputFile.toString());
-        OutputStream output = new FileOutputStream(outputFile);
+        String filepath = getFilename(intent.getStringExtra(Constants.TYPE) + " " + date + ".pdf");
+        Log.i("File path: ", filepath);
+        OutputStream output = new FileOutputStream(filepath);
         long total = 0;
         long startTime = System.currentTimeMillis();
         int timeCount = 1;
@@ -113,6 +120,15 @@ public class DownloadService extends IntentService {
         output.close();
         bis.close();
 
+    }
+
+    private String getFilename(String append) {
+        String filepath = Environment.getExternalStorageDirectory().getPath();
+        File file = new File(filepath + "/CreamTranspoort");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return (file.getAbsolutePath() + "/" + append);
     }
 
     private void sendNotification(Download download) {
