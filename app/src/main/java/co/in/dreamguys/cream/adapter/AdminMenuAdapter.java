@@ -30,6 +30,7 @@ import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.Settings;
 import co.in.dreamguys.cream.TripHours;
 import co.in.dreamguys.cream.Trips;
+import co.in.dreamguys.cream.Tyrerepair;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.model.ExpandedMenuModel;
 import co.in.dreamguys.cream.utils.ActivityConstants;
@@ -110,6 +111,9 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
                     break;
                 case 3:
                     ActivityConstants.callPage(mContext, Trips.class);
+                    break;
+                case 6:
+                    ActivityConstants.callPage(mContext, Tyrerepair.class);
                     break;
                 case 8:
                     ActivityConstants.callPage(mContext, Paysheet.class);

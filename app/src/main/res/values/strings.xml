@@ -296,4 +296,10 @@
     <string name="toolbar_edit_pb_customer_title">Edit Customers</string>
     <string name="toolbar_pb_customer_title">Add Customers</string>
     <string name="fields_empty">Fields are empty</string>
+    <string name="str_approved">Approved</string>
+    <string name="tool_tyre_repair_title">Tyre Repair</string>
+    <string name="str_new">New</string>
+    <string name="str_on_hold">On-Hold</string>
+    <string name="str_head">Head Approval</string>
+    <string name="tool_view_tyre_repair_title">View Tyre Repair</string>
 </resources>

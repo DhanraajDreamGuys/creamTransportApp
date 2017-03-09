@@ -12,6 +12,7 @@
     <color name="clr_gray">#eeeeee</color>
     <color name="accept_color">#089c83</color>
     <color name="inactive_color">#FF0000</color>
+    <color name="orange_color">#ffa500</color>
 
 
 </resources>

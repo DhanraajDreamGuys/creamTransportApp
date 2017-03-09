@@ -295,4 +295,12 @@ public interface ApiInterface {
     @GET("phonebook_customerlist")
     Call<PBCustomerAPI.PBCustomerResponse> getPBCustomerLists();
 
+    @GET("tyrerepair_list")
+    Call<TyreRepairAPI.TyrerepairResponse> getTyreRepairs();
+
+    @FormUrlEncoded
+    @POST("tyrerepair_search_result")
+    Call<TyreRepairAPI.TyrerepairResponse> getTyreRepairLists(@FieldMap HashMap<String, String> meta);
+
+
 }

@@ -165,8 +165,10 @@ public class Constants {
     public static String PB_TRUCK_DATA = "pb_truck_data";
     public static String PB_WORKSHOP_DATA = "pb_work_shop_data";
 
-    public static String PARAMS_ADDRESS="address";
-    public static String PARAMS_MANAGER="manager";
-    public static String PB_MANAGEMENT_DATA="pb_management_data";
+    public static String PARAMS_ADDRESS = "address";
+    public static String PARAMS_MANAGER = "manager";
+    public static String PB_MANAGEMENT_DATA = "pb_management_data";
     public static String PB_CUSTOMER_DATA = "pb_customer_data";
+    public static String TYREREPAIR = "TYRE REPAIR";
+    public static String TYRE_REPAIR_DATA = "tyre_repair_data";
 }

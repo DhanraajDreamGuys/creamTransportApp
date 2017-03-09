@@ -44,6 +44,7 @@ import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.Trips;
+import co.in.dreamguys.cream.Tyrerepair;
 import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.adapter.AccidentReportAdapter;
 import co.in.dreamguys.cream.adapter.CountryListAdapter;
@@ -52,6 +53,7 @@ import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.adapter.TripAdapter;
 import co.in.dreamguys.cream.adapter.TypeListAdapter;
+import co.in.dreamguys.cream.adapter.TyreRepairAdapter;
 import co.in.dreamguys.cream.adapter.UserTypeListAdapter;
 import co.in.dreamguys.cream.apis.AccidentReportAPI;
 import co.in.dreamguys.cream.apis.ApiClient;
@@ -60,6 +62,7 @@ import co.in.dreamguys.cream.apis.FuelsheetAPI;
 import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
 import co.in.dreamguys.cream.apis.RepairsheetCurrentDayAPI;
 import co.in.dreamguys.cream.apis.TripListAPI;
+import co.in.dreamguys.cream.apis.TyreRepairAPI;
 import co.in.dreamguys.cream.model.Data;
 import co.in.dreamguys.cream.model.FuelSheetData;
 import co.in.dreamguys.cream.model.FuelSheetModel;
@@ -92,6 +95,7 @@ public class Util {
     public static FuelSheetAdapter aFuelSheetAdapter;
     private static Map.Entry<String, String> type;
     private static TypeListAdapter aTypeListAdapter;
+    private static TyreRepairAdapter aTyreRepairAdapter;
     private static Map<String, String> map;
 
 
@@ -472,6 +476,31 @@ public class Util {
                             });
                             break;
 
+                        case "TYRE REPAIR":
+                            Call<TyreRepairAPI.TyrerepairResponse> tyreRepair = apiService.getTyreRepairLists(sendValueWithRetrofit(mFromDate, mFromTo));
+
+                            tyreRepair.enqueue(new Callback<TyreRepairAPI.TyrerepairResponse>() {
+                                @Override
+                                public void onResponse(Call<TyreRepairAPI.TyrerepairResponse> call, Response<TyreRepairAPI.TyrerepairResponse> response) {
+                                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                                        aTyreRepairAdapter = new TyreRepairAdapter(mContext, response.body().getData());
+                                        mPaysheetView.setAdapter(aTyreRepairAdapter);
+                                        aTyreRepairAdapter.notifyDataSetChanged();
+                                    } else {
+                                        mPaysheetView.setAdapter(null);
+                                        Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    mCustomProgressDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onFailure(Call<TyreRepairAPI.TyrerepairResponse> call, Throwable t) {
+                                    Log.i(((Tyrerepair) mContext).getPackageName(), t.getMessage());
+                                    mCustomProgressDialog.dismiss();
+                                }
+                            });
+                            break;
+
                     }
 
 
@@ -509,6 +538,12 @@ public class Util {
                     case "FUELSHEET":
                         mPaysheetView.setAdapter(null);
                         ((Fuelsheet) mContext).searchNotify();
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
+
+                    case "TYRE REPAIR":
+                        mPaysheetView.setAdapter(null);
+                        ((Tyrerepair) mContext).searchNotify();
                         listAdjustableMethod(popupSearch, mPaysheetView);
                         break;
                 }
