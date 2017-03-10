@@ -21,9 +21,19 @@ public class TyreRepairAPI {
 
     public class Datum implements Serializable {
 
-        @SerializedName("tid")
+
+        @SerializedName("id")
         @Expose
-        private String tid;
+        private String id;
+        @SerializedName("user_id")
+        @Expose
+        private String user_id;
+        @SerializedName("issue")
+        @Expose
+        private String issue;
+        @SerializedName("destination")
+        @Expose
+        private String destination;
         @SerializedName("truck")
         @Expose
         private String truck;
@@ -33,40 +43,64 @@ public class TyreRepairAPI {
         @SerializedName("dolly")
         @Expose
         private String dolly;
-        @SerializedName("issue")
+        @SerializedName("mech_id")
         @Expose
-        private String issue;
+        private String mech_id;
         @SerializedName("mech_issues")
         @Expose
         private String mech_issues;
-        @SerializedName("approval")
-        @Expose
-        private String approval;
-        @SerializedName("pname")
-        @Expose
-        private String pname;
-        @SerializedName("first_name")
-        @Expose
-        private String first_name;
-        @SerializedName("last_name")
-        @Expose
-        private String last_name;
-        @SerializedName("cdate")
-        @Expose
-        private String cdate;
         @SerializedName("mech_comts")
         @Expose
         private String mech_comts;
+        @SerializedName("approval")
+        @Expose
+        private String approval;
+        @SerializedName("created_date")
+        @Expose
+        private String created_date;
+        @SerializedName("mech_udate")
+        @Expose
+        private String mech_udate;
+        @SerializedName("hdmech_id")
+        @Expose
+        private String hdmech_id;
         @SerializedName("hdmech_cmts")
         @Expose
         private String hdmech_cmts;
+        @SerializedName("hdmech_udate")
+        @Expose
+        private String hdmech_udate;
 
-        public String getTid() {
-            return tid;
+        public String getId() {
+            return id;
         }
 
-        public void setTid(String tid) {
-            this.tid = tid;
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
+
+        public String getIssue() {
+            return issue;
+        }
+
+        public void setIssue(String issue) {
+            this.issue = issue;
+        }
+
+        public String getDestination() {
+            return destination;
+        }
+
+        public void setDestination(String destination) {
+            this.destination = destination;
         }
 
         public String getTruck() {
@@ -93,12 +127,12 @@ public class TyreRepairAPI {
             this.dolly = dolly;
         }
 
-        public String getIssue() {
-            return issue;
+        public String getMech_id() {
+            return mech_id;
         }
 
-        public void setIssue(String issue) {
-            this.issue = issue;
+        public void setMech_id(String mech_id) {
+            this.mech_id = mech_id;
         }
 
         public String getMech_issues() {
@@ -109,46 +143,6 @@ public class TyreRepairAPI {
             this.mech_issues = mech_issues;
         }
 
-        public String getApproval() {
-            return approval;
-        }
-
-        public void setApproval(String approval) {
-            this.approval = approval;
-        }
-
-        public String getPname() {
-            return pname;
-        }
-
-        public void setPname(String pname) {
-            this.pname = pname;
-        }
-
-        public String getFirst_name() {
-            return first_name;
-        }
-
-        public void setFirst_name(String first_name) {
-            this.first_name = first_name;
-        }
-
-        public String getLast_name() {
-            return last_name;
-        }
-
-        public void setLast_name(String last_name) {
-            this.last_name = last_name;
-        }
-
-        public String getCdate() {
-            return cdate;
-        }
-
-        public void setCdate(String cdate) {
-            this.cdate = cdate;
-        }
-
         public String getMech_comts() {
             return mech_comts;
         }
@@ -157,12 +151,52 @@ public class TyreRepairAPI {
             this.mech_comts = mech_comts;
         }
 
+        public String getApproval() {
+            return approval;
+        }
+
+        public void setApproval(String approval) {
+            this.approval = approval;
+        }
+
+        public String getCreated_date() {
+            return created_date;
+        }
+
+        public void setCreated_date(String created_date) {
+            this.created_date = created_date;
+        }
+
+        public String getMech_udate() {
+            return mech_udate;
+        }
+
+        public void setMech_udate(String mech_udate) {
+            this.mech_udate = mech_udate;
+        }
+
+        public String getHdmech_id() {
+            return hdmech_id;
+        }
+
+        public void setHdmech_id(String hdmech_id) {
+            this.hdmech_id = hdmech_id;
+        }
+
         public String getHdmech_cmts() {
             return hdmech_cmts;
         }
 
         public void setHdmech_cmts(String hdmech_cmts) {
             this.hdmech_cmts = hdmech_cmts;
+        }
+
+        public String getHdmech_udate() {
+            return hdmech_udate;
+        }
+
+        public void setHdmech_udate(String hdmech_udate) {
+            this.hdmech_udate = hdmech_udate;
         }
 
     }

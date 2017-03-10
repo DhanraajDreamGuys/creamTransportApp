@@ -302,5 +302,17 @@ public interface ApiInterface {
     @POST("tyrerepair_search_result")
     Call<TyreRepairAPI.TyrerepairResponse> getTyreRepairLists(@FieldMap HashMap<String, String> meta);
 
+    @GET("alert_email_list")
+    Call<AlertemplateAPI.AlertTemplateResponse> getTemplates();
 
+    @FormUrlEncoded
+    @POST("alert_email")
+    Call<UpdateUsersAPI.UpdateUsersResponse> sendAlerts(@FieldMap HashMap<String, String> meta);
+
+    @GET("company_list")
+    Call<CompanyAPI.CompanyResponse> getCompany();
+
+    @FormUrlEncoded
+    @POST("company_update")
+    Call<UpdateUsersAPI.UpdateUsersResponse> saveCompanyDetails(@FieldMap HashMap<String, String> meta);
 }

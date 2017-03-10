@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 import co.in.dreamguys.cream.Accidentreport;
+import co.in.dreamguys.cream.Alerts;
+import co.in.dreamguys.cream.Company;
 import co.in.dreamguys.cream.Dashboard;
 import co.in.dreamguys.cream.EngineCodec;
 import co.in.dreamguys.cream.FridgeCodec;
@@ -106,11 +108,17 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
                 case 0:
                     ActivityConstants.callPage(mContext, Dashboard.class);
                     break;
+                case 1:
+                    ActivityConstants.callPage(mContext, Company.class);
+                    break;
                 case 2:
                     ActivityConstants.callPage(mContext, Users.class);
                     break;
                 case 3:
                     ActivityConstants.callPage(mContext, Trips.class);
+                    break;
+                case 5:
+                    ActivityConstants.callPage(mContext, Alerts.class);
                     break;
                 case 6:
                     ActivityConstants.callPage(mContext, Tyrerepair.class);

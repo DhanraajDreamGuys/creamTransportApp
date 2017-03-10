@@ -16,6 +16,8 @@ import java.util.List;
 
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.ViewTyreRepair;
+import co.in.dreamguys.cream.apis.BranchAPI;
+import co.in.dreamguys.cream.apis.DriverListsAPI;
 import co.in.dreamguys.cream.apis.TyreRepairAPI;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.Util;
@@ -71,7 +73,12 @@ public class TyreRepairAdapter extends BaseAdapter {
             mHolder = (ViewHolder) convertView.getTag();
         }
         final TyreRepairAPI.Datum mTyreList = data.get(position);
-        mHolder.mDriverName.setText(mTyreList.getFirst_name() + " " + mTyreList.getLast_name());
+
+        for (DriverListsAPI.Datum mDrivername : Constants.driverList) {
+            if (mDrivername.getId().equalsIgnoreCase(mTyreList.getUser_id()))
+                mHolder.mDriverName.setText(mDrivername.getFirst_name() + " " + mDrivername.getLast_name());
+        }
+
         if (mTyreList.getApproval().equalsIgnoreCase("2")) {
             mHolder.mStatus.setBackgroundColor(mContext.getColor(R.color.accept_color));
             mHolder.mStatus.setText(mContext.getString(R.string.str_approved));
@@ -87,9 +94,13 @@ public class TyreRepairAdapter extends BaseAdapter {
         }
         mHolder.mTrailNo.setText(mTyreList.getTrailer());
 
-        mHolder.mEmail.setText(mTyreList.getPname());
+        for (BranchAPI.Datum mBranch : Constants.countries) {
+            if (mBranch.getId().equalsIgnoreCase(mTyreList.getDestination()))
+                mHolder.mEmail.setText(mBranch.getName());
+        }
 
-        String date = Util.getDateFormat(mTyreList.getCdate());
+
+        String date = Util.getDateFormat(mTyreList.getCreated_date());
         mHolder.mFrom.setText(date);
 
         JsonObject truckObject = new Gson().fromJson(mTyreList.getTruck(), JsonObject.class);

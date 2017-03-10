@@ -29,6 +29,9 @@ public class DriverListsAPI {
         @SerializedName("last_name")
         @Expose
         private String last_name;
+        @SerializedName("email")
+        @Expose
+        private String email;
 
         public String getId() {
             return id;
@@ -54,6 +57,13 @@ public class DriverListsAPI {
             this.last_name = last_name;
         }
 
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
     }
 
     public class DriverResponse {

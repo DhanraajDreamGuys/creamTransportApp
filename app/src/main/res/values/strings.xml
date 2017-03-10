@@ -302,4 +302,14 @@
     <string name="str_on_hold">On-Hold</string>
     <string name="str_head">Head Approval</string>
     <string name="tool_view_tyre_repair_title">View Tyre Repair</string>
+    <string name="tool_alert_title">Alerts</string>
+    <string name="str_select_template">Select Template*</string>
+    <string name="err_select_templates">Please select template</string>
+    <string name="tool_alert_all_title">Alert All</string>
+    <string name="tool_alert_paysheet_title">Alert Paysheet</string>
+    <string name="tool_alert_templayte_title">Alert Templates</string>
+    <string name="tool_company_title">Company</string>
+    <string name="err_company_name">Enter company name</string>
+    <string name="err_reg_no">Enter Reg no</string>
+    <string name="tool_edit_company_title">Edit Company</string>
 </resources>

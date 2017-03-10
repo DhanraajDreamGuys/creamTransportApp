@@ -27,7 +27,7 @@ public class DriversLog extends AppCompatActivity {
         setContentView(R.layout.include_search);
 
         mListView = (ListView) findViewById(R.id.lv_search_items);
-        mSearch = (Button) findViewById(R.id.bt_search);
+//        mSearch = (Button) findViewById(R.id.bt_search);
         mCustomAdapter = new CustomAdapter();
         mListView.setAdapter(mCustomAdapter);
 

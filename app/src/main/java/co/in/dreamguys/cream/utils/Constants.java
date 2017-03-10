@@ -2,6 +2,7 @@ package co.in.dreamguys.cream.utils;
 
 import java.util.List;
 
+import co.in.dreamguys.cream.AlertSheet;
 import co.in.dreamguys.cream.CustomFields;
 import co.in.dreamguys.cream.EngineCodec;
 import co.in.dreamguys.cream.FridgeCodec;
@@ -13,7 +14,9 @@ import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.UsefulLinks;
 import co.in.dreamguys.cream.UserStatus;
 import co.in.dreamguys.cream.Users;
+import co.in.dreamguys.cream.apis.AlertemplateAPI;
 import co.in.dreamguys.cream.apis.BranchAPI;
+import co.in.dreamguys.cream.apis.CompanyAPI;
 import co.in.dreamguys.cream.apis.CustomFieldTypeAPI;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
 import co.in.dreamguys.cream.apis.ListCountriesAPI;
@@ -27,6 +30,7 @@ import co.in.dreamguys.cream.apis.UserstatuslistAPI;
 public class Constants {
 
 
+    public static AlertSheet ALERTSHEET;
     public static List<CustomFieldTypeAPI.Datum> CUSTOM_FIELD_TYPE;
     public static UserStatus USER_STATUS;
     public static List<UserstatuslistAPI.Statu> USER_STATUS_LISTS;
@@ -171,4 +175,17 @@ public class Constants {
     public static String PB_CUSTOMER_DATA = "pb_customer_data";
     public static String TYREREPAIR = "TYRE REPAIR";
     public static String TYRE_REPAIR_DATA = "tyre_repair_data";
+    public static List<AlertemplateAPI.Datum> TemplateLists;
+    public static String PARAMS_ID_USER = "id_user";
+    public static String PARAMS_MAIL_USER = "usermail";
+    public static String PARAMS_TEMP_ID = "tempname";
+    public static String ALERT_PAGE_INDICATE = "alert_page_indicate";
+    public static CompanyAPI.Datum Company_data;
+    public static String EXTRAS_COMPANY = "extras_company_data";
+    public static String PARAMS_REG_NO = "reg_no";
+    public static String PARAMS_PHONE_NO_2 = "phone2";
+    public static String PARAMS_FAX = "fax";
+    public static String PARAMS_SKYPE = "skype";
+    public static String PARAMS_PIN_CODE = "pin_code";
+    public static String PARAMS_NOTES = "notes";
 }

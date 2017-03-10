@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/AEC_LL_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -37,12 +38,14 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_company_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_company_name"
+                    android:inputType="text"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -67,12 +70,14 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_reg_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_registration"
+                    android:inputType="number"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -97,12 +102,14 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_company_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_email_id"
+                    android:inputType="textEmailAddress"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -127,12 +134,14 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_company_phone_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_phone1"
+                    android:inputType="phone"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -157,12 +166,14 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_company_phone2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_phone2"
+                    android:inputType="phone"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -187,12 +198,14 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_company_fax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_fax"
+                    android:inputType="phone"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -217,12 +230,14 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_company_skype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_skype"
+                    android:inputType="textEmailAddress"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -247,12 +262,14 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_company_street_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/border_gray_box"
                     android:hint="@string/str_street"
+                    android:inputType="text"
                     android:padding="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textSize="@dimen/_12sdp" />
@@ -260,6 +277,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/AEC_ET_company_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
@@ -267,11 +285,13 @@
                 android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/border_gray_box"
                 android:hint="@string/str_city"
+                android:inputType="text"
                 android:padding="@dimen/_8sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
+                android:id="@+id/AEC_ET_company_state"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
@@ -279,11 +299,13 @@
                 android:layout_marginTop="@dimen/_3sdp"
                 android:background="@drawable/border_gray_box"
                 android:hint="@string/str_state"
+                android:inputType="text"
                 android:padding="@dimen/_8sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_12sdp" />
 
-            <EditText
+            <TextView
+                android:id="@+id/AEC_ET_company_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
@@ -298,6 +320,7 @@
                 android:textSize="@dimen/_12sdp" />
 
             <EditText
+                android:id="@+id/AEC_ET_company_pincode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_50sdp"
@@ -328,6 +351,7 @@
 
 
                 <EditText
+                    android:id="@+id/AEC_ET_company_notes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_8sdp"
@@ -342,9 +366,9 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/bt_search"
+                android:id="@+id/AEC_BT_save"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
