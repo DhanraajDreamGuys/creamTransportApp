@@ -21,6 +21,7 @@ import co.in.dreamguys.cream.Accidentreport;
 import co.in.dreamguys.cream.Alerts;
 import co.in.dreamguys.cream.Company;
 import co.in.dreamguys.cream.Dashboard;
+import co.in.dreamguys.cream.DriversLog;
 import co.in.dreamguys.cream.EngineCodec;
 import co.in.dreamguys.cream.FridgeCodec;
 import co.in.dreamguys.cream.Fuelsheet;
@@ -30,6 +31,7 @@ import co.in.dreamguys.cream.PhoneBook;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
 import co.in.dreamguys.cream.Settings;
+import co.in.dreamguys.cream.Staffreport;
 import co.in.dreamguys.cream.TripHours;
 import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.Tyrerepair;
@@ -123,11 +125,17 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
                 case 6:
                     ActivityConstants.callPage(mContext, Tyrerepair.class);
                     break;
+                case 7:
+                    ActivityConstants.callPage(mContext, DriversLog.class);
+                    break;
                 case 8:
                     ActivityConstants.callPage(mContext, Paysheet.class);
                     break;
                 case 10:
                     ActivityConstants.callPage(mContext, RepairSheet.class);
+                    break;
+                case 11:
+                    ActivityConstants.callPage(mContext, Staffreport.class);
                     break;
                 case 12:
                     ActivityConstants.callPage(mContext, Leave.class);

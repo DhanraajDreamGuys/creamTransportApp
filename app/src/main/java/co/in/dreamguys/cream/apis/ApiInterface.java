@@ -315,4 +315,11 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("company_update")
     Call<UpdateUsersAPI.UpdateUsersResponse> saveCompanyDetails(@FieldMap HashMap<String, String> meta);
+
+    @GET("driverhours_list")
+    Call<DriverHoursAPI.DriverHoursResponse> getDriverHours();
+
+    @GET("staffrunsheet_list")
+    Call<StaffreportAPI.StaffReportResponse> getStaffReports();
+
 }

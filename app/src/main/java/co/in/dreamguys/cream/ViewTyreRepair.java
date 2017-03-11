@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -47,6 +46,7 @@ public class ViewTyreRepair extends AppCompatActivity {
 
             final JsonObject issueObject = new Gson().fromJson(mData.getIssue(), JsonObject.class);
 
+
             if (truckbject.has("tno")) {
                 mTitle = getLayoutInflater().inflate(R.layout.include_header, null);
                 mTitleNo = (TextView) mTitle.findViewById(R.id.IH_TV_no);
@@ -75,32 +75,6 @@ public class ViewTyreRepair extends AppCompatActivity {
                 mTyres = getLayoutInflater().inflate(R.layout.include_tralier, null);
                 final Button left = (Button) mTyres.findViewById(R.id.IT_BT_tltyre);
                 final Button right = (Button) mTyres.findViewById(R.id.IT_BT_trtyre);
-                left.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (issueObject.has("prime")) {
-                            if (issueObject.getAsJsonObject("prime").has("l1")) {
-                                Toast.makeText(ViewTyreRepair.this, issueObject.getAsJsonObject("prime").get("l1").toString().replace("\"", ""), Toast.LENGTH_SHORT).show();
-                            } else if (issueObject.getAsJsonObject("prime").has("l2")) {
-                                Toast.makeText(ViewTyreRepair.this, issueObject.getAsJsonObject("prime").get("l2").toString().replace("\"", ""), Toast.LENGTH_SHORT).show();
-                            } else if (issueObject.getAsJsonObject("prime").has("l3")) {
-                                Toast.makeText(ViewTyreRepair.this, issueObject.getAsJsonObject("prime").get("l3").toString().replace("\"", ""), Toast.LENGTH_SHORT).show();
-                            } else if (issueObject.getAsJsonObject("prime").has("l4")) {
-                                Toast.makeText(ViewTyreRepair.this, issueObject.getAsJsonObject("prime").get("l4").toString().replace("\"", ""), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                    }
-                });
-
-                right.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(ViewTyreRepair.this, "Right Click " + right.getId(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-
                 mParentLayout.addView(mTyres);
             }
 
@@ -116,6 +90,7 @@ public class ViewTyreRepair extends AppCompatActivity {
                 for (int truck = 0; truck < dollySize; truck++) {
                     mTyres = getLayoutInflater().inflate(R.layout.include_tralier, null);
                     mTyres.setId(truck);
+
                     mParentLayout.addView(mTyres);
                 }
             }
@@ -135,6 +110,7 @@ public class ViewTyreRepair extends AppCompatActivity {
                     for (int trailer = 0; trailer < trailerSize; trailer++) {
                         mTrailerTyres = getLayoutInflater().inflate(R.layout.include_tralier, null);
                         mTrailerTyres.setId(trailer);
+
                         mParentLayout.addView(mTrailerTyres);
                     }
                 }

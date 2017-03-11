@@ -20,6 +20,7 @@ import co.in.dreamguys.cream.apis.CompanyAPI;
 import co.in.dreamguys.cream.apis.CustomFieldTypeAPI;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
 import co.in.dreamguys.cream.apis.ListCountriesAPI;
+import co.in.dreamguys.cream.apis.StaffreportAPI;
 import co.in.dreamguys.cream.apis.UserTypeAPI;
 import co.in.dreamguys.cream.apis.UserstatuslistAPI;
 
@@ -188,4 +189,5 @@ public class Constants {
     public static String PARAMS_SKYPE = "skype";
     public static String PARAMS_PIN_CODE = "pin_code";
     public static String PARAMS_NOTES = "notes";
+    public static List<StaffreportAPI.Datum> STAFF_REPORT_DATA;
 }

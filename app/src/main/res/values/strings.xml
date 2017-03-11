@@ -312,4 +312,7 @@
     <string name="err_company_name">Enter company name</string>
     <string name="err_reg_no">Enter Reg no</string>
     <string name="tool_edit_company_title">Edit Company</string>
+    <string name="tool_driver_log_title">Driver Log</string>
+    <string name="tool_staff_report_title">Staff Report</string>
+    <string name="str_select_location">Please select location</string>
 </resources>

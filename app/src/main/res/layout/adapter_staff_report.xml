@@ -9,6 +9,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_5sdp"
         app:cardUseCompatPadding="true">
@@ -24,33 +25,25 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/ADL_TV_driver_name"
+                    android:id="@+id/ASR_TV_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_3sdp"
-                    android:layout_weight="0.3"
-                    android:textStyle="bold"
                     android:drawablePadding="@dimen/_10sdp"
                     android:textSize="@dimen/_12sdp" />
 
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@android:color/darker_gray" />
 
-                <TextView
-                    android:id="@+id/ADL_TV_av_hrs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:layout_weight="1"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:gravity="right"
-                    android:textSize="@dimen/_12sdp" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/ASR_TV_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:textSize="@dimen/_12sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,14 +51,15 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/ASR_TV_from"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_location"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:text="Completed night breaks"
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <View
                     android:layout_width="1px"
@@ -74,16 +68,18 @@
                     android:background="@android:color/darker_gray" />
 
                 <TextView
-                    android:id="@+id/ADL_TV_cmpltd_hrs"
+                    android:id="@+id/ASR_TV_to"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_location"
                     android:drawablePadding="@dimen/_10sdp"
                     android:gravity="right"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,14 +87,14 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/ASR_TV_truck_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_weight="1"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:text="Night hours used"
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12sdp" />
 
                 <View
                     android:layout_width="1px"
@@ -107,7 +103,7 @@
                     android:background="@android:color/darker_gray" />
 
                 <TextView
-                    android:id="@+id/ADL_TV_nit_hrs_usd"
+                    android:id="@+id/ASR_TV_trailer_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/_10sdp"
@@ -118,38 +114,7 @@
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:layout_weight="1"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:text="Avaliable night hours"
-                    android:textSize="@dimen/_10sdp" />
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@android:color/darker_gray" />
-
-                <TextView
-                    android:id="@+id/ADL_TV_avil_nit_hrs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:layout_weight="1"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:gravity="right"
-                    android:textSize="@dimen/_12sdp" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -161,14 +126,50 @@
 
 
                 <TextView
-                    android:id="@+id/ADL_TV_view"
+                    android:id="@+id/ASR_TV_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="View >> "
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="View"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12sdp" />
 
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/ASR_TV_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Edit"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@android:color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Delete"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
