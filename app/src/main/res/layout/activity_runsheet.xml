@@ -1,8 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ARS_LL_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/activity_toolbar" />
+
+
+
+    <TextView
+        android:id="@+id/ARS_TV_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@drawable/border_gray_box"
+        android:drawablePadding="@dimen/_10sdp"
+        android:drawableRight="@drawable/down_arrow"
+        android:gravity="center_vertical"
+        android:hint=" From"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_12sdp" />
+
+
+
+    <TextView
+        android:id="@+id/ARS_TV_days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@drawable/border_gray_box"
+        android:drawablePadding="@dimen/_10sdp"
+        android:drawableRight="@drawable/down_arrow"
+        android:gravity="center_vertical"
+        android:hint=" Days"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_12sdp" />
+
+    <Button
+        android:id="@+id/ARS_BT_send"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/button_background"
+        android:padding="@dimen/_5sdp"
+        android:text="@string/send"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

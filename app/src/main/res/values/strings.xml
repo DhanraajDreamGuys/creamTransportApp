@@ -315,4 +315,7 @@
     <string name="tool_driver_log_title">Driver Log</string>
     <string name="tool_staff_report_title">Staff Report</string>
     <string name="str_select_location">Please select location</string>
+    <string name="tool_detail_driver_log_title">Detail Log</string>
+    <string name="tool_runsheet_title">Runsheet</string>
+    <string name="tool_mli_title">MLIs</string>
 </resources>

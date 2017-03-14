@@ -8,11 +8,15 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import co.in.dreamguys.cream.adapter.LocationAdapter;
 import co.in.dreamguys.cream.adapter.StaffReportAdapter;
@@ -43,6 +47,8 @@ public class Staffreport extends AppCompatActivity implements View.OnClickListen
     LocationAdapter aLocationAdapter;
     StaffReportAdapter aStaffReportAdapter;
     String templateId = "";
+    ArrayList<String> mLocations = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,10 +74,16 @@ public class Staffreport extends AppCompatActivity implements View.OnClickListen
                 @Override
                 public void onResponse(Call<StaffreportAPI.StaffReportResponse> call, Response<StaffreportAPI.StaffReportResponse> response) {
                     if (response.body().getMeta().equals(Constants.SUCCESS)) {
-                        aStaffReportAdapter = new StaffReportAdapter(Staffreport.this,response.body().getData());
+                        aStaffReportAdapter = new StaffReportAdapter(Staffreport.this, response.body().getData());
                         mStaffReportWidgets.setAdapter(aStaffReportAdapter);
                         aStaffReportAdapter.notifyDataSetChanged();
                         Constants.STAFF_REPORT_DATA = response.body().getData();
+
+                        for (StaffreportAPI.Datum mLocation : response.body().getData()) {
+                            if (!mLocations.contains(mLocation.getLocation()))
+                                mLocations.add(mLocation.getLocation());
+                        }
+
                     } else {
                         Snackbar.make(findViewById(R.id.AAA_LL_parent), response.body().getMessage(), Snackbar.LENGTH_LONG).show();
                     }
@@ -118,15 +130,21 @@ public class Staffreport extends AppCompatActivity implements View.OnClickListen
                     vAlertLayout = getLayoutInflater().inflate(R.layout.dialog_template, null);
                     mBuilder.setView(vAlertLayout);
                     aAlertDialog = mBuilder.create();
+                    WindowManager.LayoutParams lp = aAlertDialog.getWindow().getAttributes();
+                    lp.dimAmount = 0.0f;
+                    lp.gravity = Gravity.TOP;
+                    aAlertDialog.getWindow().setAttributes(lp);
+                    aAlertDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                     ListView mTemplateWidgets = (ListView) vAlertLayout.findViewById(R.id.DT_LV_templates);
 
-                    aLocationAdapter = new LocationAdapter(this, Constants.STAFF_REPORT_DATA);
+
+                    aLocationAdapter = new LocationAdapter(this, mLocations);
                     mTemplateWidgets.setAdapter(aLocationAdapter);
                     mTemplateWidgets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             for (BranchAPI.Datum branch : Constants.countries) {
-                                if (Constants.STAFF_REPORT_DATA.get(position).getLocation().equalsIgnoreCase(branch.getId())) {
+                                if (mLocations.get(position).equalsIgnoreCase(branch.getId())) {
                                     mSelectLocation.setText(branch.getName());
                                     templateId = branch.getId();
                                 }

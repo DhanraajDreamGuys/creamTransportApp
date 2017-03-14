@@ -40,6 +40,7 @@ import co.in.dreamguys.cream.Accidentreport;
 import co.in.dreamguys.cream.EngineCodec;
 import co.in.dreamguys.cream.FridgeCodec;
 import co.in.dreamguys.cream.Fuelsheet;
+import co.in.dreamguys.cream.MLI;
 import co.in.dreamguys.cream.Paysheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.RepairSheet;
@@ -49,6 +50,7 @@ import co.in.dreamguys.cream.Users;
 import co.in.dreamguys.cream.adapter.AccidentReportAdapter;
 import co.in.dreamguys.cream.adapter.CountryListAdapter;
 import co.in.dreamguys.cream.adapter.FuelSheetAdapter;
+import co.in.dreamguys.cream.adapter.MLIsAdapter;
 import co.in.dreamguys.cream.adapter.PaysheetWeeklyAdapter;
 import co.in.dreamguys.cream.adapter.RepairsheetAdapter;
 import co.in.dreamguys.cream.adapter.TripAdapter;
@@ -59,6 +61,7 @@ import co.in.dreamguys.cream.apis.AccidentReportAPI;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
 import co.in.dreamguys.cream.apis.FuelsheetAPI;
+import co.in.dreamguys.cream.apis.MLIAPI;
 import co.in.dreamguys.cream.apis.PaysheetLastWeekAPI;
 import co.in.dreamguys.cream.apis.RepairsheetCurrentDayAPI;
 import co.in.dreamguys.cream.apis.TripListAPI;
@@ -96,6 +99,7 @@ public class Util {
     private static Map.Entry<String, String> type;
     private static TypeListAdapter aTypeListAdapter;
     private static TyreRepairAdapter aTyreRepairAdapter;
+    private static MLIsAdapter aMLIsAdapter;
     private static Map<String, String> map;
 
 
@@ -501,6 +505,31 @@ public class Util {
                             });
                             break;
 
+                        case "MLIs":
+                            Call<MLIAPI.MLIsresponse> mlis = apiService.searchMLI(Constants.driverList.get(adapterPosition).getId(),
+                                    mFromDate.getText().toString(), mFromTo.getText().toString());
+
+                            mlis.enqueue(new Callback<MLIAPI.MLIsresponse>() {
+                                @Override
+                                public void onResponse(Call<MLIAPI.MLIsresponse> call, Response<MLIAPI.MLIsresponse> response) {
+                                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                                        aMLIsAdapter = new MLIsAdapter(mContext, response.body().getData());
+                                        mPaysheetView.setAdapter(aMLIsAdapter);
+                                        aMLIsAdapter.notifyDataSetChanged();
+                                    } else {
+                                        mPaysheetView.setAdapter(null);
+                                        Toast.makeText(mContext, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    mCustomProgressDialog.dismiss();
+                                }
+
+                                @Override
+                                public void onFailure(Call<MLIAPI.MLIsresponse> call, Throwable t) {
+                                    Log.i(((MLI) mContext).getPackageName(), t.getMessage());
+                                    mCustomProgressDialog.dismiss();
+                                }
+                            });
+                            break;
                     }
 
 
@@ -544,6 +573,12 @@ public class Util {
                     case "TYRE REPAIR":
                         mPaysheetView.setAdapter(null);
                         ((Tyrerepair) mContext).searchNotify();
+                        listAdjustableMethod(popupSearch, mPaysheetView);
+                        break;
+
+                    case "MLIs":
+                        mPaysheetView.setAdapter(null);
+                        ((MLI) mContext).searchNotify();
                         listAdjustableMethod(popupSearch, mPaysheetView);
                         break;
                 }

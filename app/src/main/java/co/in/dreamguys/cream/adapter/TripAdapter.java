@@ -83,10 +83,14 @@ public class TripAdapter extends BaseAdapter {
         for (BranchAPI.Datum data : Constants.countries) {
             if (mTripList.getFrom().equalsIgnoreCase(data.getId())) {
                 mHolder.mFrom.setText(data.getName());
-            } else if (mTripList.getTo().equalsIgnoreCase(data.getId())) {
+            }
+        }
+        for (BranchAPI.Datum data : Constants.countries) {
+            if (mTripList.getTo().equalsIgnoreCase(data.getId())) {
                 mHolder.mTo.setText(data.getName());
             }
         }
+
         mHolder.mReason.setText(mTripList.getReason());
 
 

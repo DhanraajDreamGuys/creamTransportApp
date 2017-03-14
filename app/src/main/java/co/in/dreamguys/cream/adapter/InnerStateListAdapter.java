@@ -1,7 +1,6 @@
 package co.in.dreamguys.cream.adapter;
 
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,48 +11,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.in.dreamguys.cream.R;
-import co.in.dreamguys.cream.apis.BranchAPI;
-
-import static co.in.dreamguys.cream.utils.Constants.From;
-import static co.in.dreamguys.cream.utils.Constants.To;
+import co.in.dreamguys.cream.apis.InnerStateAPI;
 
 /**
  * Created by user5 on 17-02-2017.
  */
-public class BranchListAdapter extends BaseAdapter {
+public class InnerStateListAdapter extends BaseAdapter {
 
     Context mContext;
-    private List<BranchAPI.Datum> countries;
-    private List<BranchAPI.Datum> countriesFiltered = new ArrayList<BranchAPI.Datum>();
+    private List<InnerStateAPI.Datum> innerstate;
+    private List<InnerStateAPI.Datum> innerstateFiltered = new ArrayList<InnerStateAPI.Datum>();
     LayoutInflater mInflater;
     private boolean searchEnabled = false;
     private String searchTerm;
-    private TextView value;
-    private AlertDialog alert;
-    String mFromorTo;
 
-    public BranchListAdapter(Context mContext, List<BranchAPI.Datum> countries, TextView value, AlertDialog alert, String mFromorTo) {
+    public InnerStateListAdapter(Context mContext, List<InnerStateAPI.Datum> innerstate) {
         this.mContext = mContext;
-        this.countries = countries;
-        this.alert = alert;
-        this.value = value;
-        this.mFromorTo = mFromorTo;
+        this.innerstate = innerstate;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
-
 
     @Override
     public int getCount() {
         if (searchEnabled)
-            return countriesFiltered.size();
-        return countries.size();
+            return innerstateFiltered.size();
+        return innerstate.size();
 
     }
 
     @Override
-    public BranchAPI.Datum getItem(int position) {
-        return countries.get(position);
+    public InnerStateAPI.Datum getItem(int position) {
+        if (searchEnabled)
+            return innerstateFiltered.get(position);
+        return innerstate.get(position);
     }
 
     @Override
@@ -63,7 +53,7 @@ public class BranchListAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final BranchAPI.Datum countryname = searchEnabled ? countriesFiltered.get(position) : countries.get(position);
+        final InnerStateAPI.Datum countryname = searchEnabled ? innerstateFiltered.get(position) : innerstate.get(position);
         ViewHolder mHolder;
         if (convertView == null) {
             mHolder = new ViewHolder();
@@ -76,18 +66,6 @@ public class BranchListAdapter extends BaseAdapter {
 
         mHolder.mDriverName.setText(countryname.getName());
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                value.setText(countryname.getName());
-                if (mFromorTo.equalsIgnoreCase("From")) {
-                    From = position;
-                } else {
-                    To = position;
-                }
-                alert.dismiss();
-            }
-        });
 
         return convertView;
     }
@@ -100,7 +78,7 @@ public class BranchListAdapter extends BaseAdapter {
         searchEnabled = enabled;
         if (!searchEnabled) {
             searchTerm = "";
-            countriesFiltered.clear();
+            innerstateFiltered.clear();
             notifyDataSetChanged();
             return;
         }
@@ -110,20 +88,20 @@ public class BranchListAdapter extends BaseAdapter {
 
 
     private void filter() {
-        countriesFiltered.clear();
+        innerstateFiltered.clear();
         if (searchTerm.length() == 0) {
-            countriesFiltered.addAll(countries);
+            innerstateFiltered.addAll(innerstate);
         } else if (searchTerm.length() == 1) {
-            for (BranchAPI.Datum row : countries) {
+            for (InnerStateAPI.Datum row : innerstate) {
                 if (row.getName().toLowerCase().charAt(0) == searchTerm.toLowerCase().charAt(0))
-                    countriesFiltered.add(row);
+                    innerstateFiltered.add(row);
             }
         } else {
-            for (BranchAPI.Datum row : countries) {
+            for (InnerStateAPI.Datum row : innerstate) {
                 if (row.getName().toLowerCase().contains(searchTerm) ||
                         row.getName().toLowerCase().contains(searchTerm)
                         ) {
-                    countriesFiltered.add(row);
+                    innerstateFiltered.add(row);
                 }
             }
         }

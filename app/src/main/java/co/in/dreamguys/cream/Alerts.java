@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import co.in.dreamguys.cream.adapter.AlertAdapter;
@@ -40,5 +41,13 @@ public class Alerts extends AppCompatActivity {
         mToolbar.setTitle(getString(R.string.tool_alert_title));
         mToolbar.setTitleTextColor(Color.WHITE);
         mAlertsWidgets = (ListView) findViewById(R.id.AA_LV_alerts);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

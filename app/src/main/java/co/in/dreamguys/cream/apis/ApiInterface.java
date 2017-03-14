@@ -322,4 +322,23 @@ public interface ApiInterface {
     @GET("staffrunsheet_list")
     Call<StaffreportAPI.StaffReportResponse> getStaffReports();
 
+    @FormUrlEncoded
+    @POST("driverhours_detail_list")
+    Call<DetailLogAPI.DetailLogResponse> getDetailDriverHours(@Field("id") String id);
+
+    @GET("state_list")
+    Call<InnerStateAPI.InnerStateResponse> getInnerState();
+
+    @GET("mlis_list")
+    Call<MLIAPI.MLIsresponse> getMLIs();
+
+    @FormUrlEncoded
+    @POST("mlis_search_list")
+    Call<MLIAPI.MLIsresponse> searchMLI(@Field("sname") String sname, @Field("sdate") String sdate, @Field("edate") String edate);
+
+    @FormUrlEncoded
+    @POST("runsheet_list")
+    Call<RunsheetAPI.RunsheetResponse> getRunsheets(@Field("weekday") String weekday, @Field("location") String location);
+
+
 }

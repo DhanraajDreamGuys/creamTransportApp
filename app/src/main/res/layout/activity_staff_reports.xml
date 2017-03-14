@@ -13,6 +13,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:padding="@dimen/_10sdp"
         android:text="@string/str_location"
+        android:visibility="gone"
         android:textSize="@dimen/_12sdp"
         android:textStyle="bold" />
 
@@ -26,6 +27,7 @@
         android:layout_marginTop="@dimen/_3sdp"
         android:background="@drawable/border_gray_box"
         android:drawablePadding="@dimen/_10sdp"
+        android:drawableLeft="@drawable/ic_locations"
         android:drawableRight="@drawable/down_arrow"
         android:gravity="center_vertical"
         android:hint="@string/str_select_location"
@@ -36,9 +38,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:background="@color/darker_gray" />
 
 
@@ -46,6 +48,7 @@
         android:id="@+id/ASR_LV_staff_reports"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="@null"
         android:listSelector="@android:color/transparent"
         android:scrollbars="none" />
 </LinearLayout>

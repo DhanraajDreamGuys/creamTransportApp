@@ -1,6 +1,7 @@
 package co.in.dreamguys.cream.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import co.in.dreamguys.cream.DetailDriverLog;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.apis.DriverHoursAPI;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
@@ -46,7 +48,7 @@ public class DriverLogAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        DriverHoursAPI.Datum mData = data.get(position);
+        final DriverHoursAPI.Datum mData = data.get(position);
         ViewHolder mHolder;
         if (convertView == null) {
             mHolder = new ViewHolder();
@@ -77,7 +79,9 @@ public class DriverLogAdapter extends BaseAdapter {
         mHolder.mViewDrLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent mCallDriverLog = new Intent(mContext, DetailDriverLog.class);
+                mCallDriverLog.putExtra(Constants.ID, mData.getUid());
+                mContext.startActivity(mCallDriverLog);
             }
         });
 

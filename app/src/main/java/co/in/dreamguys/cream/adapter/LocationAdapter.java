@@ -7,11 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.apis.BranchAPI;
-import co.in.dreamguys.cream.apis.StaffreportAPI;
 import co.in.dreamguys.cream.utils.Constants;
 
 /**
@@ -19,10 +18,10 @@ import co.in.dreamguys.cream.utils.Constants;
  */
 public class LocationAdapter extends BaseAdapter {
     Context mContext;
-    private List<StaffreportAPI.Datum> templateLists;
+    private ArrayList<String> templateLists;
     LayoutInflater mInflater;
 
-    public LocationAdapter(Context mContext, List<StaffreportAPI.Datum> staffReportData) {
+    public LocationAdapter(Context mContext, ArrayList<String> staffReportData) {
         this.mContext = mContext;
         templateLists = staffReportData;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -34,7 +33,7 @@ public class LocationAdapter extends BaseAdapter {
     }
 
     @Override
-    public StaffreportAPI.Datum getItem(int position) {
+    public String getItem(int position) {
         return templateLists.get(position);
     }
 
@@ -45,7 +44,7 @@ public class LocationAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        StaffreportAPI.Datum mData = templateLists.get(position);
+        String mData = templateLists.get(position);
         ViewHolder mHolder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.acdapter_settings, null);
@@ -57,7 +56,7 @@ public class LocationAdapter extends BaseAdapter {
         }
 
         for (BranchAPI.Datum branch : Constants.countries) {
-            if (branch.getId().equalsIgnoreCase(mData.getLocation())) {
+            if (branch.getId().equalsIgnoreCase(mData)) {
                 mHolder.mSetttings.setText(branch.getName());
             }
 

@@ -19,6 +19,7 @@ import co.in.dreamguys.cream.apis.BranchAPI;
 import co.in.dreamguys.cream.apis.CompanyAPI;
 import co.in.dreamguys.cream.apis.CustomFieldTypeAPI;
 import co.in.dreamguys.cream.apis.DriverListsAPI;
+import co.in.dreamguys.cream.apis.InnerStateAPI;
 import co.in.dreamguys.cream.apis.ListCountriesAPI;
 import co.in.dreamguys.cream.apis.StaffreportAPI;
 import co.in.dreamguys.cream.apis.UserTypeAPI;
@@ -190,4 +191,10 @@ public class Constants {
     public static String PARAMS_PIN_CODE = "pin_code";
     public static String PARAMS_NOTES = "notes";
     public static List<StaffreportAPI.Datum> STAFF_REPORT_DATA;
+    public static String ID = "id";
+    public static List<InnerStateAPI.Datum> INNERSTATE;
+    public static String MLI = "MLIs";
+    public static String RUNSHEET_DATA = "runsheet_data";
+    public static String WEEK_DAY = "week_day";
+    public static String LOCATION = "location";
 }
