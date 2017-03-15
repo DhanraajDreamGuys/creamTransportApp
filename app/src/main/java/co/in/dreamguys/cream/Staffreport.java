@@ -22,7 +22,7 @@ import co.in.dreamguys.cream.adapter.LocationAdapter;
 import co.in.dreamguys.cream.adapter.StaffReportAdapter;
 import co.in.dreamguys.cream.apis.ApiClient;
 import co.in.dreamguys.cream.apis.ApiInterface;
-import co.in.dreamguys.cream.apis.BranchAPI;
+import co.in.dreamguys.cream.apis.InnerStateAPI;
 import co.in.dreamguys.cream.apis.StaffreportAPI;
 import co.in.dreamguys.cream.utils.Constants;
 import co.in.dreamguys.cream.utils.CustomProgressDialog;
@@ -58,7 +58,7 @@ public class Staffreport extends AppCompatActivity implements View.OnClickListen
         initWidgets();
 
         getStaffreports();
-
+        getInnerState();
     }
 
     private void getStaffreports() {
@@ -97,6 +97,32 @@ public class Staffreport extends AppCompatActivity implements View.OnClickListen
                 }
             });
         }
+    }
+
+    private void getInnerState() {
+        if (!isNetworkAvailable(this)) {
+            Snackbar.make(findViewById(R.id.ARS_LL_parent), getString(R.string.no_internet_connection), Snackbar.LENGTH_SHORT).show();
+        } else {
+            ApiInterface apiService =
+                    ApiClient.getClient().create(ApiInterface.class);
+            Call<InnerStateAPI.InnerStateResponse> loginCall = apiService.getInnerState();
+            loginCall.enqueue(new Callback<InnerStateAPI.InnerStateResponse>() {
+                @Override
+                public void onResponse(Call<InnerStateAPI.InnerStateResponse> call, Response<InnerStateAPI.InnerStateResponse> response) {
+                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                        Constants.INNERSTATE = response.body().getData();
+                    } else {
+                        Snackbar.make(findViewById(R.id.ARS_LL_parent), response.body().getMessage(), Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<InnerStateAPI.InnerStateResponse> call, Throwable t) {
+                    Log.i(TAG, t.getMessage());
+                }
+            });
+        }
+
     }
 
     private void initWidgets() {
@@ -143,10 +169,11 @@ public class Staffreport extends AppCompatActivity implements View.OnClickListen
                     mTemplateWidgets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            for (BranchAPI.Datum branch : Constants.countries) {
+                            for (InnerStateAPI.Datum branch : Constants.INNERSTATE) {
                                 if (mLocations.get(position).equalsIgnoreCase(branch.getId())) {
                                     mSelectLocation.setText(branch.getName());
                                     templateId = branch.getId();
+                                    getSearchStaffReport();
                                 }
                             }
                             aAlertDialog.dismiss();
@@ -158,6 +185,38 @@ public class Staffreport extends AppCompatActivity implements View.OnClickListen
                 Snackbar.make(findViewById(R.id.AAA_LL_parent), getString(R.string.no_data_found), Snackbar.LENGTH_LONG).show();
             }
 
+        }
+    }
+
+    private void getSearchStaffReport() {
+        if (!isNetworkAvailable(this)) {
+            Snackbar.make(findViewById(R.id.AAA_LL_parent), getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG).show();
+        } else {
+            mCustomProgressDialog.showDialog();
+            ApiInterface apiService =
+                    ApiClient.getClient().create(ApiInterface.class);
+            Call<StaffreportAPI.StaffReportResponse> loginCall = apiService.searchStaffReport(templateId);
+
+            loginCall.enqueue(new Callback<StaffreportAPI.StaffReportResponse>() {
+                @Override
+                public void onResponse(Call<StaffreportAPI.StaffReportResponse> call, Response<StaffreportAPI.StaffReportResponse> response) {
+                    if (response.body().getMeta().equals(Constants.SUCCESS)) {
+                        mStaffReportWidgets.setAdapter(null);
+                        aStaffReportAdapter = new StaffReportAdapter(Staffreport.this, response.body().getData());
+                        mStaffReportWidgets.setAdapter(aStaffReportAdapter);
+                        aStaffReportAdapter.notifyDataSetChanged();
+                    } else {
+                        Snackbar.make(findViewById(R.id.AAA_LL_parent), response.body().getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
+                    mCustomProgressDialog.dismiss();
+                }
+
+                @Override
+                public void onFailure(Call<StaffreportAPI.StaffReportResponse> call, Throwable t) {
+                    Log.i(TAG, t.getMessage());
+                    mCustomProgressDialog.dismiss();
+                }
+            });
         }
     }
 }

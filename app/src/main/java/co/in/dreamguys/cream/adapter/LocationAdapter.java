@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import co.in.dreamguys.cream.R;
-import co.in.dreamguys.cream.apis.BranchAPI;
+import co.in.dreamguys.cream.apis.InnerStateAPI;
 import co.in.dreamguys.cream.utils.Constants;
 
 /**
@@ -55,7 +55,9 @@ public class LocationAdapter extends BaseAdapter {
             mHolder = (ViewHolder) convertView.getTag();
         }
 
-        for (BranchAPI.Datum branch : Constants.countries) {
+
+
+        for (InnerStateAPI.Datum branch : Constants.INNERSTATE) {
             if (branch.getId().equalsIgnoreCase(mData)) {
                 mHolder.mSetttings.setText(branch.getName());
             }

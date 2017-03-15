@@ -1,6 +1,7 @@
 package co.in.dreamguys.cream.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.google.gson.JsonParser;
 
 import java.util.List;
 
+import co.in.dreamguys.cream.EditRunsheet;
 import co.in.dreamguys.cream.R;
 import co.in.dreamguys.cream.apis.BranchAPI;
 import co.in.dreamguys.cream.apis.RunsheetAPI;
@@ -67,7 +69,7 @@ public class RunsheetAdapter extends BaseAdapter {
         } else {
             mHolder = (ViewHolder) convertView.getTag();
         }
-        RunsheetAPI.Datum mData = data.get(position);
+        final RunsheetAPI.Datum mData = data.get(position);
         mHolder.mDriverName.setText(mData.getFirst_name() + " " + mData.getLast_name());
 
         for (BranchAPI.Datum data : Constants.countries) {
@@ -100,6 +102,15 @@ public class RunsheetAdapter extends BaseAdapter {
         } catch (NullPointerException npe) {
             npe.printStackTrace();
         }
+
+        mHolder.mEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mCalleRunsheet = new Intent(mContext, EditRunsheet.class);
+                mCalleRunsheet.putExtra(Constants.E_RUNSHEET_DATA, mData);
+                mContext.startActivity(mCalleRunsheet);
+            }
+        });
 
         return convertView;
     }

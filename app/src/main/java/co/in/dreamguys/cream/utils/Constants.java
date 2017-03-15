@@ -9,6 +9,7 @@ import co.in.dreamguys.cream.FridgeCodec;
 import co.in.dreamguys.cream.Fuelsheet;
 import co.in.dreamguys.cream.Leave;
 import co.in.dreamguys.cream.RepairSheet;
+import co.in.dreamguys.cream.RunsheetLists;
 import co.in.dreamguys.cream.TripHours;
 import co.in.dreamguys.cream.Trips;
 import co.in.dreamguys.cream.UsefulLinks;
@@ -62,6 +63,7 @@ public class Constants {
 
     public static String PARAMS_ID = "id";
     public static String PARAMS_TRIP_ID = "trip_id";
+    public static String PARAMS_TID = "tid";
     public static String PARAMS_OFFICE_USE = "office_use_comts";
     public static String REPAIRSHEETDETAILS = "repair_sheet_details";
     public static String TRIPSHEETDETAILS = "trip_sheet";
@@ -80,6 +82,7 @@ public class Constants {
     public static String PARAMS_IDFROM = "ldfrom";
     public static String PARAMS_CTRUCK = "ctruck";
     public static String PARAMS_CDRIVER = "cdriver";
+    public static String PARAMS_CODRIVER = "codriver";
     public static String PARAMS_ITYPE = "ltype";
     public static String PARAMS_SDATE = "sdate";
     public static String PARAMS_FROM = "from";
@@ -197,4 +200,8 @@ public class Constants {
     public static String RUNSHEET_DATA = "runsheet_data";
     public static String WEEK_DAY = "week_day";
     public static String LOCATION = "location";
+    public static String E_RUNSHEET_DATA = "e_runsheet_data";
+    public static RunsheetLists eRUNSHEET;
+    public static String PARAMS_TO = "to";
+    public static String PARAMS_LOCATION = "location";
 }

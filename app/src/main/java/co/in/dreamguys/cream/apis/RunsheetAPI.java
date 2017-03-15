@@ -20,11 +20,14 @@ public class RunsheetAPI {
     }
 
 
-    public class Datum implements Serializable{
+    public class Datum implements Serializable {
 
         @SerializedName("tid")
         @Expose
         private String tid;
+        @SerializedName("trip_id")
+        @Expose
+        private String trip_id;
         @SerializedName("from")
         @Expose
         private String from;
@@ -92,6 +95,14 @@ public class RunsheetAPI {
 
         public void setTid(String tid) {
             this.tid = tid;
+        }
+
+        public String getTrip_id() {
+            return trip_id;
+        }
+
+        public void setTrip_id(String trip_id) {
+            this.trip_id = trip_id;
         }
 
         public String getFrom() {

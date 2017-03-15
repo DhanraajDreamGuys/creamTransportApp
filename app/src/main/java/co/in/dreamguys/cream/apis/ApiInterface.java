@@ -76,6 +76,11 @@ public interface ApiInterface {
     @POST("add_trip")
     Call<AddTripAPI.AddTripResponse> addNewTrip(@FieldMap HashMap<String, String> meta);
 
+
+    @FormUrlEncoded
+    @POST("runsheet_add")
+    Call<AddTripAPI.AddTripResponse> addNewRunsheet(@FieldMap HashMap<String, String> meta);
+
     @FormUrlEncoded
     @POST("trip_search_filter")
     Call<TripListAPI.TripsResponse> getTripLists(@FieldMap HashMap<String, String> meta);
@@ -340,5 +345,13 @@ public interface ApiInterface {
     @POST("runsheet_list")
     Call<RunsheetAPI.RunsheetResponse> getRunsheets(@Field("weekday") String weekday, @Field("location") String location);
 
+    @FormUrlEncoded
+    @POST("staffrunsheet_search")
+    Call<StaffreportAPI.StaffReportResponse> searchStaffReport(@Field("location") String location);
+
+
+    @FormUrlEncoded
+    @POST("runsheet_edit")
+    Call<UpdateSheetAPI.UpdatePaysheetResponse> getUpdateRunsheet(@FieldMap HashMap<String, String> meta);
 
 }
