@@ -4,14 +4,19 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/AM_IV_menu_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
+
     <TextView
         android:id="@+id/tv_menus_drop"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_margin="@dimen/_4sdp"
         android:background="@drawable/border_gray_oval"
-        android:drawableLeft="@drawable/ic_add_company"
-        android:drawablePadding="@dimen/_8sdp"
         android:drawableRight="@drawable/ic_menus"
         android:gravity="center_vertical"
         android:padding="@dimen/_5sdp"
