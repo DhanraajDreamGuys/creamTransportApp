@@ -44,10 +44,13 @@
 
                     <ImageView
                         android:id="@+id/AC_IV_logo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/clr_paysheet_table_color"
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:background="@android:color/white"
                         android:minHeight="@dimen/_60sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_app_icon"
+                        android:adjustViewBounds="true"
                         android:minWidth="@dimen/_60sdp"
                         android:scaleType="centerCrop" />
 
@@ -56,7 +59,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="Cream Transport"
+                        android:text=""
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_18sdp" />
 
@@ -65,7 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="101058921"
+                        android:text=""
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_12sdp" />
 
@@ -80,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="No 6 Sankar Nagar \nSweet Shop Opp \nSingapore - 000001."
+                        android:text=""
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_14sdp" />
 
@@ -133,7 +136,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="(410) 832 2105"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_12sdp" />
 
@@ -179,7 +182,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="admin@gmail.com"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_12sdp" />
 
@@ -226,7 +229,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="(410) 832 2105"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_12sdp" />
 
@@ -272,7 +275,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:text="admin.skype"
+                        android:text=""
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_12sdp" />
 

@@ -192,7 +192,7 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
 
         ExpandedMenuModel item10 = new ExpandedMenuModel();
         item10.setIconName("MLIS");
-        item10.setIconImg(R.drawable.ic_menu_camera);
+        item10.setIconImg(R.drawable.ic_mli);
         item10.setGroupPos(true);
         listDataHeader.add(item10);
 
