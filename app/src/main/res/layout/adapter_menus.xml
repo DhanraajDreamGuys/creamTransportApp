@@ -25,18 +25,6 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_add_company" />
 
-    <TextView
-        android:id="@+id/tv_menus"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_margin="@dimen/_4sdp"
-        android:background="@drawable/border_gray_oval"
-        android:gravity="center_vertical"
-        android:padding="@dimen/_5sdp"
-        android:text="sample"
-        android:textSize="@dimen/_14sdp" />
-
-</LinearLayout>
         <TextView
             android:id="@+id/tv_menus"
             android:layout_width="match_parent"
@@ -46,5 +34,6 @@
             android:padding="@dimen/_5sdp"
             android:text="sample"
             android:textSize="@dimen/_14sdp" />
+
     </LinearLayout>
 </android.support.v7.widget.CardView>
