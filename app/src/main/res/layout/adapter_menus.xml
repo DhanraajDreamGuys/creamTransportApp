@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/_2sdp"
+    app:cardUseCompatPadding="true">
 
-
-    <ImageView
-        android:id="@+id/AM_IV_menu_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_24sdp"
-        android:adjustViewBounds="true"
-        android:padding="@dimen/_5sdp"
-        android:layout_marginLeft="@dimen/_10sdp"
-        android:background="@drawable/border_gray_oval"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_add_company"
-        android:scaleType="fitXY" />
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
 
+        <ImageView
+            android:id="@+id/AM_IV_menu_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:padding="@dimen/_5sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_add_company" />
 
     <TextView
         android:id="@+id/tv_menus"
@@ -31,3 +37,14 @@
         android:textSize="@dimen/_14sdp" />
 
 </LinearLayout>
+        <TextView
+            android:id="@+id/tv_menus"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_margin="@dimen/_4sdp"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="sample"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

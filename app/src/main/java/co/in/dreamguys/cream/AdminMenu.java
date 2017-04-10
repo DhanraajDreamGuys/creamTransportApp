@@ -138,121 +138,121 @@ public class AdminMenu extends AppCompatActivity implements ConstantListItem, Lo
 
         ExpandedMenuModel item1 = new ExpandedMenuModel();
         item1.setIconName("Dashboard");
-        item1.setIconImg(R.drawable.ic_dashboard);
+        item1.setIconImg(R.drawable.ic_dashboards);
         item1.setGroupPos(false);
         listDataHeader.add(item1);
 
         ExpandedMenuModel item2 = new ExpandedMenuModel();
         item2.setIconName("Company");
-        item2.setIconImg(R.drawable.ic_company);
+        item2.setIconImg(R.drawable.ic_companys);
         item2.setGroupPos(false);
         listDataHeader.add(item2);
 
         ExpandedMenuModel item3 = new ExpandedMenuModel();
         item3.setIconName("Users");
-        item3.setIconImg(R.drawable.ic_users);
+        item3.setIconImg(R.drawable.ic_userss);
         item3.setGroupPos(false);
         listDataHeader.add(item3);
 
         ExpandedMenuModel item4 = new ExpandedMenuModel();
         item4.setIconName("Trips");
-        item4.setIconImg(R.drawable.ic_trips);
+        item4.setIconImg(R.drawable.ic_tripss);
         item4.setGroupPos(true);
         listDataHeader.add(item4);
 
         ExpandedMenuModel item5 = new ExpandedMenuModel();
         item5.setIconName("Run sheets");
-        item5.setIconImg(R.drawable.ic_runsheet);
+        item5.setIconImg(R.drawable.ic_run_sheets);
         item5.setGroupPos(true);
         listDataHeader.add(item5);
 
         ExpandedMenuModel item6 = new ExpandedMenuModel();
         item6.setIconName("Alerts");
-        item6.setIconImg(R.drawable.ic_alert);
+        item6.setIconImg(R.drawable.ic_alerts);
         item6.setGroupPos(true);
         listDataHeader.add(item6);
 
         ExpandedMenuModel item7 = new ExpandedMenuModel();
         item7.setIconName("Tyre repair");
-        item7.setIconImg(R.drawable.ic_tyre_repair);
+        item7.setIconImg(R.drawable.ic_tyres);
         item7.setGroupPos(true);
         listDataHeader.add(item7);
 
         ExpandedMenuModel item8 = new ExpandedMenuModel();
         item8.setIconName("Driver hours");
-        item8.setIconImg(R.drawable.ic_driver_hrs);
+        item8.setIconImg(R.drawable.ic_hours);
         item8.setGroupPos(true);
         listDataHeader.add(item8);
 
         ExpandedMenuModel item9 = new ExpandedMenuModel();
         item9.setIconName("Paysheet");
-        item9.setIconImg(R.drawable.ic_paysheet);
+        item9.setIconImg(R.drawable.ic_pay_sheets);
         item9.setGroupPos(true);
         listDataHeader.add(item9);
 
         ExpandedMenuModel item10 = new ExpandedMenuModel();
         item10.setIconName("MLIS");
-        item10.setIconImg(R.drawable.ic_mli);
+        item10.setIconImg(R.drawable.ic_mliss);
         item10.setGroupPos(true);
         listDataHeader.add(item10);
 
         ExpandedMenuModel item11 = new ExpandedMenuModel();
         item11.setIconName("Repair sheets");
-        item11.setIconImg(R.drawable.ic_runsheet);
+        item11.setIconImg(R.drawable.ic_repair_sheets);
         item11.setGroupPos(false);
         listDataHeader.add(item11);
 
         ExpandedMenuModel item12 = new ExpandedMenuModel();
         item12.setIconName("Staff report");
-        item12.setIconImg(R.drawable.ic_staff_report);
+        item12.setIconImg(R.drawable.ic_staff_reports);
         item12.setGroupPos(false);
         listDataHeader.add(item12);
 
         ExpandedMenuModel item13 = new ExpandedMenuModel();
         item13.setIconName("Leave form");
-        item13.setIconImg(R.drawable.ic_leave_form);
+        item13.setIconImg(R.drawable.ic_leave_forms);
         item13.setGroupPos(false);
         listDataHeader.add(item13);
 
         ExpandedMenuModel item14 = new ExpandedMenuModel();
         item14.setIconName("Accident report");
-        item14.setIconImg(R.drawable.ic_accident);
+        item14.setIconImg(R.drawable.ic_accidents);
         item14.setGroupPos(false);
         listDataHeader.add(item14);
 
         ExpandedMenuModel item15 = new ExpandedMenuModel();
         item15.setIconName("Fridge codes");
-        item15.setIconImg(R.drawable.ic_fridge_codec);
+        item15.setIconImg(R.drawable.ic_fridge_codes);
         item15.setGroupPos(true);
         listDataHeader.add(item15);
 
         ExpandedMenuModel item16 = new ExpandedMenuModel();
         item16.setIconName("Engine code");
-        item16.setIconImg(R.drawable.ic_engine_codec);
+        item16.setIconImg(R.drawable.ic_engines);
         item16.setGroupPos(true);
         listDataHeader.add(item16);
 
         ExpandedMenuModel item17 = new ExpandedMenuModel();
         item17.setIconName("Fuelsheet");
-        item17.setIconImg(R.drawable.ic_fuel);
+        item17.setIconImg(R.drawable.ic_fuels);
         item17.setGroupPos(true);
         listDataHeader.add(item17);
 
         ExpandedMenuModel item18 = new ExpandedMenuModel();
         item18.setIconName("Phone book");
-        item18.setIconImg(R.drawable.ic_phonebook);
+        item18.setIconImg(R.drawable.ic_phone_books);
         item18.setGroupPos(true);
         listDataHeader.add(item18);
 
         ExpandedMenuModel item19 = new ExpandedMenuModel();
         item19.setIconName("Trip hours");
-        item19.setIconImg(R.drawable.ic_trip_hrs);
+        item19.setIconImg(R.drawable.ic_tripss);
         item19.setGroupPos(true);
         listDataHeader.add(item19);
 
         ExpandedMenuModel item20 = new ExpandedMenuModel();
         item20.setIconName("Settings");
-        item20.setIconImg(R.drawable.ic_settings);
+        item20.setIconImg(R.drawable.ic_settingss);
         item20.setGroupPos(true);
         listDataHeader.add(item20);
         // Adding child data

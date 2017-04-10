@@ -73,7 +73,7 @@ public class AdminMenuAdapter extends RecyclerView.Adapter<AdminMenuAdapter.Admi
             super(itemView);
             mMenus = (TextView) itemView.findViewById(R.id.tv_menus);
             mMenuIcons = (ImageView) itemView.findViewById(R.id.AM_IV_menu_icon);
-            mMenus.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
