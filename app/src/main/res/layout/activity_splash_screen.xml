@@ -7,16 +7,33 @@
 
 
     <ImageView
-        android:layout_width="match_parent"
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_cream_logo" />
+        android:adjustViewBounds="true"
+        android:maxHeight="@dimen/_200sdp"
+        android:maxWidth="@dimen/_200sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/cream_new_logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:gravity="center"
+        android:layout_below="@+id/logo"
+        android:text="Part of the cream group companies"
+        android:textAllCaps="true"
+        android:fontFamily="sans-serif"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_10sdp" />
 
     <ProgressBar
         android:id="@+id/AS_PB_progress"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_above="@+id/AS_TV_please_wait"
         android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/_10sdp"
@@ -32,6 +49,5 @@
         android:text="Please wait..."
         android:textColor="@android:color/white"
         android:textSize="@dimen/_16sdp" />
-
 
 </RelativeLayout>
