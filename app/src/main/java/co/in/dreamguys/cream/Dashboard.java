@@ -135,20 +135,20 @@ public class Dashboard extends AppCompatActivity {
                 mHolder = new ViewHolder();
                 convertView = mInflater.inflate(R.layout.adapter_dashboard, null);
                 mHolder.mCount = (TextView) convertView.findViewById(R.id.AD_TV_count);
-                mHolder.mName = (TextView) convertView.findViewById(R.id.AD_TV_name);
+                mHolder.mNames = (TextView) convertView.findViewById(R.id.AD_TV_name);
                 convertView.setTag(mHolder);
             } else {
                 mHolder = (ViewHolder) convertView.getTag();
             }
 
             mHolder.mCount.setText("" + data.get(position).getCount());
-            mHolder.mName.setText(data.get(position).getName());
+            mHolder.mNames.setText(data.get(position).getName());
 
             return convertView;
         }
 
         class ViewHolder {
-            TextView mCount, mName;
+            TextView mCount, mNames;
         }
     }
 
